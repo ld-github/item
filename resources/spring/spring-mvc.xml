@@ -16,8 +16,11 @@
         </mvc:argument-resolvers>
     </mvc:annotation-driven>
 
-    <context:annotation-config />
-    <context:component-scan base-package="com.ld.web" />
+    <context:component-scan base-package="com.ld.web.*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    </context:component-scan>
+
     <mvc:default-servlet-handler />
 
     <mvc:resources location="/image/" mapping="/image/**" />
@@ -33,6 +36,7 @@
             <bean class="com.ld.web.filter.SessionFilter">
                 <property name="excludedUrls">
                     <list>
+                        <value>/login</value>
                     </list>
                 </property>
             </bean>

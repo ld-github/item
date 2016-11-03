@@ -44,7 +44,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
                 return true;
             }
         }
-        if (null == getSesstionCustomer()) {
+        if (null == getSesstionManager()) {
             String requestType = req.getHeader("X-Requested-With");
 
             if (!StringUtil.isEmpty(requestType) && requestType.equalsIgnoreCase("XMLHttpRequest")) {

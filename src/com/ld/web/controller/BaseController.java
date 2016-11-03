@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.ld.web.model.Customer;
+import com.ld.web.been.model.Manager;
 
 /**
  * 
@@ -29,7 +29,7 @@ public class BaseController implements Serializable {
 
     private static final long serialVersionUID = 5249682224462255858L;
 
-    private final String SESSION_CUSTOMER_KEY = "customer";
+    private final String SESSION_MANAGER_KEY = "manager";
 
     public Object getSessionObj(String key) {
         return getSession().getAttribute(key);
@@ -43,16 +43,16 @@ public class BaseController implements Serializable {
         getSession().removeAttribute(key);
     }
 
-    public void putSessionCustomer(Customer customer) {
-        getSession().setAttribute(SESSION_CUSTOMER_KEY, customer);
+    public void putSessionManager(Manager manager) {
+        getSession().setAttribute(SESSION_MANAGER_KEY, manager);
     }
 
-    public Object getSesstionCustomer() {
-        return getSessionObj(SESSION_CUSTOMER_KEY);
+    public Object getSesstionManager() {
+        return getSessionObj(SESSION_MANAGER_KEY);
     }
 
-    public void removeSessionCustomer() {
-        removeSessionObj(SESSION_CUSTOMER_KEY);
+    public void removeSessionManager() {
+        removeSessionObj(SESSION_MANAGER_KEY);
     }
 
     /**

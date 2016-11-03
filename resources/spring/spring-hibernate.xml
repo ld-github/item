@@ -42,7 +42,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
             <list>
-                <value>com.ld.web.bean.model</value>
+                <value>com.ld.web.been.model</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -62,5 +62,4 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <import resource="applicationContext-*.xml" />
 </beans>
