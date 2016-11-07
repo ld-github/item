@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.ld.web.been.model.Manager;
+import com.ld.web.been.model.User;
 
 /**
  * 
@@ -43,7 +43,7 @@ public class BaseController implements Serializable {
         getSession().removeAttribute(key);
     }
 
-    public void putSessionManager(Manager manager) {
+    public void putSessionManager(User manager) {
         getSession().setAttribute(SESSION_MANAGER_KEY, manager);
     }
 

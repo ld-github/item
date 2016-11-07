@@ -39,6 +39,12 @@
             <bean class="com.ld.web.filter.SessionFilter">
                 <property name="excludedUrls">
                     <list>
+                        <value>js</value>
+                        <value>css</value>
+                        <value>jsp</value>
+                        <value>jpg</value>
+                        <value>png</value>
+
                         <value>/login</value>
                     </list>
                 </property>

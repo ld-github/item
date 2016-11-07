@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ld.web.been.model.Manager;
-import com.ld.web.biz.ManagerBiz;
+import com.ld.web.biz.UserBiz;
 
 /**
  * 
- *<p>Title: ManagerController</p>
+ *<p>Title: UserController</p>
  *<p>Copyright: Copyright (c) 2016</p>
  *<p>Description: </p>
  *
@@ -24,22 +23,17 @@ import com.ld.web.biz.ManagerBiz;
  */
 @Controller
 @Scope("prototype")
-@RequestMapping("/manager")
-public class ManagerController extends BaseController {
+@RequestMapping("/user")
+public class UserController extends BaseController {
 
     private static final long serialVersionUID = 596021065899369405L;
 
     @Resource
-    private ManagerBiz managerBiz;
+    private UserBiz userBiz;
 
     @RequestMapping(value = "/login")
     @ResponseBody
     public ModelAndView login(HttpServletRequest req) {
-        System.out.println(hashCode());
-
-        Manager m = new Manager("abcd", "123");
-        managerBiz.save(m);
-
         return null;
     }
 }
