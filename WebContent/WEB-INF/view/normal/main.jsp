@@ -11,7 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit|ie-stand|ie-comp">
-<meta name="description" content="用户登录">
+<meta name="description" content="主页">
 <meta name="keywords" content="">
 <link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
@@ -20,7 +20,7 @@
 <script type="text/javascript" src="plugins/bootstrap/js/respond.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap/js/html5shiv.js"></script>
 <![endif]-->
-<title>用户登录</title>
+<title>主页</title>
 </head>
 <body>
 </body>

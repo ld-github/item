@@ -17,6 +17,6 @@
 <title>欢迎页</title>
 </head>
 <body>
-    <c:redirect url="mian.jsp"></c:redirect>
+    <c:redirect url="mian"></c:redirect>
 </body>
 </html>

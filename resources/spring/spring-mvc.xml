@@ -44,8 +44,10 @@
                         <value>jsp</value>
                         <value>jpg</value>
                         <value>png</value>
+                        <value>ico</value>
 
                         <value>/login</value>
+                        <value>/main</value>
                     </list>
                 </property>
             </bean>

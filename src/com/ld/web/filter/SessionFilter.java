@@ -51,7 +51,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
                 resp.sendError(518, "session timeout.");
                 return false;
             }
-            resp.sendRedirect(req.getContextPath() + "/index");
+            resp.sendRedirect(req.getContextPath() + "/login");
             return false;
         }
 
