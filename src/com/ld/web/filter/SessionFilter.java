@@ -54,7 +54,6 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
             resp.sendRedirect(req.getContextPath() + "/login");
             return false;
         }
-
         return true;
     }
 
