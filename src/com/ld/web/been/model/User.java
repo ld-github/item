@@ -39,8 +39,6 @@ public class User implements Serializable {
 
     private Date createDatetime; // 创建时间
 
-    private boolean administrator; // 是否是超级管理员
-
     private boolean available; // 是否可用
 
     @Id
@@ -83,16 +81,6 @@ public class User implements Serializable {
 
     @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
     @Type(type = "yes_no")
-    public boolean getAdministrator() {
-        return administrator;
-    }
-
-    public void setAdministrator(boolean administrator) {
-        this.administrator = administrator;
-    }
-
-    @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
-    @Type(type = "yes_no")
     public boolean getAvailable() {
         return available;
     }
@@ -101,16 +89,17 @@ public class User implements Serializable {
         this.available = available;
     }
 
-    public User() {
-    }
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public void init() {
         this.available = true;
         this.createDatetime = new Date();
     }
+
 }

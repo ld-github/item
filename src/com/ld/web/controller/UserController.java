@@ -23,10 +23,12 @@ import com.ld.web.biz.UserBiz;
  */
 @Controller
 @Scope("prototype")
-@RequestMapping("/user")
+@RequestMapping(UserController.REQUEST_INDEX_URL)
 public class UserController extends BaseController {
 
     private static final long serialVersionUID = 596021065899369405L;
+
+    public static final String REQUEST_INDEX_URL = "/user";
 
     @Resource
     private UserBiz userBiz;

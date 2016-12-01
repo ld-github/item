@@ -44,7 +44,8 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
                 return true;
             }
         }
-        if (null == getSesstionManager()) {
+
+        if (null == getSesstionUser()) {
             String requestType = req.getHeader("X-Requested-With");
 
             if (!StringUtil.isEmpty(requestType) && requestType.equalsIgnoreCase("XMLHttpRequest")) {
@@ -54,6 +55,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
             resp.sendRedirect(req.getContextPath() + "/login");
             return false;
         }
+
         return true;
     }
 

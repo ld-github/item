@@ -29,7 +29,7 @@ public class BaseController implements Serializable {
 
     private static final long serialVersionUID = 5249682224462255858L;
 
-    private final String SESSION_MANAGER_KEY = "manager";
+    private final String SESSION_USER_KEY = "user";
 
     public Object getSessionObj(String key) {
         return getSession().getAttribute(key);
@@ -43,16 +43,16 @@ public class BaseController implements Serializable {
         getSession().removeAttribute(key);
     }
 
-    public void putSessionManager(User manager) {
-        getSession().setAttribute(SESSION_MANAGER_KEY, manager);
+    public void putSessionUser(User manager) {
+        getSession().setAttribute(SESSION_USER_KEY, manager);
     }
 
-    public Object getSesstionManager() {
-        return getSessionObj(SESSION_MANAGER_KEY);
+    public Object getSesstionUser() {
+        return getSessionObj(SESSION_USER_KEY);
     }
 
-    public void removeSessionManager() {
-        removeSessionObj(SESSION_MANAGER_KEY);
+    public void removeSessionUser() {
+        removeSessionObj(SESSION_USER_KEY);
     }
 
     /**

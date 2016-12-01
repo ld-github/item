@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @Scope("prototype")
-@RequestMapping("/main")
+@RequestMapping(MainController.REQUEST_INDEX_URL)
 public class MainController extends BaseController {
 
     private static final long serialVersionUID = 596021065899369405L;
+
+    public static final String REQUEST_INDEX_URL = "/main";
 
     @RequestMapping
     public String index() {
