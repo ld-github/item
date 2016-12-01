@@ -9,6 +9,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ld.web.controller.BaseController;
+import com.ld.web.controller.UserController;
 import com.ld.web.util.StringUtil;
 
 /**
@@ -52,7 +53,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
                 resp.sendError(518, "session timeout.");
                 return false;
             }
-            resp.sendRedirect(req.getContextPath() + "/login");
+            resp.sendRedirect(req.getContextPath() + UserController.REQUEST_INDEX_URL);
             return false;
         }
 
