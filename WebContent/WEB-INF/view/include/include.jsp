@@ -11,6 +11,7 @@
 <meta name="keywords" content="">
 <link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="plugins/vue.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/ajaxListener.js"></script>
 <!--[if lte IE 9]>
