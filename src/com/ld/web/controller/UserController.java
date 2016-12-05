@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ld.web.biz.UserBiz;
@@ -33,8 +32,7 @@ public class UserController extends BaseController {
     @Resource
     private UserBiz userBiz;
 
-    @RequestMapping(value = "/login")
-    @ResponseBody
+    @RequestMapping(value = "/toLogin")
     public ModelAndView login(HttpServletRequest req) {
         return null;
     }
