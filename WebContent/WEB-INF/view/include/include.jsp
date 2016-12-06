@@ -20,6 +20,7 @@
 <![endif]-->
 
 <script type="text/javascript">
+
     var contextPath = '<%=request.getContextPath()%>';
 
     $(function() {
@@ -47,4 +48,5 @@
             }
         });
     })
+
 </script>
