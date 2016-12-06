@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.ld.web.controller.LoginController" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -13,8 +14,37 @@
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="plugins/vue.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
-<script type="text/javascript" src="js/ajaxListener.js"></script>
 <!--[if lte IE 9]>
 <script type="text/javascript" src="plugins/bootstrap/js/respond.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap/js/html5shiv.js"></script>
 <![endif]-->
+
+<script type="text/javascript">
+    var contextPath = '<%=request.getContextPath()%>';
+
+    $(function() {
+
+        /**
+         * Ajax Start
+         */
+        $(document).ajaxStart(function() {
+            $('#loading').show();
+        });
+
+        /**
+         * Ajax Stop
+         */
+        $(document).ajaxStop(function() {
+            $('#loading').hide();
+        });
+
+        /**
+         * Ajax Error
+         */
+        $(document).ajaxError(function(event, response, settings) {
+            if (response.status == 518) {
+                window.top.location.href = contextPath + '<%=LoginController.REQUEST_INDEX_URL%>';
+            }
+        });
+    })
+</script>

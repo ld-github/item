@@ -15,6 +15,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * <p>Title: User</p>
@@ -35,6 +37,7 @@ public class User implements Serializable {
 
     private String username; // 登录名
 
+    @JsonIgnore
     private String password; // 密码
 
     private Date createDatetime; // 创建时间

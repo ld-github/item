@@ -4,7 +4,6 @@
 <html lang="zh-CN">
 <head>
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<script type="text/javascript" src="js/main.js"></script>
 <title>用户登陆</title>
 </head>
 <body>

@@ -48,6 +48,7 @@
 
                         <value>/login</value>
                         <value>/main</value>
+                        <value>/getInfo</value>
                     </list>
                 </property>
             </bean>
