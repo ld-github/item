@@ -47,6 +47,7 @@
                 window.top.location.href = contextPath + '<%=LoginController.REQUEST_INDEX_URL%>';
             }
         });
+
     })
 
 </script>
