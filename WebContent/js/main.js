@@ -3,5 +3,7 @@ var URLS = {
 }
 
 $(function() {
-    $.post(URLS.GET_INFO);
+    $.post(URLS.GET_INFO, function(data) {
+        console.log(data.username);
+    });
 });

@@ -42,6 +42,9 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/getInfo")
     @ResponseBody
     public User getInfo() {
-        return new User("LD", "888888");
+        User user = new User("LD", "888888");
+
+        userBiz.save(user);
+        return user;
     }
 }

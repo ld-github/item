@@ -17,9 +17,9 @@ public interface UserBiz {
     /**
      * Save User
      * 
-     * @param manager
+     * @param user
      * 
      */
-    void save(User manager);
+    void save(User user);
 
 }

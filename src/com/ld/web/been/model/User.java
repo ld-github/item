@@ -1,13 +1,9 @@
 package com.ld.web.been.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,32 +25,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "t_user", uniqueConstraints = { @UniqueConstraint(columnNames = { "username" }) })
-public class User implements Serializable {
+public class User extends BaseModel {
 
     private static final long serialVersionUID = 4284572555216108008L;
 
-    private Long id; // 主键
-
+    @Column(length = 32, nullable = false, unique = true)
     private String username; // 登录名
 
     @JsonIgnore
+    @Column(nullable = false)
     private String password; // 密码
 
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createDatetime; // 创建时间
 
+    @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
+    @Type(type = "yes_no")
     private boolean available; // 是否可用
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(length = 32, nullable = false, unique = true)
     public String getUsername() {
         return username;
     }
@@ -63,7 +52,6 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
@@ -72,8 +60,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Column
-    @Temporal(TemporalType.TIMESTAMP)
     public Date getCreateDatetime() {
         return createDatetime;
     }
@@ -82,8 +68,6 @@ public class User implements Serializable {
         this.createDatetime = createDatetime;
     }
 
-    @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
-    @Type(type = "yes_no")
     public boolean getAvailable() {
         return available;
     }
