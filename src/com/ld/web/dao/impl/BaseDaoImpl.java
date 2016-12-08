@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,6 +31,8 @@ import com.ld.web.dao.BaseDao;
  */
 @SuppressWarnings("unchecked")
 public class BaseDaoImpl<T> implements BaseDao<T> {
+
+    private static Logger logger = Logger.getLogger(BaseDaoImpl.class);
 
     @Resource
     private SessionFactory sf;
@@ -72,13 +75,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public T getUniqueResult(String where, Map<String, Object> params) throws Exception {
+    public T getUniqueResult(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
         String hql = "FROM " + this.getClassName() + " o " + where;
 
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
-        return (T) q.uniqueResult();
+        try {
+            return (T) q.uniqueResult();
+        } catch (Exception e) {
+            logger.info(String.format("Get unique result error: %s", e.getMessage()), e);
+            return null;
+        }
     }
 
     @Override

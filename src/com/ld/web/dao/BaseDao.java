@@ -60,7 +60,7 @@ public interface BaseDao<T> {
      * @return
      * @throws Exception
      */
-    T getUniqueResult(String where, Map<String, Object> params) throws Exception;
+    T getUniqueResult(String where, Map<String, Object> params) ;
 
     /**
      * Get unique result
