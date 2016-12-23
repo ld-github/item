@@ -11,8 +11,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit|ie-stand|ie-comp">
-<meta name="description" content="安心付欢迎页">
-<meta name="keywords" content="校园安心付">
+<meta name="description" content="欢迎页">
+<meta name="keywords" content="">
 <title>欢迎页</title>
 </head>
 <body>
