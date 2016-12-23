@@ -4,7 +4,7 @@
 <html lang="zh-CN">
 <head>
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<title>用户登陆</title>
+<title>用户登录</title>
 </head>
 <body>
 

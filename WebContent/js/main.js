@@ -7,3 +7,12 @@ $(function() {
         console.log(data.username);
     });
 });
+
+$(function() {
+    var app = new Vue({
+        el : '#app',
+        data : {
+            message : 'hello, vue'
+        }
+    });
+});

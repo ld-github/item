@@ -8,5 +8,8 @@
 <title>主页</title>
 </head>
 <body>
+    <div id="app">
+        {{ message }}
+    </div>
 </body>
 </html>
