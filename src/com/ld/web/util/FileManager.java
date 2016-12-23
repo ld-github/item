@@ -83,6 +83,7 @@ public class FileManager {
                 directory.mkdirs();
                 logger.info(String.format("Make dirs by directory path: %s", directory.getAbsoluteFile()));
             }
+
             logger.info(String.format("Create file absolute path: %s ", file.getAbsolutePath()));
             return file.createNewFile();
         } catch (IOException e) {

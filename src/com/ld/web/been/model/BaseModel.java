@@ -25,8 +25,8 @@ public class BaseModel implements Serializable {
     private static final long serialVersionUID = 4686897694020369026L;
 
     @Id
-    @GenericGenerator(name = "idGenerator", strategy = "uuid")
-    @GeneratedValue(generator = "idGenerator")
+    @GenericGenerator(name = "pk_gen", strategy = "uuid")
+    @GeneratedValue(generator = "pk_gen")
     @Column(length = 32)
     private String id;
 
