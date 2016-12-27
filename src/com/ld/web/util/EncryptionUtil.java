@@ -145,6 +145,7 @@ public class EncryptionUtil {
      * @return
      */
     public static String toHex(byte[] bytes) {
+
         if (bytes == null || bytes.length == 0) {
             throw new IllegalArgumentException("ToHex encrypt data is null...");
         }

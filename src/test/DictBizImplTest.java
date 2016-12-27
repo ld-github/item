@@ -30,7 +30,7 @@ public class DictBizImplTest {
     public void save() {
 
         List<Dict> dicts = new ArrayList<Dict>();
-        DictType dictType = new DictType("type1", "type1", true, "type1", dicts);
+        DictType dictType = new DictType("type2", "type1", true, "type1", dicts);
 
         dicts.add(new Dict(dictType, "value1", "11", true, "remark1"));
         dicts.add(new Dict(dictType, "value2", "22", true, "remark2"));
