@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    min-width: 900px !important;
     color: #ddd;
     font-family: adelle-sans, Source Sans Pro, Helvetica Neue, sans-serif;
     font-size: 1em;

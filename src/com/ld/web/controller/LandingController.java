@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 
- *<p>Title: LandingPageController</p>
+ *<p>Title: LandingController</p>
  *<p>Copyright: Copyright (c) 2016</p>
  *<p>Description: </p>
  *

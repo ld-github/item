@@ -35,7 +35,7 @@ public class UserController extends BaseController {
     private UserBiz userBiz;
 
     @RequestMapping(value = "/toLogin")
-    public ModelAndView login(HttpServletRequest req) {
+    public ModelAndView toLogin(HttpServletRequest req) {
         return null;
     }
 

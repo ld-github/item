@@ -10,6 +10,8 @@
 <title>用户登录</title>
 </head>
 <body>
-
+    <div class="login-container">
+        <div class="login-pannel"></div>
+    </div>
 </body>
 </html>
