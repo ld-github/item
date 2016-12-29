@@ -46,6 +46,9 @@
                         <value>ico</value>
 
                         <value>/login</value>
+                        <value>/logout</value>
+                        <value>/landing</value>
+
                         <value>/main</value>
                         <value>/getInfo</value>
                     </list>

@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+<meta name="keywords" content="">
+<meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
 <script type="text/javascript" src="js/main.js"></script>
 <title>主页</title>

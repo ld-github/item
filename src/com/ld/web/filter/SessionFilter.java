@@ -33,7 +33,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
     }
 
     @Override
-    public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object obj, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest req, HttpServletResponse resp, Object obj, ModelAndView mv) throws Exception {
     }
 
     @Override

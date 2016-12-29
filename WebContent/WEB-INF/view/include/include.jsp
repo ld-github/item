@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="com.ld.web.controller.LoginController" %>
+<%@ page import="com.ld.web.controller.LandingController" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -9,8 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="renderer" content="webkit|ie-stand|ie-comp">
-<meta name="description" content="">
-<meta name="keywords" content="">
 <link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="plugins/vue.min.js"></script>
@@ -49,6 +48,13 @@
             }
         });
 
-    })
+        var userAgent = window.navigator.userAgent.toLowerCase();
+        var isLessThanIE9 = userAgent.indexOf("msie") !== -1 && /\d+/.exec(userAgent.split(";")[1]) < 9;
 
+        var landingPath = '<%=LandingController.REQUEST_INDEX_URL%>';
+        if (isLessThanIE9 && window.location.href.indexOf(landingPath) === -1) {
+            window.top.location.href = contextPath + landingPath;
+        }
+
+    })
 </script>
