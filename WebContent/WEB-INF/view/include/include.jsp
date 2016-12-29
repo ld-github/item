@@ -19,8 +19,8 @@
 <script type="text/javascript" src="plugins/vue.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <!--[if lte IE 9]>
-<script type="text/javascript" src="plugins/bootstrap/js/respond.min.js"></script>
-<script type="text/javascript" src="plugins/bootstrap/js/html5shiv.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap/js/respond.min.js"></script>
+    <script type="text/javascript" src="plugins/bootstrap/js/html5shiv.js"></script>
 <![endif]-->
 
 <script type="text/javascript">
