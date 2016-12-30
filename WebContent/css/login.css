@@ -9,19 +9,52 @@ body {
     top: 0;
     bottom: 0;
     width: 100%;
-    height: 350px;
+    height: 380px;
     margin: auto;
-    background: #CCCCFF;
-    opacity: 0.1;
-    filter: alpha(opacity = 10);
 }
 
 .login-pannel {
     position: absolute;
     left: 0;
     right: 0;
-    width: 600px;
+    width: 480px;
     height: 100%;
     margin: auto;
-    background: #FF0000;
+}
+
+.title-panel {
+    width: 100%;
+    height: 80px;
+    font-size: 3em;
+    text-align: center;
+    line-height: 80px;
+}
+
+.login-form {
+    width: 98%;
+    height: 270px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.login-form .input-group-lg {
+     margin-top: 20px;
+}
+
+.login-form .input-group-addon {
+    padding: 0 10px !important;
+}
+
+.login-form .btn {
+    width: 103px;
+    margin-top: 20px;
+}
+
+#verification-code-img {
+    cursor: pointer;
+}
+
+.layui-layer {
+    margin-top: 1px;
 }

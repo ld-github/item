@@ -49,6 +49,7 @@ function formLoadJson(formId, json) {
 })(jQuery);
 
 var Message = function() {
+
     this.show = function(msg) {
         layer.msg(msg);
     }
@@ -60,5 +61,13 @@ var Message = function() {
                 callback(param);
             }
         })
+    }
+
+    this.tipLeft = function(id, msg, time) {
+        time = !time ? 5000 : time;
+        layer.tips(msg, $(id), {
+            tips : [ 4, '#3595CC' ],
+            time : time,
+        });
     }
 }

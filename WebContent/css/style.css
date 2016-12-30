@@ -9,3 +9,20 @@ body {
     font-size: 1em;
     height: 100%;
 }
+
+hr {
+    border-style: inset;
+    border-width: 1px;
+    border-color: #D2D2D2;
+    border-top-color: rgb(210, 210, 210);
+    border-right-color: rgb(210, 210, 210);
+    border-bottom-color: rgb(210, 210, 210);
+    border-left-color: rgb(210, 210, 210);
+    opacity: .2;
+    display: block;
+    margin: 0;
+}
+
+.margin-top-20 {
+    margin-top: 20px;
+}
