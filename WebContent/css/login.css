@@ -17,7 +17,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    width: 480px;
+    width: 450px;
     height: 100%;
     margin: auto;
 }
@@ -52,6 +52,7 @@ body {
 }
 
 #verification-code-img {
+    width: 80px;
     cursor: pointer;
 }
 

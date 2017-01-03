@@ -46,7 +46,8 @@
                         <value>ico</value>
 
                         <value>/login</value>
-                        <value>/logout</value>
+                        <value>/toLogin</value>
+                        <value>/toLogout</value>
                         <value>/landing</value>
 
                         <value>/main</value>

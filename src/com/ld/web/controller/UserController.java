@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.ld.web.been.ServerResp;
 import com.ld.web.been.model.User;
 import com.ld.web.biz.UserBiz;
 
@@ -35,14 +35,15 @@ public class UserController extends BaseController {
     private UserBiz userBiz;
 
     @RequestMapping(value = "/toLogin")
-    public ModelAndView toLogin(HttpServletRequest req) {
-        return null;
+    public String toLogin(HttpServletRequest req) {
+        putReqAttributes(new ServerResp(false, "请输入密码"));
+        return LoginController.REQUEST_INDEX_URL;
     }
 
     @RequestMapping(value = "/getInfo")
     @ResponseBody
     public User getInfo() {
-        User user = new User("LD", "888888");
+        User user = new User("LD1", "888888");
 
         userBiz.save(user);
         return user;

@@ -15,7 +15,7 @@
         <div class="login-pannel">
             <div class="title-panel">System User Login</div>
             <hr>
-            <form class="login-form" action="toLogin" method="post">
+            <form class="login-form" action="user/toLogin" method="post">
                 <div class="input-group-lg">
                       <input type="text" class="form-control" placeholder="Username">
                 </div>
@@ -23,7 +23,7 @@
                       <input type="password" class="form-control" placeholder="Password">
                 </div>
                 <div class="input-group input-group-lg">
-                      <input type="password" class="form-control" placeholder="Verification Code">
+                      <input type="text" class="form-control" placeholder="Verification Code">
                       <span class="input-group-addon"><img id="verification-code-img" src="kaptcha.jpg"></span>
                 </div>
                 <button type="submit" data-loading-text="Logging..." class="btn btn-primary btn-lg pull-right" id="to-login-btn">Login</button>
@@ -31,4 +31,11 @@
         </div>
     </div>
 </body>
+
+<script type="text/javascript">
+    "<c:if test="${null != respDesc}">"
+        new Message().tipLeft('#to-login-btn', '${respDesc}');
+    "</c:if>";
+</script>
+
 </html>

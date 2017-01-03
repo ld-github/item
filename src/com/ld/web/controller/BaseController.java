@@ -1,6 +1,9 @@
 package com.ld.web.controller;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.ld.web.been.model.User;
+import com.ld.web.util.JsonMapper;
 
 /**
  * 
@@ -53,6 +58,19 @@ public class BaseController implements Serializable {
 
     public void removeSessionUser() {
         removeSessionObj(SESSION_USER_KEY);
+    }
+
+    public void putReqAttributes(Object obj) {
+
+        String json = JsonMapper.getInstance().toJson(obj);
+
+        Map<String, Object> data = JsonMapper.getInstance().toObject(json, new TypeReference<HashMap<String, Object>>() {
+        });
+
+        HttpServletRequest request = getRequest();
+        for (Entry<String, Object> entry : data.entrySet()) {
+            request.setAttribute(entry.getKey(), entry.getValue());
+        }
     }
 
     /**

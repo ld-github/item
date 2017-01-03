@@ -59,9 +59,6 @@ public class Page<T> implements Serializable {
         this.records = records;
     }
 
-    public Page() {
-    }
-
     public Page(int currentPage, int pageSize) {
         this.currentPage = currentPage;
         this.pageSize = pageSize;
@@ -72,4 +69,6 @@ public class Page<T> implements Serializable {
         this.records = records;
     }
 
+    public Page() {
+    }
 }
