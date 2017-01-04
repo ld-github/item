@@ -99,7 +99,7 @@ public class EncryptionUtil {
 
             cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key, algorithm), ivSpec);
 
-            return toHex(cipher.doFinal(source.getBytes(charset))).toUpperCase();
+            return Base64.encodeBase64String(cipher.doFinal(source.getBytes(charset)));
         } catch (Exception e) {
             // This should not happen!
             logger.error(String.format("DES EncryptOutHex error: %s", e.getMessage()), e);
@@ -145,7 +145,6 @@ public class EncryptionUtil {
      * @return
      */
     public static String toHex(byte[] bytes) {
-
         if (bytes == null || bytes.length == 0) {
             throw new IllegalArgumentException("ToHex encrypt data is null...");
         }

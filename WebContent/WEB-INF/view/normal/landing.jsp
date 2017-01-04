@@ -5,7 +5,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<title>LandingPage</title>
+<title>Landing Page</title>
 </head>
 <body>
     
