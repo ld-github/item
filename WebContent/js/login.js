@@ -1,5 +1,5 @@
 var URLS = {
-    VERIFICATION_CODE : "kaptcha.jpg"
+    VERIFICATION_CODE : contextPath + "/kaptcha.jpg"
 }
 
 $(function() {

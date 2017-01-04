@@ -50,7 +50,7 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
             String requestType = req.getHeader("X-Requested-With");
 
             if (!StringUtil.isEmpty(requestType) && requestType.equalsIgnoreCase("XMLHttpRequest")) {
-                resp.sendError(518, "session timeout.");
+                resp.sendError(518, "Session timeout...");
                 return false;
             }
             resp.sendRedirect(req.getContextPath() + LoginController.REQUEST_INDEX_URL);
