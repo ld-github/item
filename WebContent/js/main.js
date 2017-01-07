@@ -4,13 +4,9 @@ var URLS = {
 
 $(function() {
 
-    $.post(URLS.GET_INFO, function(data) {
-        console.log(data.username);
-    });
 });
 
 $(function() {
-
     var app = new Vue({
         el : '#app',
         data : {

@@ -6,12 +6,16 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="js/main.js"></script>
 <title>Index Page</title>
 </head>
 <body>
-    <div id="app">
-        {{ message }}
+    <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="sidebar-nav"></div>
+        </div>
     </div>
 </body>
 </html>
