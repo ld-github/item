@@ -47,13 +47,15 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
         }
 
         if (null == getSesstionUser()) {
-            String requestType = req.getHeader("X-Requested-With");
+            String xRequestedWith = req.getHeader("X-Requested-With");
 
-            if (!StringUtil.isEmpty(requestType) && requestType.equalsIgnoreCase("XMLHttpRequest")) {
+            if (!StringUtil.isEmpty(xRequestedWith) && xRequestedWith.equalsIgnoreCase("XMLHttpRequest")) {
                 resp.sendError(518, "Session timeout...");
                 return false;
             }
-            resp.sendRedirect(req.getContextPath() + PageController.REQUEST_PAGE_URL_MAIN);
+
+            String url = req.getContextPath() + PageController.REQUEST_PAGE_URL_LOGIN;
+            writerPrint(resp, "<SCRIPT>window.top.location.href = '" + url + "'</SCRIPT>");
             return false;
         }
 

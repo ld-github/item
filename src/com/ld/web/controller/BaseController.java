@@ -1,5 +1,6 @@
 package com.ld.web.controller;
 
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -102,7 +103,7 @@ public class BaseController implements Serializable {
 
     /**
      * Redirect to location
-     *  
+     * 
      * @param url
      * @return
      */
@@ -110,4 +111,14 @@ public class BaseController implements Serializable {
         return "redirect:" + url;
     }
 
+    public void writerPrint(HttpServletResponse resp, String buffer) {
+        PrintWriter out = null;
+        try {
+            resp.setContentType("text/html; charset=utf-8");
+            out = resp.getWriter();
+            out.print(buffer);
+            out.flush();
+        } catch (Exception e) {
+        }
+    }
 }

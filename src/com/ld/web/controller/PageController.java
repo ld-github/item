@@ -24,6 +24,7 @@ public class PageController extends BaseController {
     public static final String REQUEST_PAGE_URL_LANDING = "/landing";
     public static final String REQUEST_PAGE_URL_LOGIN = "/login";
     public static final String REQUEST_PAGE_URL_MAIN = "/main";
+    public static final String REQUEST_PAGE_URL_INDEX = "/index";
 
     @RequestMapping(value = REQUEST_PAGE_URL_LANDING)
     public String landing() {
@@ -38,5 +39,10 @@ public class PageController extends BaseController {
     @RequestMapping(value = REQUEST_PAGE_URL_MAIN)
     public String main() {
         return "main";
+    }
+
+    @RequestMapping(value = REQUEST_PAGE_URL_INDEX)
+    public String index() {
+        return "index";
     }
 }

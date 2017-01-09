@@ -1,6 +1,5 @@
 var URLS = {
-    GET_INFO : contextPath + '/user/getInfo',
-    WELCOME_PAGE : contextPath + '/index',
+    INDEX_PAGE : contextPath + '/index',
 }
 
 /**
@@ -100,14 +99,5 @@ $(function() {
         tabWidth : 120,
     });
 
-});
-
-$(function() {
-    var app = new Vue({
-        el : '#app',
-        data : {
-            message : 'hello, vue'
-        }
-    });
-
+    addTab("欢迎页", URLS.INDEX_PAGE, false);
 });
