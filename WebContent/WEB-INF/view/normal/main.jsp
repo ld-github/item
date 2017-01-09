@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="plugins/jquery-ui/themes/icon.css">
 <script type="text/javascript" src="plugins/jquery-ui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
-<title>Index Page</title>
+<title>Main Page</title>
 </head>
 <body>
     <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
@@ -21,6 +21,7 @@
                 <div id="menu-panel"></div>
             </div>
             <div id="page-tabs"></div>
+            <div class="footer">Copyright &copy; 2017 LD</div>
         </div>
     </div>
 </body>

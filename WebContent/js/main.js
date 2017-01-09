@@ -1,5 +1,6 @@
 var URLS = {
     GET_INFO : contextPath + '/user/getInfo',
+    WELCOME_PAGE : contextPath + '/index',
 }
 
 /**
@@ -84,7 +85,7 @@ function addTab(title, url, closable) {
             frameborder : 0,
             src : url,
         }).css({
-            height : ($('#main-panel-body').height() - 37)
+            height : ($('#main-panel-body').height() - 63)
         }),
     });
 

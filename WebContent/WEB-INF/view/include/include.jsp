@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.ld.web.controller.LoginController" %>
-<%@ page import="com.ld.web.controller.LandingController" %>
+<%@ page import="com.ld.web.controller.PageController" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -51,14 +50,14 @@
          */
         $(document).ajaxError(function(event, response, settings) {
             if (response.status == 518) {
-                window.top.location.href = contextPath + '<%=LoginController.REQUEST_INDEX_URL%>';
+                window.top.location.href = contextPath + '<%=PageController.REQUEST_PAGE_URL_LOGIN%>';
             }
         });
 
         var userAgent = window.navigator.userAgent.toLowerCase();
         var isLessThanIE9 = userAgent.indexOf("msie") !== -1 && /\d+/.exec(userAgent.split(";")[1]) < 9;
 
-        var landingPath = '<%=LandingController.REQUEST_INDEX_URL%>';
+        var landingPath = '<%=PageController.REQUEST_PAGE_URL_LANDING%>';
 
         if (isLessThanIE9 && window.location.href.indexOf(landingPath) === -1) {
             window.top.location.href = contextPath + landingPath;

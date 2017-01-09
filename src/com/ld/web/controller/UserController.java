@@ -6,10 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ld.web.been.ServerResp;
-import com.ld.web.been.model.User;
 import com.ld.web.biz.UserBiz;
 
 /**
@@ -37,21 +35,13 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/toLogin")
     public String toLogin(HttpServletRequest req) {
         putReqAttributes(new ServerResp(false, "请输入密码"));
-        return LoginController.REQUEST_INDEX_URL;
+        return PageController.REQUEST_PAGE_URL_LOGIN;
     }
 
     @RequestMapping(value = "/toLogout")
     public String toLogout(HttpServletRequest req) {
         super.removeSessionUser();
-        return redirect(LoginController.REQUEST_INDEX_URL);
+        return redirect(PageController.REQUEST_PAGE_URL_LOGIN);
     }
 
-    @RequestMapping(value = "/getInfo")
-    @ResponseBody
-    public User getInfo() {
-        User user = new User("LD1", "888888");
-
-        userBiz.save(user);
-        return user;
-    }
 }
