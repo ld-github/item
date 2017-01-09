@@ -100,4 +100,14 @@ public class BaseController implements Serializable {
         return getRequest().getSession();
     }
 
+    /**
+     * Redirect to location
+     *  
+     * @param url
+     * @return
+     */
+    public String redirect(String url) {
+        return "redirect:" + url;
+    }
+
 }

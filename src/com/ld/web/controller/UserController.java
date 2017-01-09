@@ -40,6 +40,12 @@ public class UserController extends BaseController {
         return LoginController.REQUEST_INDEX_URL;
     }
 
+    @RequestMapping(value = "/toLogout")
+    public String toLogout(HttpServletRequest req) {
+        super.removeSessionUser();
+        return redirect(LoginController.REQUEST_INDEX_URL);
+    }
+
     @RequestMapping(value = "/getInfo")
     @ResponseBody
     public User getInfo() {
