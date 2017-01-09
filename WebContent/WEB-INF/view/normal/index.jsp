@@ -1,13 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
+<style type="text/css">
+body {
+    padding: 5px;
+}
+</style>
 <title>Index Page</title>
 </head>
 <body>
-    <h1>欢迎页</h1>
+    <div>欢迎页</div>
 </body>
 </html>
