@@ -10,5 +10,6 @@
 </head>
 <body>
     <div>欢迎页</div>
+    <div style="height: 1000px;"></div>
 </body>
 </html>

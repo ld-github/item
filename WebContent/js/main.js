@@ -36,6 +36,7 @@ function initMenu() {
     var menus = $('#menus');
 
     $.each(MENUS, function(index, item) {
+
         var li = $('<LI>').addClass('layui-nav-item');
         $('<A>').attr('href', 'javascript:;').html(item.title).addClass('menu-item').data({ 'title' : item.title, 'url' : item.url }).appendTo(li);
 
@@ -47,6 +48,7 @@ function initMenu() {
 
             dl.appendTo(li);
         }
+
         li.appendTo(menus);
     });
 
@@ -68,6 +70,7 @@ function initMenu() {
  */
 function addTab(title, url, closable) {
     closable = typeof (closable) == 'boolean' ? closable : true;
+
     var tab = $('#page-tabs');
 
     if (tab.tabs('exists', title)) {
@@ -78,12 +81,7 @@ function addTab(title, url, closable) {
     tab.tabs('add', {
         title : title,
         closable : closable,
-        content : $('<IFRAME>').attr({
-            frameborder : 0,
-            src : url,
-        }).css({
-            height : ($('#main-panel-body').height() - 63)
-        }),
+        content : $('<IFRAME>').attr({ frameborder : 0, src : url}).css({ height : ($('#main-panel-body').height() - 63) }),
     });
 
 }

@@ -13,9 +13,12 @@
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="plugins/perfect-scrollbar/css/perfect-scrollbar.min.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugins/perfect-scrollbar/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript" src="plugins/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
 <script type="text/javascript" src="plugins/vue.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <!--[if lte IE 9]>
@@ -61,5 +64,6 @@
             window.top.location.href = contextPath + landingPath;
         }
 
+        $('.main-pannel').perfectScrollbar();
     })
 </script>
