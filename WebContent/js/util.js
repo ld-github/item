@@ -69,7 +69,7 @@ var Message = function() {
 
     this.tipLeft = function(id, msg, time) {
         layui.use('layer', function() {
-            time = !time ? 50000 : time;
+            time = !time ? 5000 : time;
             layui.layer.tips(msg, $(id), {
                 tips : [ 4, '#3595CC' ],
                 time : time,
