@@ -26,6 +26,48 @@ var MENUS = [ {
 }, {
     title : '帮助中心',
     url : contextPath + '/help'
+}, {
+    title : '系统管理',
+    submenus : [ {
+        title : '用户管理',
+        url : contextPath + '/login'
+    }, {
+        title : '地图管理',
+        url : contextPath + '/login'
+    }, {
+        title : '消息管理',
+        url : contextPath + '/login'
+    } ]
+}, {
+    title : '日志记录',
+    submenus : [ {
+        title : '异常信息',
+        url : contextPath + '/login'
+    } ]
+}, {
+    title : '帮助中心',
+    url : contextPath + '/help'
+}, {
+    title : '系统管理',
+    submenus : [ {
+        title : '用户管理',
+        url : contextPath + '/login'
+    }, {
+        title : '地图管理',
+        url : contextPath + '/login'
+    }, {
+        title : '消息管理',
+        url : contextPath + '/login'
+    } ]
+}, {
+    title : '日志记录',
+    submenus : [ {
+        title : '异常信息',
+        url : contextPath + '/login'
+    } ]
+}, {
+    title : '帮助中心',
+    url : contextPath + '/help'
 } ];
 
 /**
@@ -37,7 +79,9 @@ function initMenu() {
 
     $.each(MENUS, function(index, item) {
 
-        var li = $('<LI>').addClass('layui-nav-item');
+        var itemed = index === 0 ? ' layui-nav-itemed' : '';
+
+        var li = $('<LI>').addClass('layui-nav-item' + itemed);
         $('<A>').attr('href', 'javascript:;').html(item.title).addClass('menu-item').data({ 'title' : item.title, 'url' : item.url }).appendTo(li);
 
         if (item.submenus) {

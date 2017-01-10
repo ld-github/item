@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div id="page-tabs"></div>
-            <div class="footer">Copyright &copy; 2017 LD</div>
+            <div class="footer">LD Copyright &copy; 2017</div>
         </div>
     </div>
 </body>
