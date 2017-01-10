@@ -7,7 +7,6 @@ var URLS = {
  */
 var MENUS = [ {
     title : '系统管理',
-    iconCls : 'icon-more',
     submenus : [ {
         title : '用户管理',
         url : contextPath + '/login'
@@ -20,45 +19,44 @@ var MENUS = [ {
     } ]
 }, {
     title : '日志记录',
-    iconCls : 'icon-more',
     submenus : [ {
         title : '异常信息',
         url : contextPath + '/login'
     } ]
+}, {
+    title : '帮助中心',
+    url : contextPath + '/help'
 } ];
 
 /**
  * Init menu to menu-panel
  */
 function initMenu() {
-    $('#menu-panel').accordion({
-        fit : true,
-    });
-    for (var i = 0; i < MENUS.length; i++) {
-        var title = MENUS[i].title;
-        var iconCls = MENUS[i].iconCls;
 
-        var submenus = $('<UL>').addClass('submenus-panel');
-        for (var j = 0; j < MENUS[i].submenus.length; j++) {
-            var menu = MENUS[i].submenus[j];
-            $('<LI>').addClass('submenu-item-panel').appendTo(submenus).html(menu.title).data('menu', menu);
+    var menus = $('#menus');
+
+    $.each(MENUS, function(index, item) {
+        var li = $('<LI>').addClass('layui-nav-item');
+        $('<A>').attr('href', 'javascript:;').html(item.title).addClass('menu-item').data({ 'title' : item.title, 'url' : item.url }).appendTo(li);
+
+        if (item.submenus) {
+            var dl = $('<DL>').addClass('layui-nav-child');
+            $.each(item.submenus, function(index, subItem) {
+                $('<dd>').append($('<A>').attr('href', 'javascript:;').html(subItem.title).addClass('menu-item').data({ 'title' : subItem.title, 'url' : subItem.url })).appendTo(dl);
+            });
+
+            dl.appendTo(li);
         }
-        $('#menu-panel').accordion('add', {
-            title : title,
-            iconCls : iconCls,
-            selected : false,
-            content : submenus,
-        });
-    }
-    $('.submenu-item-panel').click(function() {
-        $('.submenu-item-panel').removeClass('selected');
-        $(this).addClass('selected');
+        li.appendTo(menus);
+    });
 
-        var menu = $(this).data('menu');
-        if (menu.url) {
-            addTab(menu.title, menu.url);
+    $('.menu-item').click(function() {
+        var data = $(this).data();
+        if (data.url) {
+            addTab(data.title, data.url);
         }
     });
+
 }
 
 /**
@@ -100,4 +98,9 @@ $(function() {
     });
 
     addTab("欢迎页", URLS.INDEX_PAGE, false);
+
+    layui.use([ 'element' ], function() {
+        var element = layui.element();
+    });
+
 });

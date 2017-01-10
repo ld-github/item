@@ -49,6 +49,7 @@
                         <value>/toLogin</value>
                         <value>/toLogout</value>
                         <value>/landing</value>
+                        <value>/help</value>
 
                         <value>/index</value>
                         <value>/main</value>

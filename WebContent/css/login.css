@@ -2,6 +2,7 @@ body {
     background: transparent url("../images/background.png") no-repeat fixed center center/cover !important;
     margin: 0;
     padding: 0;
+    min-width: 900px !important;
 }
 
 .login-pannel {
@@ -47,8 +48,4 @@ body {
 #verification-code-img {
     width: 80px;
     cursor: pointer;
-}
-
-.layui-layer {
-    margin-top: 1px;
 }

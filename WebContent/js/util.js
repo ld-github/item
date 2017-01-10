@@ -51,23 +51,29 @@ function formLoadJson(formId, json) {
 var Message = function() {
 
     this.show = function(msg) {
-        layer.msg(msg);
+        layui.use('layer', function() {
+            layui.layer.msg(msg);
+        })
     }
 
     this.confirm = function(msg, callback, param) {
-        layer.confirm(msg, function(lay) {
-            if (callback && typeof (callback) === 'function') {
-                layer.close(lay);
-                callback(param);
-            }
+        layui.use('layer', function() {
+            layui.layer.confirm(msg, function(lay) {
+                if (callback && typeof (callback) === 'function') {
+                    layui.layer.close(lay);
+                    callback(param);
+                }
+            })
         })
     }
 
     this.tipLeft = function(id, msg, time) {
-        time = !time ? 5000 : time;
-        layer.tips(msg, $(id), {
-            tips : [ 4, '#3595CC' ],
-            time : time,
-        });
+        layui.use('layer', function() {
+            time = !time ? 50000 : time;
+            layui.layer.tips(msg, $(id), {
+                tips : [ 4, '#3595CC' ],
+                time : time,
+            });
+        })
     }
 }

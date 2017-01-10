@@ -6,11 +6,6 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<style type="text/css">
-body {
-    padding: 5px;
-}
-</style>
 <title>Index Page</title>
 </head>
 <body>
