@@ -14,7 +14,25 @@
 <title>Main Page</title>
 </head>
 <body>
-    <jsp:include page="/WEB-INF/view/include/header.jsp"></jsp:include>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="navbar-brand"> 
+                    <img src="images/brand.png" />
+                </div>
+                <p class="navbar-text">${ sessionScope.user.username }</p>
+            </div>
+            <div class="nav pull-right">
+                <div class="btn-group">
+                    <a href="javascript:;" class="btn btn-warning navbar-btn btn-sm">修改密码</a>
+                </div>
+                <div class="btn-group right-menu-btns">
+                    <a href="user/toLogout" class="btn btn-danger navbar-btn btn-sm">退出系统</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="main-panel-body" class="container-fluid">
         <div class="row-fluid">
             <div id="menu-pannel" class="layui-side layui-bg-black">
@@ -23,8 +41,9 @@
                 </div>
             </div>
             <div id="page-tabs"></div>
-            <div class="footer">LD Copyright &copy; 2017</div>
         </div>
     </div>
+
+    <div class="footer">LD Copyright &copy; 2017</div>
 </body>
 </html>

@@ -64,6 +64,5 @@
             window.top.location.href = contextPath + landingPath;
         }
 
-        $('.main-pannel').perfectScrollbar();
     })
 </script>

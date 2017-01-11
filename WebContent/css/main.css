@@ -4,6 +4,15 @@ body {
     margin-left: 200px;
 }
 
+.navbar-text {
+    margin-left: 0 !important;
+    margin-top: 15px;
+}
+
+.navbar-brand img {
+    height: 20px;
+}
+
 #main-panel-body {
     height: 100%;
     padding: 0;
@@ -43,7 +52,7 @@ iframe {
     -webkit-transition: all .3s;
     margin-top: 51px;
     z-index: 10000;
-    padding-bottom: 28px;
+    bottom: 28px;
 }
 
 a {
@@ -65,4 +74,5 @@ a {
     font-size: 12px;
     background-color: #393D49;
     text-align: center;
+    z-index: 100000;
 }
