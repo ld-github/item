@@ -125,7 +125,7 @@ function addTab(title, url, closable) {
     tab.tabs('add', {
         title : title,
         closable : closable,
-        content : $('<IFRAME>').attr({ frameborder : 0, src : url, id : "test1", 'height' : $('#main-panel-body').height() - 60 })
+        content : $('<IFRAME>').attr({ frameborder : 0, src : url }).height($('#main-panel-body').height() - 60).addClass('page-iframe')
     });
 
 }
@@ -148,7 +148,9 @@ $(function() {
 
     $(window).resize(function() {
         setTimeout(function() {
-            $('#test1').attr('height', $('#main-panel-body').height() - 60);
+            $('.page-iframe').each(function() {
+                $(this).height($('#main-panel-body').height() - 60);
+            })
         }, 50)
     });
 });
