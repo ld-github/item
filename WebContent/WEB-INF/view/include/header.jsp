@@ -6,7 +6,7 @@
             <div class="navbar-brand"> 
                 <img src="images/brand.png" />
             </div>
-            <p class="navbar-text">主页</p>
+            <p class="navbar-text">${ sessionScope.user.username }</p>
         </div>
         <div class="nav pull-right">
             <div class="btn-group">

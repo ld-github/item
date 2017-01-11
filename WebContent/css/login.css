@@ -24,7 +24,7 @@ body {
     line-height: 80px;
 }
 
-.login-form {
+#login-form {
     width: 98%;
     height: 270px;
     left: 0;
@@ -32,15 +32,15 @@ body {
     margin: auto;
 }
 
-.login-form .input-group-lg {
+#login-form .input-group-lg {
     margin-top: 20px;
 }
 
-.login-form .input-group-addon {
+#login-form .input-group-addon {
     padding: 0 10px !important;
 }
 
-.login-form .btn {
+#login-form .btn {
     width: 103px;
     margin-top: 20px;
 }
