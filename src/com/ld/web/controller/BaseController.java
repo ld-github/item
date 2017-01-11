@@ -49,8 +49,8 @@ public class BaseController implements Serializable {
         getSession().removeAttribute(key);
     }
 
-    public void putSessionUser(User manager) {
-        getSession().setAttribute(SESSION_USER_KEY, manager);
+    public void putSessionUser(User user) {
+        getSession().setAttribute(SESSION_USER_KEY, user);
     }
 
     public Object getSesstionUser() {

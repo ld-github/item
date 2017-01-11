@@ -27,4 +27,11 @@ public interface UserBiz {
      * @return
      */
     long getTotal();
+
+    /**
+     * 
+     * @param username
+     * @return
+     */
+    User get(String username);
 }

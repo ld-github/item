@@ -37,4 +37,9 @@ public class UserBizImpl implements UserBiz {
         return userDao.getTotal();
     }
 
+    @Override
+    public User get(String username) {
+        return userDao.get(username);
+    }
+
 }

@@ -6,9 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.code.kaptcha.Constants;
 import com.ld.web.been.ServerResp;
+import com.ld.web.been.model.User;
 import com.ld.web.biz.UserBiz;
+import com.ld.web.util.EncryptionUtil;
+import com.ld.web.util.StringUtil;
 
 /**
  * 
@@ -33,9 +38,49 @@ public class UserController extends BaseController {
     private UserBiz userBiz;
 
     @RequestMapping(value = "/toLogin")
-    public String toLogin(HttpServletRequest req) {
-        putReqAttributes(new ServerResp(false, "请输入密码"));
-        return PageController.REQUEST_PAGE_URL_LOGIN;
+    public String toLogin(HttpServletRequest req, 
+            @RequestParam(value = "username", required = false) String username,
+            @RequestParam(value = "password", required = false) String password,
+            @RequestParam(value = "verificationCode", required = false) String verificationCode) {
+
+        if (StringUtil.isEmpty(username)) {
+            putReqAttributes(new ServerResp(false, "请输入用户名"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        if (StringUtil.isEmpty(password)) {
+            putReqAttributes(new ServerResp(false, "请输入密码"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        if (StringUtil.isEmpty(verificationCode)) {
+            putReqAttributes(new ServerResp(false, "请输入验证码"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        String sessionCode = (String) getSessionObj(Constants.KAPTCHA_SESSION_KEY);
+
+        if (!verificationCode.equalsIgnoreCase(sessionCode)) {
+            putReqAttributes(new ServerResp(false, "验证码输入错误"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        removeSessionUser();
+
+        User user = userBiz.get(username);
+
+        if (null == user || !EncryptionUtil.sha256(password).equals(user.getPassword())) {
+            putReqAttributes(new ServerResp(false, "用户名或密码输入不正确"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        if (!user.getAvailable()) {
+            putReqAttributes(new ServerResp(false, "用户状态不可用"));
+            return PageController.REQUEST_PAGE_URL_LOGIN;
+        }
+
+        putSessionUser(user);
+        return redirect(PageController.REQUEST_PAGE_URL_MAIN);
     }
 
     @RequestMapping(value = "/toLogout")

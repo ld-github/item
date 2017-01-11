@@ -18,13 +18,13 @@
         <hr>
         <form class="login-form" action="user/toLogin" method="post">
             <div class="input-group-lg">
-                  <input type="text" class="form-control" placeholder="Username">
+                  <input type="text" class="form-control" placeholder="Username" name="username">
             </div>
             <div class="input-group-lg">
-                  <input type="password" class="form-control" placeholder="Password">
+                  <input type="password" class="form-control" placeholder="Password" name="password">
             </div>
             <div class="input-group input-group-lg">
-                  <input type="text" class="form-control" placeholder="Verification Code">
+                  <input type="text" class="form-control" placeholder="Verification Code" name="verificationCode">
                   <span class="input-group-addon"><img id="verification-code-img" src="kaptcha.jpg"></span>
             </div>
             <button type="submit" data-loading-text="Logging..." class="btn btn-primary btn-lg pull-right" id="to-login-btn">Login</button>

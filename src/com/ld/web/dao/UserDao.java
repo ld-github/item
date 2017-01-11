@@ -14,4 +14,5 @@ import com.ld.web.been.model.User;
  */
 public interface UserDao extends BaseDao<User> {
 
+    User get(String username);
 }
