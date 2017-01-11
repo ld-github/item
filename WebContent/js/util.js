@@ -6,9 +6,11 @@
  */
 function formLoadJson(formId, json) {
     var inputs = $(formId + ' :input');
+
     $.each(inputs, function(i, item) {
         var input = $(item);
         var key = input.attr('name');
+
         if (key != undefined) {
             var keys = key.split('.');
             var value = undefined;
@@ -33,6 +35,7 @@ function formLoadJson(formId, json) {
     $.fn.serializeJson = function() {
         var serializeObj = {};
         var array = this.serializeArray();
+
         $(array).each(function() {
             if (serializeObj[this.name]) {
                 if ($.isArray(serializeObj[this.name])) {
