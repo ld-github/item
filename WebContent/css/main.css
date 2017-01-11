@@ -14,22 +14,15 @@ body {
 }
 
 #main-panel-body {
+    width: 100%;
     height: 100%;
     padding: 0;
 }
 
-#page-tabs .tabs-header {
-    position: fixed;
-}
-
-#page-tabs .panel-body {
-    margin-top: 32px;
-}
-
 iframe {
     width: 100%;
-    padding: 4px;
-    padding-bottom: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 #menu-pannel .layui-nav-bar {

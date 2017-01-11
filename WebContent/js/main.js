@@ -125,7 +125,7 @@ function addTab(title, url, closable) {
     tab.tabs('add', {
         title : title,
         closable : closable,
-        content : $('<IFRAME>').attr({ frameborder : 0, src : url}).css({ height : ($('#main-panel-body').height() - 63) }),
+        content : $('<IFRAME>').attr({ frameborder : 0, src : url, id : "test1", 'height' : $('#main-panel-body').height() - 60 })
     });
 
 }
@@ -134,6 +134,7 @@ $(function() {
     initMenu();
 
     $('#page-tabs').tabs({
+        fit : true,
         tabHeight : 30,
         border : false,
         tabWidth : 120,
@@ -145,4 +146,9 @@ $(function() {
         var element = layui.element();
     });
 
+    $(window).resize(function() {
+        setTimeout(function() {
+            $('#test1').attr('height', $('#main-panel-body').height() - 60);
+        }, 50)
+    });
 });

@@ -24,7 +24,7 @@
             </div>
             <div class="nav pull-right">
                 <div class="btn-group">
-                    <a href="javascript:;" class="btn btn-warning navbar-btn btn-sm">修改密码</a>
+                    <a href="javascript:;" class="btn btn-warning navbar-btn btn-sm" id="update-password-btn">修改密码</a>
                 </div>
                 <div class="btn-group right-menu-btns">
                     <a href="user/toLogout" class="btn btn-danger navbar-btn btn-sm">退出系统</a>
@@ -33,15 +33,14 @@
         </div>
     </div>
 
-    <div id="main-panel-body" class="container-fluid">
-        <div class="row-fluid">
-            <div id="menu-pannel" class="layui-side layui-bg-black">
-                <div class="layui-side-scroll">
-                    <ul id="menus" class="layui-nav layui-nav-tree site-menu-nav"></ul>
-                </div>
-            </div>
-            <div id="page-tabs"></div>
+    <div id="menu-pannel" class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <ul id="menus" class="layui-nav layui-nav-tree site-menu-nav"></ul>
         </div>
+    </div>
+
+    <div id="main-panel-body">
+        <div id="page-tabs"></div>
     </div>
 
     <div class="footer">LD Copyright &copy; 2017</div>

@@ -27,7 +27,7 @@
                   <input type="text" class="form-control" placeholder="Verification Code" name="verificationCode">
                   <span class="input-group-addon"><img id="verification-code-img" src="kaptcha.jpg"></span>
             </div>
-            <button type="submit" data-loading-text="Logging" class="btn btn-primary btn-lg pull-right" id="to-login-btn">Login</button>
+            <button type="submit" data-loading-text="Logining" class="btn btn-primary btn-lg pull-right" id="to-login-btn">Login</button>
         </form>
     </div>
 </body>
