@@ -41,7 +41,7 @@ import org.apache.log4j.Logger;
  */
 public class HttpClientTool {
 
-    private static Logger logger = Logger.getLogger(HttpClientTool.class);
+    private static final Logger logger = Logger.getLogger(HttpClientTool.class);
 
     private static final HttpClientTool INSTANCE = new HttpClientTool();
 
@@ -150,7 +150,7 @@ public class HttpClientTool {
         }
     }
 
-    public static String buildSoapRequestData(String methodName, Map<String, Object> params) {
+    public String buildSoapRequestData(String methodName, Map<String, Object> params) {
         String temp = "&&&&&";
 
         StringBuffer sb = new StringBuffer();
@@ -175,7 +175,7 @@ public class HttpClientTool {
      * @param params
      * @return
      */
-    private static List<NameValuePair> getNameValuePair(Map<String, String> params) {
+    private List<NameValuePair> getNameValuePair(Map<String, String> params) {
         List<NameValuePair> list = new ArrayList<NameValuePair>();
         for (Entry<String, String> entry : params.entrySet()) {
             list.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
@@ -188,7 +188,7 @@ public class HttpClientTool {
      * 
      * @param httpclient
      */
-    private static void closeClient(CloseableHttpClient httpclient) {
+    private void closeClient(CloseableHttpClient httpclient) {
         if (null != httpclient) {
             try {
                 httpclient.close();

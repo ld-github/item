@@ -32,4 +32,9 @@ public class UserBizImpl implements UserBiz {
         userDao.save(user);
     }
 
+    @Override
+    public long getTotal() {
+        return userDao.getTotal();
+    }
+
 }

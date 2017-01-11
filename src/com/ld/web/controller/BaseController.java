@@ -72,6 +72,7 @@ public class BaseController implements Serializable {
         for (Entry<String, Object> entry : data.entrySet()) {
             request.setAttribute(entry.getKey(), entry.getValue());
         }
+
     }
 
     /**

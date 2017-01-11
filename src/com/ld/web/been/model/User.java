@@ -12,6 +12,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ld.web.util.EncryptionUtil;
 
 /**
  * 
@@ -78,7 +79,7 @@ public class User extends BaseModel {
 
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.password = EncryptionUtil.sha256(password);
     }
 
     public User() {

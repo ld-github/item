@@ -24,7 +24,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  */
 public class JsonMapper {
 
-    private static Logger logger = Logger.getLogger(JsonMapper.class);
+    private static final Logger logger = Logger.getLogger(JsonMapper.class);
 
     private ObjectMapper mapper;
 

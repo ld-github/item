@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
  */
 public class StringUtil {
 
-    private static Logger logger = Logger.getLogger(StringUtil.class);
+    private static final Logger logger = Logger.getLogger(StringUtil.class);
 
     public static boolean isEmpty(String str) {
         return null == str || str.trim().length() == 0;

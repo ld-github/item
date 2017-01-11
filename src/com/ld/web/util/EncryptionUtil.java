@@ -22,9 +22,10 @@ import org.apache.log4j.Logger;
  */
 public class EncryptionUtil {
 
-    private static Logger logger = Logger.getLogger(EncryptionUtil.class);
+    private static final Logger logger = Logger.getLogger(EncryptionUtil.class);
 
     private static final String MD5 = "MD5";
+    private static final String SHA256 = "SHA-256";
     private static final String HMAC_SHA1 = "HmacSHA1";
 
     public static final String ALGORITHM_DES = "DES";
@@ -51,6 +52,29 @@ public class EncryptionUtil {
         } catch (Exception e) {
             // This should not happen!
             logger.error(String.format("MD5 encryptOutHex error: %s", e.getMessage()), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Sha256 to encryption
+     * 
+     * @param input
+     * @return
+     */
+    public static String sha256(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(SHA256);
+            md.update(input.getBytes("UTF-8"));
+            byte[] data = md.digest();
+            StringBuffer result = new StringBuffer(data.length * 2);
+            for (int i = 0; i < data.length; i++) {
+                result.append(Integer.toHexString(data[i] & 0xff));
+            }
+            return result.toString();
+        } catch (Exception e) {
+            logger.error(String.format("SHA256 to encryption error: %s", e.getMessage()), e);
+            // This should not happen!
             throw new RuntimeException(e);
         }
     }

@@ -22,4 +22,9 @@ public interface UserBiz {
      */
     void save(User user);
 
+    /**
+     * 
+     * @return
+     */
+    long getTotal();
 }

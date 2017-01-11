@@ -20,7 +20,7 @@ import org.apache.log4j.Logger;
  */
 public class DateUtil {
 
-    private static Logger logger = Logger.getLogger(DateUtil.class);
+    private static final Logger logger = Logger.getLogger(DateUtil.class);
 
     public static final String DATETIME_NO_CHARACTER = "yyyyMMddHHmmss";
     public static final String DATE_NO_CHARACTER = "yyyyMMdd";
