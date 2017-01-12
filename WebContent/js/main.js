@@ -1,5 +1,6 @@
 var URLS = {
     INDEX_PAGE : contextPath + '/index',
+    PASSWORD_PAGE : contextPath + '/password',
 }
 
 /**
@@ -131,6 +132,7 @@ function addTab(title, url, closable) {
 }
 
 $(function() {
+
     initMenu();
 
     $('#page-tabs').tabs({
@@ -153,4 +155,9 @@ $(function() {
             })
         }, 50)
     });
+
+    $('#update-password-btn').click(function() {
+        addTab("修改密码", URLS.PASSWORD_PAGE, true);
+    });
+
 });
