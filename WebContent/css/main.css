@@ -1,5 +1,6 @@
 body {
-    padding-top: 50px;
+    padding: 0 !important;
+    padding-top: 50px !important;
     transition: margin 500ms ease 0s;
     margin-left: 200px;
 }

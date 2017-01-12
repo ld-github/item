@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,7 +8,11 @@
 <title>Password Page</title>
 </head>
 <body>
-    <div>修改密码</div>
-    <div style="height: 1000px;"></div>
+    <div class="main-panel">
+        <div class="container-fluid">
+            <div class="row">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -5,11 +5,14 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<title>Index Page</title>
+<title>Arguments Page</title>
 </head>
 <body>
     <div class="main-panel">
-            首页
+        <div class="container-fluid">
+            <div class="row" style="background: red; height: 1000px">
+            </div>
+        </div>
     </div>
 </body>
 </html>

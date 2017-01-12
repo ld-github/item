@@ -26,6 +26,7 @@ public class PageController extends BaseController {
     public static final String REQUEST_PAGE_URL_MAIN = "/main";
     public static final String REQUEST_PAGE_URL_INDEX = "/index";
     public static final String REQUEST_PAGE_URL_PASSWORD = "/password";
+    public static final String REQUEST_PAGE_URL_ARGUMENTS = "/arguments";
 
     @RequestMapping(value = REQUEST_PAGE_URL_LANDING)
     public String landing() {
@@ -47,9 +48,11 @@ public class PageController extends BaseController {
         return "index";
     }
 
-    @RequestMapping(value = REQUEST_PAGE_URL_PASSWORD)
+    @RequestMapping(value = REQUEST_PAGE_URL_ARGUMENTS)
     public String password() {
-        return "password";
+        return "arguments";
     }
+
+    
 
 }

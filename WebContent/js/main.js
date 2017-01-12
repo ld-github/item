@@ -7,58 +7,22 @@ var URLS = {
  * @author LD
  */
 var MENUS = [ {
-    title : '系统管理',
+    title : '操作员管理',
     submenus : [ {
-        title : '用户管理',
+        title : '用户维护',
         url : contextPath + '/login'
     }, {
-        title : '地图管理',
+        title : '角色维护',
         url : contextPath + '/login'
     }, {
-        title : '消息管理',
+        title : '权限维护',
         url : contextPath + '/login'
     } ]
-}, {
-    title : '日志记录',
-    submenus : [ {
-        title : '异常信息',
-        url : contextPath + '/login'
-    } ]
-}, {
-    title : '帮助中心',
-    url : contextPath + '/help'
 }, {
     title : '系统管理',
     submenus : [ {
-        title : '用户管理',
-        url : contextPath + '/login'
-    }, {
-        title : '地图管理',
-        url : contextPath + '/login'
-    }, {
-        title : '消息管理',
-        url : contextPath + '/login'
-    } ]
-}, {
-    title : '日志记录',
-    submenus : [ {
-        title : '异常信息',
-        url : contextPath + '/login'
-    } ]
-}, {
-    title : '帮助中心',
-    url : contextPath + '/help'
-}, {
-    title : '系统管理',
-    submenus : [ {
-        title : '用户管理',
-        url : contextPath + '/login'
-    }, {
-        title : '地图管理',
-        url : contextPath + '/login'
-    }, {
-        title : '消息管理',
-        url : contextPath + '/login'
+        title : '参数维护',
+        url : contextPath + '/arguments'
     } ]
 }, {
     title : '日志记录',
@@ -142,7 +106,7 @@ $(function() {
         tabWidth : 120,
     });
 
-    addTab("欢迎页", URLS.INDEX_PAGE, false);
+    addTab("首页", URLS.INDEX_PAGE, false);
 
     layui.use([ 'element' ], function() {
         var element = layui.element();
