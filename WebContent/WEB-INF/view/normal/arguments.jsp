@@ -10,7 +10,17 @@
 <body>
     <div class="main-panel">
         <div class="container-fluid">
-            <div class="row" style="background: red; height: 1000px">
+            <div class="row-fluid">
+                <div class="col-xs-6">
+                    <ol class="breadcrumb">
+                        <li class="active">参数类型</li>
+                    </ol>
+                </div>
+                <div class="col-xs-6">
+                    <ol class="breadcrumb">
+                        <li class="active">参数详情</li>
+                    </ol>
+                </div>
             </div>
         </div>
     </div>
