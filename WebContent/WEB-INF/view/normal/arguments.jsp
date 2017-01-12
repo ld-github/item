@@ -5,6 +5,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/bootstrap-table.jsp"></jsp:include>
 <title>Arguments Page</title>
 </head>
 <body>

@@ -7,7 +7,7 @@
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="plugins/layui/css/modules/layer/default/layer.css">
-<script type="text/javascript" src="plugins/layui/layui.js"></script>
+<jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <script type="text/javascript" src="js/login.js"></script>
 <title>System Login</title>
