@@ -40,6 +40,10 @@ body {
     padding: 0 10px !important;
 }
 
+#login-form input {
+    letter-spacing: 1px;
+}
+
 #login-form .btn {
     width: 103px;
     margin-top: 20px;
