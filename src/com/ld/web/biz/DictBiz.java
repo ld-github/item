@@ -15,4 +15,5 @@ import com.ld.web.been.model.Dict;
 public interface DictBiz {
 
     void delete(Dict dict);
+
 }

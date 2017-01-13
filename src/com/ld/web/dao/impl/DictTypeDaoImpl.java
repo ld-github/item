@@ -1,12 +1,15 @@
 package com.ld.web.dao.impl;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.ld.web.been.Page;
 import com.ld.web.been.model.DictType;
 import com.ld.web.dao.DictTypeDao;
+import com.ld.web.util.StringUtil;
 
 /**
  * 
@@ -29,6 +32,27 @@ public class DictTypeDaoImpl extends BaseDaoImpl<DictType> implements DictTypeDa
         params.put("code", code);
 
         return super.getUniqueResult(where, params);
+    }
+
+    @Override
+    public Page<DictType> getPage(Page<DictType> page, String code, String name) {
+        String where = "WHERE 1=1 ";
+
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        if (!StringUtil.isEmpty(code)) {
+            where += "AND o.code=:code ";
+            params.put("code", code);
+        }
+        if (!StringUtil.isEmpty(name)) {
+            where += "AND o.name=:name ";
+            params.put("name", name);
+        }
+
+        LinkedHashMap<String, String> orders = new LinkedHashMap<String, String>();
+        orders.put("o.code", "asc");
+
+        return getPage(where, params, orders, page);
     }
 
 }

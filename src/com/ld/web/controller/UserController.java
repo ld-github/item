@@ -1,12 +1,10 @@
 package com.ld.web.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.code.kaptcha.Constants;
 import com.ld.web.been.ServerResp;
@@ -38,10 +36,7 @@ public class UserController extends BaseController {
     private UserBiz userBiz;
 
     @RequestMapping(value = "/toLogin")
-    public String toLogin(HttpServletRequest req, 
-            @RequestParam(value = "username", required = false) String username,
-            @RequestParam(value = "password", required = false) String password,
-            @RequestParam(value = "verificationCode", required = false) String verificationCode) {
+    public String toLogin(String username, String password, String verificationCode) {
 
         if (StringUtil.isEmpty(username)) {
             putReqAttributes(new ServerResp(false, "请输入用户名"));
@@ -84,7 +79,7 @@ public class UserController extends BaseController {
     }
 
     @RequestMapping(value = "/toLogout")
-    public String toLogout(HttpServletRequest req) {
+    public String toLogout() {
         removeSessionUser();
         return redirect(PageController.REQUEST_PAGE_URL_LOGIN);
     }

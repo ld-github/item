@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ld.web.been.Page;
 import com.ld.web.been.model.DictType;
 import com.ld.web.biz.DictTypeBiz;
 import com.ld.web.dao.DictTypeDao;
@@ -41,4 +42,8 @@ public class DictTypeBizImpl implements DictTypeBiz {
         dictTypeDao.delete(dictType);
     }
 
+    @Override
+    public Page<DictType> getPage(Page<DictType> page, String code, String name) {
+        return dictTypeDao.getPage(page, code, name);
+    }
 }

@@ -29,13 +29,15 @@ public class DictBizImplTest {
     @Test
     public void save() {
 
-        List<Dict> dicts = new ArrayList<Dict>();
-        DictType dictType = new DictType("type2", "type1", true, "type1", dicts);
+        for (int i = 104; i < 1000; i++) {
+            List<Dict> dicts = new ArrayList<Dict>();
+            DictType dictType = new DictType("type" + i, "type" + i, true, "type" + i, dicts);
 
-        dicts.add(new Dict(dictType, "value1", "11", true, "remark1"));
-        dicts.add(new Dict(dictType, "value2", "22", true, "remark2"));
+            dicts.add(new Dict(dictType, "value" + i, "11", true, "remark1"));
+            dicts.add(new Dict(dictType, "value" + i, "22", true, "remark2"));
 
-        dictTypeBiz.save(dictType);
+            dictTypeBiz.save(dictType);
+        }
     }
 
     @Test

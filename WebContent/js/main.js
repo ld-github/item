@@ -21,8 +21,8 @@ var MENUS = [ {
 }, {
     title : '系统管理',
     submenus : [ {
-        title : '参数维护',
-        url : contextPath + '/arguments'
+        title : '字典维护',
+        url : contextPath + '/dict'
     } ]
 }, {
     title : '日志记录',

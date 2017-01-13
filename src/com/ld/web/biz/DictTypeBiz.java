@@ -1,5 +1,6 @@
 package com.ld.web.biz;
 
+import com.ld.web.been.Page;
 import com.ld.web.been.model.DictType;
 
 /**
@@ -19,4 +20,6 @@ public interface DictTypeBiz {
     DictType get(String code);
 
     void delete(DictType dictType);
+
+    Page<DictType> getPage(Page<DictType> page, String code, String name);
 }

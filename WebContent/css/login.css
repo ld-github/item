@@ -22,6 +22,7 @@ body {
     font-size: 3em;
     text-align: center;
     line-height: 80px;
+    color: #ddd;
 }
 
 #login-form {

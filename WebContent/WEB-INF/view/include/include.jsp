@@ -11,11 +11,11 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta name="renderer" content="webkit|ie-stand|ie-comp">
 <link rel="shortcut icon" href="favicon.ico" />
-<link rel="stylesheet" type="text/css" href="css/style.css">
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <jsp:include page="/WEB-INF/view/include/bootstrap.jsp"></jsp:include>
 <script type="text/javascript" src="plugins/vue.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
 <!--[if lte IE 9]>
     <script type="text/javascript" src="plugins/bootstrap/js/respond.min.js"></script>
     <script type="text/javascript" src="plugins/bootstrap/js/html5shiv.js"></script>

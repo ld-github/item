@@ -1,5 +1,6 @@
 package com.ld.web.dao;
 
+import com.ld.web.been.Page;
 import com.ld.web.been.model.DictType;
 
 /**
@@ -20,4 +21,14 @@ public interface DictTypeDao extends BaseDao<DictType> {
      * @return
      */
     DictType get(String code);
+
+    /**
+     * Get page
+     * 
+     * @param page
+     * @param code
+     * @param name
+     * @return
+     */
+    Page<DictType> getPage(Page<DictType> page, String code, String name);
 }

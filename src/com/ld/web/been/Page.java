@@ -23,7 +23,7 @@ public class Page<T> implements Serializable {
 
     private int pageSize; // 分页大小
 
-    private Long total; // 总条数
+    private long total; // 总条数
 
     private List<T> records; // 数据
 
