@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ld.web.been.Page;
 import com.ld.web.been.model.DictType;
 import com.ld.web.biz.DictTypeBiz;
-import com.ld.web.util.JsonMapper;
 
 /**
  * 
@@ -36,12 +35,8 @@ public class DictTypeController extends BaseController {
 
     @RequestMapping(value = "getPage")
     @ResponseBody
-    private Page<DictType> getPage(Page<DictType> page, String code, String name, int currentPage, int pageSize) {
+    private Page<DictType> getPage(Page<DictType> page, String code, String name) {
 
-        System.out.println(JsonMapper.getInstance().toJson(page));
-        System.out.println(currentPage);
-        System.out.println(pageSize);
-
-        return dictTypeBiz.getPage(new Page<DictType>(currentPage, pageSize), code, name);
+        return dictTypeBiz.getPage(page, code, name);
     }
 }
