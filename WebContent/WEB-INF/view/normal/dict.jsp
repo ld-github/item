@@ -19,6 +19,9 @@
                         <div class="panel-body">
                             <div id="dict-type-toolbar" class="btn-group">
                                 <button id="btn-edit-dict-type" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+                                </button>
+                                <button id="btn-edit-dict-type" type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                 </button>
                                 <button id="btn-del-dict-type" type="button" class="btn btn-default">
