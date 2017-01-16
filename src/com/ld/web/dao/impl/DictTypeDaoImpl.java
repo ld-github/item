@@ -36,17 +36,18 @@ public class DictTypeDaoImpl extends BaseDaoImpl<DictType> implements DictTypeDa
 
     @Override
     public Page<DictType> getPage(Page<DictType> page, String code, String name) {
-        String where = "WHERE 1=1 ";
+        String where = "WHERE o.canView=:canView ";
 
         Map<String, Object> params = new HashMap<String, Object>();
+        params.put("canView", true);
 
         if (!StringUtil.isEmpty(code)) {
             where += "AND o.code=:code ";
             params.put("code", code);
         }
         if (!StringUtil.isEmpty(name)) {
-            where += "AND o.name=:name ";
-            params.put("name", name);
+            where += "AND o.name LIKE :name ";
+            params.put("name", "%" + name + "%");
         }
 
         LinkedHashMap<String, String> orders = new LinkedHashMap<String, String>();

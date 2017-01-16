@@ -18,14 +18,14 @@
                         <div class="panel-heading"><h3 class="panel-title text-center">参数类型</h3></div>
                         <div class="panel-body">
                             <div id="dict-type-toolbar" class="btn-group">
-                                <button id="btn_edit" type="button" class="btn btn-default" >
+                                <button id="btn-edit-dict-type" type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                 </button>
-                                <button id="btn_delete" type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                                <button id="btn-del-dict-type" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
                                 </button>
                             </div>
-                            <div id="dict-type-table"></div>
+                            <table id="dict-type-table"></table>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,18 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><h3 class="panel-title text-center">参数配置</h3></div>
                         <div class="panel-body">
-                            <div id="dict-value-table"></div>
+                            <div id="dict-value-toolbar" class="btn-group">
+                                <button id="btn-edit-dict-value" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+                                </button>
+                                <button id="btn-update-dict-value" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button>
+                                <button id="btn-del-dict-value" type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                </button>
+                            </div>
+                            <table id="dict-value-table"></table>
                         </div>
                     </div>
                 </div>

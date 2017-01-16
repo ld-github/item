@@ -30,3 +30,7 @@ a input button {
 a:FOCUS {
     outline: none !important;
 }
+
+.row-select {
+    background-color: #CCCCCC !important;
+}

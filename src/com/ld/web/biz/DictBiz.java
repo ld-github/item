@@ -1,5 +1,6 @@
 package com.ld.web.biz;
 
+import com.ld.web.been.Page;
 import com.ld.web.been.model.Dict;
 
 /**
@@ -16,4 +17,5 @@ public interface DictBiz {
 
     void delete(Dict dict);
 
+    Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name);
 }
