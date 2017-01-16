@@ -53,6 +53,9 @@ function initDictTypeTable() {
         },
         onUncheck : function(row) {
             $('#dict-value-table').bootstrapTable('removeAll');
+        },
+        onPageChange : function(number, size) {
+            $('#dict-value-table').bootstrapTable('removeAll');
         }
     });
 }
