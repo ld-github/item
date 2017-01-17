@@ -28,12 +28,12 @@
                                             <label class="sr-only" for="dict-type-name-text">字典名称</label>
                                             <input type="text" class="form-control" id="dict-type-name-text" placeholder="字典名称" name="name">
                                         </div>
-                                        <button type="button" class="btn btn-default pull-right" id="dict-type-btn">查询</button>
+                                        <button type="button" class="btn btn-default pull-right" id="dict-type-query-btn">查询</button>
                                     </form>
                                 </div>
                             </div>
                             <div id="dict-type-toolbar" class="btn-group">
-                                <button id="btn-edit-dict-type" type="button" class="btn btn-default">
+                                <button id="btn-add-dict-type" type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
                                 </button>
                                 <button id="btn-edit-dict-type" type="button" class="btn btn-default">
@@ -62,15 +62,15 @@
                                             <label class="sr-only" for="dict-name-text">字典名称</label>
                                             <input type="text" class="form-control" id="dict-name-text" placeholder="字典名称" name="name">
                                         </div>
-                                        <button type="button" class="btn btn-default pull-right" id="dict-value-btn">查询</button>
+                                        <button type="button" class="btn btn-primary pull-right" id="dict-value-query-btn">查询</button>
                                     </form>
                                 </div>
                             </div>
                             <div id="dict-value-toolbar" class="btn-group">
-                                <button id="btn-edit-dict-value" type="button" class="btn btn-default">
+                                <button id="btn-add-dict-value" type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
                                 </button>
-                                <button id="btn-update-dict-value" type="button" class="btn btn-default">
+                                <button id="btn-edit-dict-value" type="button" class="btn btn-default">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                 </button>
                                 <button id="btn-del-dict-value" type="button" class="btn btn-default">

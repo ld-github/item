@@ -49,6 +49,11 @@ function initDictTypeTable() {
             title : '备注',
         } ],
         onCheck : function(row) {
+            $('#btn-edit-dict-type').removeAttr('disabled');
+            $('#btn-del-dict-type').removeAttr('disabled');
+
+            $('#btn-add-dict-value').removeAttr('disabled');
+
             if ($('#dict-value-table').bootstrapTable('getOptions').pageNumber > 1) {
                 $('#dict-value-table').bootstrapTable('selectPage', 1);
                 return;
@@ -57,9 +62,19 @@ function initDictTypeTable() {
         },
         onUncheck : function(row) {
             $('#dict-value-table').bootstrapTable('removeAll');
+
+            $('#dict-value-toolbar button').attr('disabled', 'disabled');
+
+            $('#btn-edit-dict-type').attr('disabled', 'disabled');
+            $('#btn-del-dict-type').attr('disabled', 'disabled');
         },
         onPageChange : function(number, size) {
             $('#dict-value-table').bootstrapTable('removeAll');
+
+            $('#dict-value-toolbar button').attr('disabled', 'disabled');
+
+            $('#btn-edit-dict-type').attr('disabled', 'disabled');
+            $('#btn-del-dict-type').attr('disabled', 'disabled');
         }
     });
 }
@@ -110,6 +125,21 @@ function initDictTable() {
             title : '备注',
         } ],
         onCheck : function(row, element, field) {
+            if (row.canUpdate) {
+                $('#btn-edit-dict-value').removeAttr('disabled');
+                $('#btn-del-dict-value').removeAttr('disabled');
+            } else {
+                $('#btn-edit-dict-value').attr('disabled', 'disabled');
+                $('#btn-del-dict-value').attr('disabled', 'disabled');
+            }
+        },
+        onUncheck : function(row) {
+            $('#btn-edit-dict-value').attr('disabled', 'disabled');
+            $('#btn-del-dict-value').attr('disabled', 'disabled');
+        },
+        onPageChange : function(number, size) {
+            $('#btn-edit-dict-value').attr('disabled', 'disabled');
+            $('#btn-del-dict-value').attr('disabled', 'disabled');
         }
     });
 }
@@ -120,12 +150,17 @@ $(function() {
 
     initDictTable();
 
-    $('#dict-type-btn').click(function() {
+    $('#dict-type-toolbar button').attr('disabled', 'disabled');
+    $('#dict-type-toolbar #btn-add-dict-type').removeAttr('disabled');
+
+    $('#dict-value-toolbar button').attr('disabled', 'disabled');
+
+    $('#dict-type-query-btn').click(function() {
         dictTypeParams = $('#dict-type-form').serializeJson();
         $('#dict-type-table').bootstrapTable('selectPage', 1);
     });
 
-    $('#dict-value-btn').click(function() {
+    $('#dict-value-query-btn').click(function() {
         dictParams = $('#dict-value-form').serializeJson();
         $('#dict-value-table').bootstrapTable('selectPage', 1);
     });
