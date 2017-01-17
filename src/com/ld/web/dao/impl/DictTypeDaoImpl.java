@@ -42,8 +42,8 @@ public class DictTypeDaoImpl extends BaseDaoImpl<DictType> implements DictTypeDa
         params.put("canView", true);
 
         if (!StringUtil.isEmpty(code)) {
-            where += "AND o.code=:code ";
-            params.put("code", code);
+            where += "AND o.code LIKE :code ";
+            params.put("code", "%" + code + "%");
         }
         if (!StringUtil.isEmpty(name)) {
             where += "AND o.name LIKE :name ";
