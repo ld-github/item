@@ -59,8 +59,8 @@
                                             <input type="text" class="form-control" id="dict-value-text" placeholder="字典值" name="value">
                                         </div>
                                         <div class="form-group">
-                                            <label class="sr-only" for="dict-name-text">字典名称</label>
-                                            <input type="text" class="form-control" id="dict-name-text" placeholder="字典名称" name="name">
+                                            <label class="sr-only" for="dict-name-text">字典值名称</label>
+                                            <input type="text" class="form-control" id="dict-name-text" placeholder="字典值名称" name="name">
                                         </div>
                                         <button type="button" class="btn btn-primary pull-right" id="dict-value-query-btn">查询</button>
                                     </form>

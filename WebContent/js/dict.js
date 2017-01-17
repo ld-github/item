@@ -87,6 +87,8 @@ function initDictTypeTable() {
             $('#btn-del-dict-type').attr('disabled', 'disabled');
         },
         onRefresh : function() {
+            $('#dict-value-table').bootstrapTable('removeAll');
+
             $('#dict-value-toolbar button').attr('disabled', 'disabled');
 
             $('#btn-edit-dict-type').attr('disabled', 'disabled');
@@ -136,7 +138,7 @@ function initDictTable() {
             title : '字典值',
         }, {
             field : 'name',
-            title : '字典名称',
+            title : '字典值名称',
         }, {
             field : 'remark',
             title : '备注',
