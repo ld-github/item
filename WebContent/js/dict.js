@@ -75,8 +75,16 @@ function initDictTypeTable() {
 
             $('#btn-edit-dict-type').attr('disabled', 'disabled');
             $('#btn-del-dict-type').attr('disabled', 'disabled');
+        },
+        onRefresh : function() {
+
+            $('#dict-value-toolbar button').attr('disabled', 'disabled');
+
+            $('#btn-edit-dict-type').attr('disabled', 'disabled');
+            $('#btn-del-dict-type').attr('disabled', 'disabled');
         }
     });
+
 }
 
 function initDictTable() {
@@ -140,7 +148,12 @@ function initDictTable() {
         onPageChange : function(number, size) {
             $('#btn-edit-dict-value').attr('disabled', 'disabled');
             $('#btn-del-dict-value').attr('disabled', 'disabled');
+        },
+        onRefresh : function() {
+            $('#btn-edit-dict-value').attr('disabled', 'disabled');
+            $('#btn-del-dict-value').attr('disabled', 'disabled');
         }
+
     });
 }
 
@@ -149,6 +162,10 @@ $(function() {
     initDictTypeTable();
 
     initDictTable();
+
+})
+
+$(function() {
 
     $('#dict-type-toolbar button').attr('disabled', 'disabled');
     $('#dict-type-toolbar #btn-add-dict-type').removeAttr('disabled');
