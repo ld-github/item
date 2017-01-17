@@ -1,10 +1,20 @@
 var URLS = {
     GET_PAGE_DICT_TYPE : contextPath + "/dictType/getPage",
-    GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage"
+    GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage",
+    DELETE_DICT_TYPE : contextPath + "/dictType/delete",
 }
 
 var dictTypeParams = {};
 var dictParams = {};
+
+function delDictType(typeId) {
+    var params = {
+        typeId : typeId
+    };
+
+    $.post(URLS.DELETE_DICT_TYPE, params, function(data) {
+    });
+}
 
 function initDictTypeTable() {
     $('#dict-type-table').bootstrapTable({
@@ -77,7 +87,6 @@ function initDictTypeTable() {
             $('#btn-del-dict-type').attr('disabled', 'disabled');
         },
         onRefresh : function() {
-
             $('#dict-value-toolbar button').attr('disabled', 'disabled');
 
             $('#btn-edit-dict-type').attr('disabled', 'disabled');
@@ -162,7 +171,6 @@ $(function() {
     initDictTypeTable();
 
     initDictTable();
-
 })
 
 $(function() {
