@@ -28,7 +28,7 @@
                                             <label class="sr-only" for="dict-type-name-text">字典名称</label>
                                             <input type="text" class="form-control" id="dict-type-name-text" placeholder="字典名称" name="name">
                                         </div>
-                                        <button type="button" class="btn btn-default pull-right" id="dict-type-query-btn">查询</button>
+                                        <button type="button" class="btn btn-primary pull-right" id="dict-type-query-btn">查询</button>
                                     </form>
                                 </div>
                             </div>
