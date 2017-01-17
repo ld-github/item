@@ -26,6 +26,7 @@ function formLoadJson(formId, json) {
             }
         }
     });
+
 }
 
 /**
@@ -33,6 +34,7 @@ function formLoadJson(formId, json) {
  */
 (function($) {
     $.fn.serializeJson = function() {
+
         var serializeObj = {};
         var array = this.serializeArray();
 
@@ -47,6 +49,7 @@ function formLoadJson(formId, json) {
                 serializeObj[this.name] = this.value;
             }
         });
+
         return serializeObj;
     };
 })(jQuery);
@@ -71,12 +74,14 @@ var Message = function() {
     }
 
     this.tipLeft = function(id, msg, time) {
+        time = time || 5000;
+
         layui.use('layer', function() {
-            time = !time ? 5000 : time;
             layui.layer.tips(msg, $(id), {
                 tips : [ 4, '#3595CC' ],
                 time : time,
             });
         })
     }
+
 }
