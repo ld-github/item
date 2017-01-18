@@ -38,6 +38,8 @@ public class JGitTool {
 
     private Git git;
 
+    private final String REFS_HEADS = "refs/heads/";
+
     public void cloneRepo(String branchName) throws Exception {
 
         CloneCommand cmd = Git.cloneRepository().setURI(remotePath).setDirectory(new File(localPath));
@@ -100,7 +102,9 @@ public class JGitTool {
 
     public boolean isExistBranch(String branchName) throws Exception {
 
-        String fullBranchName = "refs/heads/" + branchName;
+        String prefixName = branchName.contains(REFS_HEADS) ? "" : REFS_HEADS;
+
+        String fullBranchName = prefixName + branchName;
 
         List<Ref> refs = git.branchList().call();
         for (Ref ref : refs) {
@@ -161,6 +165,7 @@ public class JGitTool {
         for (Iterator<RevCommit> i = iter.iterator(); i.hasNext();) {
             RevCommit c = i.next();
 
+            System.out.println(c.getShortMessage());
             items.add(c);
         }
         return items;
