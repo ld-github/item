@@ -11,6 +11,7 @@ import org.eclipse.jgit.api.CreateBranchCommand.SetupUpstreamMode;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand.ListMode;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
+import org.eclipse.jgit.lib.BranchTrackingStatus;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -41,19 +42,38 @@ public class JGitTool {
 
         CloneCommand cmd = Git.cloneRepository().setURI(remotePath).setDirectory(new File(localPath));
 
+        boolean isCloneAllBranchs = true;
+
         if (!StringUtil.isEmpty(branchName)) {
             cmd.setBranch(branchName);
+            isCloneAllBranchs = false;
         }
 
-        cmd.setCloneAllBranches(true).setBare(false).call();
+        cmd.setCloneAllBranches(isCloneAllBranchs).setBare(false).call();
     }
 
     public Branch getLocalCurrentBranch() throws Exception {
-        return new Branch(repo.getBranch(), repo.getFullBranch());
+
+        String remoteTrackingBranch = null;
+
+        BranchTrackingStatus bts = BranchTrackingStatus.of(repo, repo.getFullBranch());
+        if (null != bts) {
+            remoteTrackingBranch = bts.getRemoteTrackingBranch();
+        }
+
+        return new Branch(repo.getBranch(), repo.getFullBranch(), remoteTrackingBranch);
     }
 
     public List<Branch> getLocalBranchList() throws Exception {
-        return getBranchList(null);
+        List<Branch> items = getBranchList(null);
+
+        for (Branch b : items) {
+            BranchTrackingStatus bts = BranchTrackingStatus.of(repo, b.getFullName());
+            if (null != bts) {
+                b.setTrackRemoteName(bts.getRemoteTrackingBranch());
+            }
+        }
+        return items;
     }
 
     public List<Branch> getAllBranchList() throws Exception {
@@ -72,6 +92,7 @@ public class JGitTool {
 
         for (Ref ref : branchs) {
             int index = ref.getName().lastIndexOf("/") > 0 ? ref.getName().lastIndexOf("/") : 0;
+
             items.add(new Branch(ref.getName().substring(index + 1), ref.getName()));
         }
         return items;

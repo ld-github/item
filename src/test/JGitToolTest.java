@@ -13,10 +13,9 @@ public class JGitToolTest {
 
     public static void main(String[] args) {
         try {
-            new JGitTool(LOCAL_PATH, REMOTE_PATH).switchBranch("master");
             System.out.println(JsonMapper.getInstance().toJson(new JGitTool(LOCAL_PATH, REMOTE_PATH).getLocalCurrentBranch()));
 
-            List<Branch> branchs = new JGitTool(LOCAL_PATH, REMOTE_PATH).getRemoteBranchList();
+            List<Branch> branchs = new JGitTool(LOCAL_PATH, REMOTE_PATH).getLocalBranchList();
             System.out.println(JsonMapper.getInstance().toJson(branchs));
         } catch (Exception e) {
             e.printStackTrace();

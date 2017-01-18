@@ -20,6 +20,8 @@ public class Branch implements Serializable {
 
     private String fullName; // 分支全名
 
+    private String trackRemoteName; // 跟踪远端分支名称
+
     public String getName() {
         return name;
     }
@@ -36,9 +38,23 @@ public class Branch implements Serializable {
         this.fullName = fullName;
     }
 
+    public String getTrackRemoteName() {
+        return trackRemoteName;
+    }
+
+    public void setTrackRemoteName(String trackRemoteName) {
+        this.trackRemoteName = trackRemoteName;
+    }
+
     public Branch(String name, String fullName) {
         this.name = name;
         this.fullName = fullName;
+    }
+
+    public Branch(String name, String fullName, String trackRemoteName) {
+        this.name = name;
+        this.fullName = fullName;
+        this.trackRemoteName = trackRemoteName;
     }
 
 }
