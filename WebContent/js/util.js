@@ -85,3 +85,19 @@ var Message = function() {
     }
 
 }
+
+function checkRespCodeSucc(data) {
+    return null != data && '00' === data.respCode;
+}
+
+function bootstrapTableRefreshCurrentPage(tableId) {
+    var currentPage = $(tableId).bootstrapTable('getOptions').pageNumber;
+
+    if (currentPage > 1) {
+        $('#order-table').bootstrapTable('refresh');
+
+        if ($('#order-table').bootstrapTable('getData').length == 0) {
+            $('#order-table').bootstrapTable('prevPage');
+        }
+    }
+}

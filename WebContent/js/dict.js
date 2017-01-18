@@ -13,6 +13,12 @@ function delDictType(typeId) {
     };
 
     $.post(URLS.DELETE_DICT_TYPE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            bootstrapTableRefreshCurrentPage('#dict-type-table');
+            return;
+        }
+
+        new Message().show(data.respDesc);
     });
 }
 
