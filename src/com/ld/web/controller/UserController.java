@@ -81,6 +81,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/toLogout")
     public String toLogout() {
         removeSessionUser();
+
         return redirect(PageController.REQUEST_PAGE_URL_LOGIN);
     }
 

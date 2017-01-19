@@ -31,11 +31,11 @@ import com.ld.web.been.dto.GitLog;
  */
 public class JGitTool {
 
-    private String localPath;
+    private String localPath; // 本地库地址
 
-    private String remotePath;
+    private String remotePath; // 远端地址
 
-    private Repository repo;
+    private Repository repo; // 本地库
 
     private Git git;
 
@@ -68,6 +68,7 @@ public class JGitTool {
     }
 
     public List<GitBranch> getLocalBranchList() throws Exception {
+
         List<GitBranch> items = getBranchList(null);
 
         for (GitBranch b : items) {
@@ -76,6 +77,7 @@ public class JGitTool {
                 b.setTrackRemoteName(bts.getRemoteTrackingBranch());
             }
         }
+
         return items;
     }
 
@@ -98,6 +100,7 @@ public class JGitTool {
 
             items.add(new GitBranch(ref.getName().substring(index + 1), ref.getName()));
         }
+
         return items;
     }
 
