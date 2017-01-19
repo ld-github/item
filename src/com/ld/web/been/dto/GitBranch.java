@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 
- *<p>Title: Branch</p>
+ *<p>Title: GitBranch</p>
  *<p>Copyright: Copyright (c) 2017</p>
  *<p>Description: </p>
  *
@@ -12,7 +12,7 @@ import java.io.Serializable;
  *
  *@date 2017-01-18
  */
-public class Branch implements Serializable {
+public class GitBranch implements Serializable {
 
     private static final long serialVersionUID = -7709173927769368990L;
 
@@ -46,12 +46,12 @@ public class Branch implements Serializable {
         this.trackRemoteName = trackRemoteName;
     }
 
-    public Branch(String name, String fullName) {
+    public GitBranch(String name, String fullName) {
         this.name = name;
         this.fullName = fullName;
     }
 
-    public Branch(String name, String fullName, String trackRemoteName) {
+    public GitBranch(String name, String fullName, String trackRemoteName) {
         this.name = name;
         this.fullName = fullName;
         this.trackRemoteName = trackRemoteName;

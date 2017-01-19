@@ -16,7 +16,8 @@ import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
-import com.ld.web.been.dto.Branch;
+import com.ld.web.been.dto.GitBranch;
+import com.ld.web.been.dto.GitLog;
 
 /**
  * 
@@ -54,7 +55,7 @@ public class JGitTool {
         cmd.setCloneAllBranches(isCloneAllBranchs).setBare(false).call();
     }
 
-    public Branch getLocalCurrentBranch() throws Exception {
+    public GitBranch getLocalCurrentBranch() throws Exception {
 
         String remoteTrackingBranch = null;
 
@@ -63,13 +64,13 @@ public class JGitTool {
             remoteTrackingBranch = bts.getRemoteTrackingBranch();
         }
 
-        return new Branch(repo.getBranch(), repo.getFullBranch(), remoteTrackingBranch);
+        return new GitBranch(repo.getBranch(), repo.getFullBranch(), remoteTrackingBranch);
     }
 
-    public List<Branch> getLocalBranchList() throws Exception {
-        List<Branch> items = getBranchList(null);
+    public List<GitBranch> getLocalBranchList() throws Exception {
+        List<GitBranch> items = getBranchList(null);
 
-        for (Branch b : items) {
+        for (GitBranch b : items) {
             BranchTrackingStatus bts = BranchTrackingStatus.of(repo, b.getFullName());
             if (null != bts) {
                 b.setTrackRemoteName(bts.getRemoteTrackingBranch());
@@ -78,24 +79,24 @@ public class JGitTool {
         return items;
     }
 
-    public List<Branch> getAllBranchList() throws Exception {
+    public List<GitBranch> getAllBranchList() throws Exception {
         return getBranchList(ListMode.ALL);
     }
 
-    public List<Branch> getRemoteBranchList() throws Exception {
+    public List<GitBranch> getRemoteBranchList() throws Exception {
         return getBranchList(ListMode.REMOTE);
     }
 
-    public List<Branch> getBranchList(ListMode model) throws Exception {
+    public List<GitBranch> getBranchList(ListMode model) throws Exception {
 
-        List<Branch> items = new ArrayList<Branch>();
+        List<GitBranch> items = new ArrayList<GitBranch>();
 
         List<Ref> branchs = git.branchList().setListMode(model).call();
 
         for (Ref ref : branchs) {
             int index = ref.getName().lastIndexOf("/") > 0 ? ref.getName().lastIndexOf("/") : 0;
 
-            items.add(new Branch(ref.getName().substring(index + 1), ref.getName()));
+            items.add(new GitBranch(ref.getName().substring(index + 1), ref.getName()));
         }
         return items;
     }
@@ -146,7 +147,7 @@ public class JGitTool {
         git.checkout().setCreateBranch(!isExistBranch(branchName)).setName(branchName).call();
     }
 
-    public void trackBranch(Branch branch) throws Exception {
+    public void trackBranch(GitBranch branch) throws Exception {
 
         git.branchCreate().setName(branch.getName()).setUpstreamMode(SetupUpstreamMode.TRACK).setStartPoint(branch.getFullName()).call();
     }
@@ -156,17 +157,16 @@ public class JGitTool {
         git.pull().call();
     }
 
-    public List<RevCommit> getLogs(int maxCount) throws Exception {
+    public List<GitLog> getLogs(int maxCount) throws Exception {
 
-        List<RevCommit> items = new ArrayList<RevCommit>();
+        List<GitLog> items = new ArrayList<GitLog>();
 
         Iterable<RevCommit> iter = git.log().setMaxCount(maxCount).call();
 
         for (Iterator<RevCommit> i = iter.iterator(); i.hasNext();) {
             RevCommit c = i.next();
 
-            System.out.println(c.getShortMessage());
-            items.add(c);
+            items.add(new GitLog(c.getShortMessage(), c.getAuthorIdent().getName(), c.getFullMessage(), c.getAuthorIdent().getWhen(), c.getAuthorIdent().getEmailAddress()));
         }
         return items;
     }
