@@ -106,7 +106,7 @@ public class JGitTool {
 
     public boolean isExistBranch(String branchName) throws Exception {
 
-        String prefixName = branchName.contains(REFS_HEADS) ? "" : REFS_HEADS;
+        String prefixName = branchName.startsWith(REFS_HEADS) ? "" : REFS_HEADS;
 
         String fullBranchName = prefixName + branchName;
 
