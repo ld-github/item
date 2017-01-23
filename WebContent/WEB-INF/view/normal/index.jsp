@@ -8,8 +8,6 @@
 <title>Index Page</title>
 </head>
 <body>
-    <div class="main-panel">
-            首页
-    </div>
+    <jsp:plugin type ="applet" code="japplet.SwingShell.class" width="100%" height="460" codebase="plugin/"/> 
 </body>
 </html>
