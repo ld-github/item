@@ -170,8 +170,8 @@ function initDictTable() {
             $('#btn-edit-dict-value').attr('disabled', 'disabled');
             $('#btn-del-dict-value').attr('disabled', 'disabled');
         }
-
     });
+
 }
 
 $(function() {
@@ -202,8 +202,10 @@ $(function() {
     $('#dict-value-table').bootstrapTable('resetWidth');
 
     $(window).resize(function() {
+
         $('#dict-type-table').bootstrapTable('resetWidth');
         $('#dict-value-table').bootstrapTable('resetWidth');
+
     });
 
 })
