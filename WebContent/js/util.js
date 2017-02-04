@@ -91,13 +91,12 @@ function checkRespCodeSucc(data) {
 }
 
 function bootstrapTableRefreshCurrentPage(tableId) {
+
     var currentPage = $(tableId).bootstrapTable('getOptions').pageNumber;
 
-    if (currentPage > 1) {
-        $('#order-table').bootstrapTable('refresh');
+    $('#order-table').bootstrapTable('refresh');
 
-        if ($('#order-table').bootstrapTable('getData').length == 0) {
-            $('#order-table').bootstrapTable('prevPage');
-        }
+    if (currentPage > 1 && $('#order-table').bootstrapTable('getData').length == 0) {
+        $('#order-table').bootstrapTable('prevPage');
     }
 }
