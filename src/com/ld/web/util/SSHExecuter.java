@@ -99,22 +99,6 @@ public class SSHExecuter implements Closeable {
         }
     }
 
-    private void login() throws Exception {
-
-        if (null == conn || !conn.isAuthenticationComplete()) {
-
-            conn = new Connection(info.getHost(), info.getPort());
-
-            conn.connect();
-
-            boolean isAuthenticated = conn.authenticateWithPassword(info.getUsername(), info.getPassword());
-
-            if (isAuthenticated == false) {
-                throw new IOException("Authentication failed.");
-            }
-        }
-    }
-
     public void uploadFile(String localFilePath, String remoteFileName, String remoteDir) throws Exception {
 
         login();
@@ -155,6 +139,22 @@ public class SSHExecuter implements Closeable {
             }
         }
 
+    }
+
+    private void login() throws Exception {
+        
+        if (null == conn || !conn.isAuthenticationComplete()) {
+            
+            conn = new Connection(info.getHost(), info.getPort());
+            
+            conn.connect();
+            
+            boolean isAuthenticated = conn.authenticateWithPassword(info.getUsername(), info.getPassword());
+            
+            if (isAuthenticated == false) {
+                throw new IOException("Authentication failed.");
+            }
+        }
     }
 
     public SSHExecuter(SSHLoginInfo info) throws Exception {
