@@ -109,8 +109,8 @@ public class SSHExecuter implements Closeable {
 
         File file = new File(localFilePath);
 
-        if (!file.exists()) {
-            throw new Exception("File not found error!");
+        if (!file.exists() || file.isDirectory()) {
+            throw new Exception("File not found or not is a file error!");
         }
 
         scpClient.put(localFilePath, StringUtil.isEmpty(remoteFileName) ? file.getName() : remoteFileName, remoteDir, "0600");
