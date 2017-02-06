@@ -13,7 +13,7 @@ public class SSHExecutorTest {
     static final String USERNAME = "axinplatform";
     static final String PASSWORD = "axinfplatform78";
 
-    static final String LOCAL_DIR = "C:\\Users\\ibm\\Desktop\\用友日志";
+    static final String LOCAL_DIR = "C:\\Users\\ibm\\Desktop\\用友日志111";
     static final String LOCAL_FILE_PATE = "C:\\Users\\ibm\\Desktop\\用友日志\\payment_system_yongyou.log.4";
     static final String REMOTE_FILE_DIR = "/home/axinplatform/test_sftp_upload/";
 
