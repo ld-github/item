@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -34,6 +35,8 @@ import com.ld.web.util.JsonMapper;
 public class BaseController implements Serializable {
 
     private static final long serialVersionUID = 5249682224462255858L;
+
+    private static Logger logger = Logger.getLogger(BaseController.class);
 
     private final String SESSION_USER_KEY = "user";
 
@@ -112,6 +115,12 @@ public class BaseController implements Serializable {
         return "redirect:" + url;
     }
 
+    /**
+     * Writer print char
+     * 
+     * @param resp
+     * @param buffer
+     */
     public void writerPrint(HttpServletResponse resp, String buffer) {
         PrintWriter out = null;
         try {
@@ -120,6 +129,7 @@ public class BaseController implements Serializable {
             out.print(buffer);
             out.flush();
         } catch (Exception e) {
+            logger.error(String.format("Writer print char error: %s", e.getMessage()), e);
         }
     }
 }
