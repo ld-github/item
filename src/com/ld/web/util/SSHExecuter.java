@@ -149,9 +149,7 @@ public class SSHExecuter implements Closeable {
 
             conn.connect();
 
-            boolean isAuthenticated = conn.authenticateWithPassword(info.getUsername(), info.getPassword());
-
-            if (isAuthenticated == false) {
+            if (!conn.authenticateWithPassword(info.getUsername(), info.getPassword())) {
                 throw new IOException("Authentication failed.");
             }
         }
