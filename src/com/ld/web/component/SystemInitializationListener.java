@@ -1,4 +1,4 @@
-package com.ld.web.listener;
+package com.ld.web.component;
 
 import javax.annotation.Resource;
 
@@ -8,7 +8,6 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import com.ld.web.biz.SystemBiz;
-import com.ld.web.task.PublishTaskManager;
 
 /**
  * 
@@ -39,8 +38,6 @@ public class SystemInitializationListener implements ApplicationListener<Context
         }
 
         logger.info("System initialization end...");
-
-        PublishTaskManager.getInstance().startTask();
     }
 
 }
