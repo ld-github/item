@@ -3,6 +3,7 @@ package com.ld.web.util;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -56,7 +57,7 @@ public class SSHExecuter implements Closeable {
                 int conditions = session.waitForCondition(ChannelCondition.CLOSED | ChannelCondition.EOF | ChannelCondition.EXIT_STATUS, 5000);
 
                 if ((conditions & ChannelCondition.TIMEOUT) != 0) {
-                    throw new IOException("Timeout while waiting for data from peer.");
+                    throw new IOException("Timeout while waiting for data from peer...");
                 }
 
                 InputStream stdout = new StreamGobbler(session.getStdout());
@@ -76,6 +77,8 @@ public class SSHExecuter implements Closeable {
 
                     stdouts.add(line);
                 }
+
+                start = System.currentTimeMillis();
 
                 while (true) {
                     String line = brerr.readLine();
@@ -141,6 +144,22 @@ public class SSHExecuter implements Closeable {
 
     }
 
+    public void downloadFile(String remoteFilePath, String localFileDir) throws Exception {
+
+        login();
+
+        SCPClient scpClient = conn.createSCPClient();
+
+        File file = new File(localFileDir);
+
+        if (file.isDirectory()) {
+            scpClient.get(remoteFilePath, localFileDir);
+            return;
+        }
+
+        scpClient.get(remoteFilePath, new FileOutputStream(file));
+    }
+
     private void login() throws Exception {
 
         if (null == conn || !conn.isAuthenticationComplete()) {
@@ -150,7 +169,7 @@ public class SSHExecuter implements Closeable {
             conn.connect();
 
             if (!conn.authenticateWithPassword(info.getUsername(), info.getPassword())) {
-                throw new IOException("Authentication failed.");
+                throw new IOException("Authentication failed...");
             }
         }
     }

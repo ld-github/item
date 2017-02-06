@@ -1,5 +1,7 @@
 package test;
 
+import java.io.File;
+
 import com.ld.web.been.dto.SSHLoginInfo;
 import com.ld.web.util.JsonMapper;
 import com.ld.web.util.SSHExecuter;
@@ -35,8 +37,10 @@ public class SSHExecutorTest {
             System.out.println(JsonMapper.getInstance().toJson(executer.excuteCmd("pwd")));
             System.out.println(JsonMapper.getInstance().toJson(executer.excuteCmd("ps -ef|grep tomcat")));
 
-            executer.uploadFile(LOCAL_FILE_PATE, null, REMOTE_FILE_DIR);
-            executer.uploadDir(LOCAL_DIR, REMOTE_FILE_DIR);
+//            executer.uploadFile(LOCAL_FILE_PATE, null, REMOTE_FILE_DIR);
+//            executer.uploadDir(LOCAL_DIR, REMOTE_FILE_DIR);
+
+            executer.downloadFile("/home/axinplatform/test_sftp_upload/newFile.jsp", LOCAL_DIR + File.separator + "cc.asp");
             executer.close();
         } catch (Exception e) {
             e.printStackTrace();
