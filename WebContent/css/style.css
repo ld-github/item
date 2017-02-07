@@ -27,10 +27,6 @@ a input button {
     outline: none !important;
 }
 
-a:FOCUS {
+a:FOCUS, button:FOCUS {
     outline: none !important;
-}
-
-.row-select {
-    background-color: #CCCCCC !important;
 }

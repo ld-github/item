@@ -56,13 +56,13 @@ function initDictTypeTable() {
             checkbox : true,
         }, {
             field : 'code',
-            title : '字典代码',
+            title : '字典类型代码',
         }, {
             field : 'name',
-            title : '字典名称',
+            title : '字典类型名称',
         }, {
             field : 'remark',
-            title : '备注',
+            title : '字典类型备注',
         } ],
         onCheck : function(row) {
             $('#btn-edit-dict-type').removeAttr('disabled');
@@ -147,7 +147,7 @@ function initDictTable() {
             title : '字典值名称',
         }, {
             field : 'remark',
-            title : '备注',
+            title : '字典值备注',
         } ],
         onCheck : function(row, element, field) {
             if (row.canUpdate) {
@@ -184,9 +184,9 @@ $(function() {
 $(function() {
 
     $('#dict-type-toolbar button').attr('disabled', 'disabled');
-    $('#dict-type-toolbar #btn-add-dict-type').removeAttr('disabled');
-
     $('#dict-value-toolbar button').attr('disabled', 'disabled');
+
+    $('#dict-type-toolbar #btn-add-dict-type').removeAttr('disabled');
 
     $('#dict-type-query-btn').click(function() {
         dictTypeParams = $('#dict-type-form').serializeJson();
@@ -202,10 +202,28 @@ $(function() {
     $('#dict-value-table').bootstrapTable('resetWidth');
 
     $(window).resize(function() {
-
         $('#dict-type-table').bootstrapTable('resetWidth');
         $('#dict-value-table').bootstrapTable('resetWidth');
+    });
 
+})
+
+$(function() {
+
+    $('#dict-type-modal').on('show.bs.modal', function(event) {
+        var btn = $(event.relatedTarget);
+        var title = btn.data('modal-title');
+
+        var modal = $(this);
+        modal.find('.modal-title').text(title);
+    });
+
+    $('#dict-value-modal').on('show.bs.modal', function(event) {
+        var btn = $(event.relatedTarget);
+        var title = btn.data('modal-title');
+
+        var modal = $(this);
+        modal.find('.modal-title').text(title);
     });
 
 })
