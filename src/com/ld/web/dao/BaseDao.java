@@ -65,10 +65,10 @@ public interface BaseDao<T> {
     /**
      * Get unique result
      * 
-     * @param primaryKey
+     * @param id
      * @return
      */
-    T getUniqueResult(Long primaryKey);
+    T getUniqueResult(String id);
 
     /**
      * Get unique result by order

@@ -98,6 +98,12 @@ public class DictType extends BaseModel {
         this.dicts = dicts;
     }
 
+    public void update(DictType dictType) {
+        this.code = dictType.getCode();
+        this.name = dictType.getName();
+        this.remark = dictType.getRemark();
+    }
+
     public DictType() {
     }
 

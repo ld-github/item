@@ -46,4 +46,15 @@ public class DictTypeBizImpl implements DictTypeBiz {
     public Page<DictType> getPage(Page<DictType> page, String code, String name) {
         return dictTypeDao.getPage(page, code, name);
     }
+
+    @Override
+    public DictType getById(String id) {
+        return dictTypeDao.getUniqueResult(id);
+    }
+
+    @Override
+    public void update(DictType dictType) {
+        dictTypeDao.update(dictType);
+    }
+
 }

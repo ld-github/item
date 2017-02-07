@@ -17,6 +17,10 @@ public interface DictTypeBiz {
 
     void save(DictType dictType);
 
+    void update(DictType dictType);
+
+    DictType getById(String id);
+
     DictType get(String code);
 
     void delete(DictType dictType);

@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ld.web.been.Page;
+import com.ld.web.been.ServerResp;
 import com.ld.web.been.model.DictType;
 import com.ld.web.biz.DictTypeBiz;
+import com.ld.web.util.StringUtil;
 
 /**
  * 
@@ -39,4 +41,45 @@ public class DictTypeController extends BaseController {
 
         return dictTypeBiz.getPage(page, code, name);
     }
+
+    @RequestMapping(value = "save")
+    @ResponseBody
+    private ServerResp save(DictType dictType) {
+
+        if (StringUtil.isEmpty(dictType.getCode())) {
+            return new ServerResp(false, "字典类型代码不能为空");
+        }
+
+        DictType dict = dictTypeBiz.get(dictType.getCode());
+
+        if (null != dict) {
+            return new ServerResp(false, "该字典类型代码已经存在");
+        }
+
+        dictType.setCanView(true);
+        dictTypeBiz.save(dictType);
+
+        return new ServerResp(true, "保存成功");
+    }
+
+    @RequestMapping(value = "update")
+    @ResponseBody
+    private ServerResp update(DictType dictType) {
+
+        if (StringUtil.isEmpty(dictType.getCode())) {
+            return new ServerResp(false, "字典类型代码不能为空");
+        }
+
+        DictType dict = dictTypeBiz.get(dictType.getCode());
+
+        if (null != dict && !dict.getId().equals(dictType.getId())) {
+            return new ServerResp(false, "该字典类型代码已经存在");
+        }
+
+        dict.update(dictType);
+        dictTypeBiz.update(dictType);
+
+        return new ServerResp(true, "保存成功");
+    }
+
 }

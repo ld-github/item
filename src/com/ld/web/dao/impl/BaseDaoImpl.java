@@ -90,14 +90,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public T getUniqueResult(final Long primaryKey) {
+    public T getUniqueResult(final String id) {
         String hql = "FROM " + this.getClassName() + " o WHERE o.id=:id";
 
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {
             private static final long serialVersionUID = 8568462066745554547L;
             {
-                put("id", primaryKey);
+                put("id", id);
             }
         });
         return (T) q.uniqueResult();
