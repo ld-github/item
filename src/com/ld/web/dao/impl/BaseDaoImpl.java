@@ -117,14 +117,14 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public void delete(final Long primaryKey) {
+    public void delete(final String id) {
         String hql = "DELETE " + this.getClassName() + " o WHERE o.id=:id";
 
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, new HashMap<String, Object>() {
             private static final long serialVersionUID = -4864915463081917504L;
             {
-                put("id", primaryKey);
+                put("id", id);
             }
         });
         q.executeUpdate();

@@ -70,11 +70,7 @@ function initDictTypeTable() {
 
             $('#btn-add-dict-value').removeAttr('disabled');
 
-            if ($('#dict-value-table').bootstrapTable('getOptions').pageNumber > 1) {
-                $('#dict-value-table').bootstrapTable('selectPage', 1);
-                return;
-            }
-            $('#dict-value-table').bootstrapTable('refresh');
+            bootstrapTableSelectFirstPage('#dict-value-table');
         },
         onUncheck : function(row) {
             $('#dict-value-table').bootstrapTable('removeAll');

@@ -101,7 +101,7 @@ public interface BaseDao<T> {
      * 
      * @param key
      */
-    void delete(Long primaryKey);
+    void delete(String id);
 
     /**
      * Delete T by t

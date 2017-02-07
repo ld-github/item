@@ -100,3 +100,14 @@ function bootstrapTableRefreshCurrentPage(tableId) {
         $('#order-table').bootstrapTable('prevPage');
     }
 }
+
+function bootstrapTableSelectFirstPage(tableId) {
+
+    var currentPage = $(tableId).bootstrapTable('getOptions').pageNumber;
+
+    if (currentPage > 1) {
+        $(tableId).bootstrapTable('selectPage', 1);
+        return;
+    }
+    $(tableId).bootstrapTable('refresh');
+}
