@@ -1,7 +1,7 @@
 var URLS = {
     GET_PAGE_DICT_TYPE : contextPath + "/dictType/getPage",
-    GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage",
     DELETE_DICT_TYPE : contextPath + "/dictType/delete",
+    GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage",
 }
 
 var dictTypeParams = {};
@@ -141,6 +141,13 @@ function initDictTable() {
         }, {
             field : 'name',
             title : '字典值名称',
+        }, {
+            field : 'canUpdate',
+            title : '是否可修改',
+            align : 'center',
+            formatter : function(value, row, index) {
+                return value ? '是' : '<font style="color: red;">否</font>';
+            }
         }, {
             field : 'remark',
             title : '字典值备注',
