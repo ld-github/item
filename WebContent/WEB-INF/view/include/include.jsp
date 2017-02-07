@@ -14,6 +14,8 @@
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <jsp:include page="/WEB-INF/view/include/bootstrap.jsp"></jsp:include>
 <script type="text/javascript" src="plugins/vue.min.js"></script>
+<script type="text/javascript" src="plugins/jquery.form.min.js"></script>
+<script type="text/javascript" src="plugins/jquery.formautofill.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!--[if lte IE 9]>

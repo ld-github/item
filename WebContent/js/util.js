@@ -1,35 +1,4 @@
 /**
- * Load form value from json
- * 
- * @param formId
- * @param json
- */
-function formLoadJson(formId, json) {
-    var inputs = $(formId + ' :input');
-
-    $.each(inputs, function(i, item) {
-        var input = $(item);
-        var key = input.attr('name');
-
-        if (key != undefined) {
-            var keys = key.split('.');
-            var value = undefined;
-            for (var i = 0; i < keys.length; i++) {
-                if (undefined == value) {
-                    value = json[keys[i]];
-                } else {
-                    value = value[keys[i]];
-                }
-            }
-            if (undefined != value) {
-                input.val(value);
-            }
-        }
-    });
-
-}
-
-/**
  * Jquery serializeArray to serializeJson
  */
 (function($) {
@@ -94,10 +63,10 @@ function bootstrapTableRefreshCurrentPage(tableId) {
 
     var currentPage = $(tableId).bootstrapTable('getOptions').pageNumber;
 
-    $('#order-table').bootstrapTable('refresh');
+    $(tableId).bootstrapTable('refresh');
 
-    if (currentPage > 1 && $('#order-table').bootstrapTable('getData').length == 0) {
-        $('#order-table').bootstrapTable('prevPage');
+    if (currentPage > 1 && $(tableId).bootstrapTable('getData').length == 0) {
+        $(tableId).bootstrapTable('prevPage');
     }
 }
 

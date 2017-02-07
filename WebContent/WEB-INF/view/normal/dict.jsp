@@ -20,7 +20,7 @@
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form class="form-inline" role="form" id="dict-type-form">
+                                    <form class="form-inline" role="form" id="dict-type-query-form">
                                         <div class="form-group">
                                             <label class="sr-only" for="dict-type-code-text">字典类型代码</label>
                                             <input type="text" class="form-control" id="dict-type-code-text" placeholder="字典类型代码" name="code">
@@ -34,10 +34,10 @@
                                 </div>
                             </div>
                             <div id="dict-type-toolbar" class="btn-group">
-                                <button id="btn-add-dict-type" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-type-modal" data-modal-title="添加-字典类型">
+                                <button id="btn-add-dict-type" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-type-modal" data-modal-title="添加-字典类型" data-handle="save">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
                                 </button>
-                                <button id="btn-edit-dict-type" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-type-modal" data-modal-title="修改-字典类型">
+                                <button id="btn-edit-dict-type" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-type-modal" data-modal-title="修改-字典类型" data-handle="update">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                 </button>
                                 <button id="btn-del-dict-type" type="button" class="btn btn-default">
@@ -54,7 +54,7 @@
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-body">
-                                    <form class="form-inline" role="form" id="dict-value-form">
+                                    <form class="form-inline" role="form" id="dict-value-query-form">
                                         <div class="form-group">
                                             <label class="sr-only" for="dict-code-text">字典值</label>
                                             <input type="text" class="form-control" id="dict-value-text" placeholder="字典值" name="value">
@@ -94,12 +94,12 @@
                     <h4 class="modal-title">添加/修改-字典类型</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="dict-type-edit-form">
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典类型代码</span>
-                                    <input type="text" class="form-control" placeholder="字典类型代码">
+                                    <input type="text" class="form-control" name="code" placeholder="字典类型代码">
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典类型名称</span>
-                                    <input type="text" class="form-control" placeholder="字典类型名称">
+                                    <input type="text" class="form-control" name="name" placeholder="字典类型名称">
                                 </div>
                             </div>
                         </div>
@@ -115,14 +115,14 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典类型备注</span>
-                                    <input type="text" class="form-control" placeholder="字典类型备注">
+                                    <input type="text" class="form-control" name="remark" placeholder="字典类型备注">
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" id="dict-type-edit-btn">保存</button>
                 </div>
             </div>
       </div>
