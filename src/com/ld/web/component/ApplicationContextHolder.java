@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component("ApplicationContextHolder")
 public class ApplicationContextHolder implements ApplicationContextAware {
 
-    public static ApplicationContext context;
+    static ApplicationContext context;
 
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
@@ -40,4 +40,5 @@ public class ApplicationContextHolder implements ApplicationContextAware {
     public static String[] getAliases(String name) {
         return context.getAliases(name);
     }
+
 }
