@@ -90,6 +90,12 @@ public class Dict extends BaseModel {
         this.remark = remark;
     }
 
+    public void update(Dict dict) {
+        this.name = dict.getName();
+        this.remark = dict.getRemark();
+        this.value = dict.getValue();
+    }
+
     public Dict() {
     }
 

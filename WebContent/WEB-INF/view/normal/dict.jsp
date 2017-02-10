@@ -6,6 +6,7 @@
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/bootstrap-table.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="css/dict.css">
 <script type="text/javascript" src="js/dict.js"></script>
 <title>Dict Page</title>
@@ -68,10 +69,10 @@
                                 </div>
                             </div>
                             <div id="dict-value-toolbar" class="btn-group">
-                                <button id="btn-add-dict-value" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-value-modal" data-modal-title="添加-字典值">
+                                <button id="btn-add-dict-value" type="button" class="btn btn-default" data-toggle="modal" data-target="#dict-value-modal" data-modal-title="添加-字典值" data-handle="save">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
                                 </button>
-                                <button id="btn-edit-dict-value" type="button" class="btn btn-default"  data-toggle="modal" data-target="#dict-value-modal" data-modal-title="修改-字典值">
+                                <button id="btn-edit-dict-value" type="button" class="btn btn-default"  data-toggle="modal" data-target="#dict-value-modal" data-modal-title="修改-字典值" data-handle="update">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
                                 </button>
                                 <button id="btn-del-dict-value" type="button" class="btn btn-default">
@@ -136,12 +137,15 @@
                     <h4 class="modal-title">添加/修改-字典值</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="dict-value-edit-form">
+
+                        <input type="hidden" name="type.id">
+
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典类型代码</span>
-                                    <input type="text" class="form-control" placeholder="字典类型代码" disabled="disabled">
+                                    <input type="text" class="form-control" placeholder="字典类型代码" readonly="readonly" name="type.code">
                                 </div>
                             </div>
                         </div>
@@ -149,7 +153,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典类型名称</span>
-                                    <input type="text" class="form-control" placeholder="字典类型名称" disabled="disabled">
+                                    <input type="text" class="form-control" placeholder="字典类型名称" readonly="readonly" name="type.name">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +161,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典值</span>
-                                    <input type="text" class="form-control" placeholder="字典值">
+                                    <input type="text" class="form-control" placeholder="字典值" name="value">
                                 </div>
                             </div>
                         </div>
@@ -165,7 +169,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典值名称</span>
-                                    <input type="text" class="form-control" placeholder="字典值名称">
+                                    <input type="text" class="form-control" placeholder="字典值名称" name="name">
                                 </div>
                             </div>
                         </div>
@@ -173,14 +177,14 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">字典值备注</span>
-                                    <input type="text" class="form-control" placeholder="字典值备注">
+                                    <input type="text" class="form-control" placeholder="字典值备注" name="remark">
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">保存</button>
+                    <button type="button" class="btn btn-primary" id="dict-value-edit-btn">保存</button>
                 </div>
             </div>
       </div>

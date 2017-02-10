@@ -37,4 +37,19 @@ public class DictBizImpl implements DictBiz {
         return dictDao.getPage(page, typeId, value, name);
     }
 
+    @Override
+    public Dict getById(String id) {
+        return dictDao.getUniqueResult(id);
+    }
+
+    @Override
+    public void update(Dict dict) {
+        dictDao.update(dict);
+    }
+
+    @Override
+    public void save(Dict dict) {
+        dictDao.save(dict);
+    }
+
 }

@@ -50,9 +50,9 @@ public class DictTypeController extends BaseController {
             return new ServerResp(false, "字典类型代码不能为空");
         }
 
-        DictType dict = dictTypeBiz.get(dictType.getCode());
+        DictType _dictType = dictTypeBiz.get(dictType.getCode());
 
-        if (null != dict) {
+        if (null != _dictType) {
             return new ServerResp(false, "该字典类型代码已经存在");
         }
 
@@ -70,16 +70,35 @@ public class DictTypeController extends BaseController {
             return new ServerResp(false, "字典类型代码不能为空");
         }
 
-        DictType dict = dictTypeBiz.get(dictType.getCode());
+        DictType _dictType = dictTypeBiz.get(dictType.getCode());
 
-        if (null != dict && !dict.getId().equals(dictType.getId())) {
+        if (null != _dictType && !_dictType.getId().equals(dictType.getId())) {
             return new ServerResp(false, "该字典类型代码已经存在");
         }
 
-        dict.update(dictType);
-        dictTypeBiz.update(dictType);
+        _dictType = dictTypeBiz.getById(dictType.getId());
+
+        if (null == _dictType) {
+            return new ServerResp(false, "该字典类型不存在，请刷新后再试");
+        }
+
+        _dictType.update(dictType);
+        dictTypeBiz.update(_dictType);
 
         return new ServerResp(true, "保存成功");
     }
 
+    @RequestMapping(value = "delete")
+    @ResponseBody
+    public ServerResp delete(DictType dictType) {
+
+        DictType _dictType = dictTypeBiz.getById(dictType.getId());
+        if (null == _dictType) {
+            return new ServerResp(false, "该字典类型不存在，请刷新后再试");
+        }
+
+        dictTypeBiz.delete(_dictType);
+
+        return new ServerResp(true, "删除成功");
+    }
 }

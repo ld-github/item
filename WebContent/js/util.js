@@ -1,3 +1,31 @@
+(function($) {
+    $.fn.autoFillForm = function(json) {
+
+        var inputs = $(this).find('input');
+
+        $.each(inputs, function(i, item) {
+            var input = $(item);
+            var key = input.attr('name');
+
+            if (key != undefined) {
+                var keys = key.split('.');
+                var value = undefined;
+                for (var i = 0; i < keys.length; i++) {
+                    if (undefined == value) {
+                        value = json[keys[i]];
+                    } else {
+                        value = value[keys[i]];
+                    }
+                }
+
+                if (undefined != value) {
+                    input.val(value);
+                }
+            }
+        });
+    };
+})(jQuery);
+
 /**
  * Jquery serializeArray to serializeJson
  */
@@ -43,7 +71,7 @@ var Message = function() {
     }
 
     this.tipLeft = function(id, msg, time) {
-        time = time || 5000;
+        time = time || 3000;
 
         layui.use('layer', function() {
             layui.layer.tips(msg, $(id), {
@@ -52,7 +80,6 @@ var Message = function() {
             });
         })
     }
-
 }
 
 function checkRespCodeSucc(data) {
@@ -63,11 +90,12 @@ function bootstrapTableRefreshCurrentPage(tableId) {
 
     var currentPage = $(tableId).bootstrapTable('getOptions').pageNumber;
 
-    $(tableId).bootstrapTable('refresh');
-
     if (currentPage > 1 && $(tableId).bootstrapTable('getData').length == 0) {
-        $(tableId).bootstrapTable('prevPage');
+        $(tableId).bootstrapTable('selectPage', currentPage - 1);
+        return;
     }
+
+    $(tableId).bootstrapTable('refresh');
 }
 
 function bootstrapTableSelectFirstPage(tableId) {
@@ -78,5 +106,6 @@ function bootstrapTableSelectFirstPage(tableId) {
         $(tableId).bootstrapTable('selectPage', 1);
         return;
     }
+
     $(tableId).bootstrapTable('refresh');
 }

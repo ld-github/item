@@ -1,19 +1,28 @@
 var URLS = {
     GET_PAGE_DICT_TYPE : contextPath + "/dictType/getPage",
+    SAVE_DICT_TYPE : contextPath + "/dictType/save",
+    UPDATE_DICT_TYPE : contextPath + "/dictType/update",
     DELETE_DICT_TYPE : contextPath + "/dictType/delete",
     GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage",
+    SAVE_DICT_VALUE : contextPath + "/dict/save",
+    UPDATE_DICT_VALUE : contextPath + "/dict/update",
+    DELETE_DICT_VALUE : contextPath + "/dict/delete",
 }
 
 var dictTypeParams = {};
 var dictParams = {};
 
-function delDictType(typeId) {
+function delDictType() {
+    var rows = $('#dict-type-table').bootstrapTable('getSelections');
+
     var params = {
-        typeId : typeId
+        id : rows[0].id
     };
 
     $.post(URLS.DELETE_DICT_TYPE, params, function(data) {
         if (checkRespCodeSucc(data)) {
+            $('#dict-type-table').bootstrapTable('removeByUniqueId', rows[0].id);
+
             bootstrapTableRefreshCurrentPage('#dict-type-table');
             return;
         }
@@ -23,11 +32,104 @@ function delDictType(typeId) {
 }
 
 function saveDictType() {
-    alert("save");
+    var params = $('#dict-type-edit-form').serializeJson();
+
+    if (params.code == '') {
+        new Message().tipLeft('#dict-type-edit-btn', '字典类型代码不能为空');
+        return;
+    }
+
+    $.post(URLS.SAVE_DICT_TYPE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            bootstrapTableSelectFirstPage('#dict-type-table');
+            $('#dict-type-modal').modal('hide')
+            return;
+        }
+
+        new Message().tipLeft('#dict-type-edit-btn', data.respDesc);
+    })
 }
 
 function updateDictType() {
-    alert('update');
+    var params = $('#dict-type-edit-form').serializeJson();
+
+    if (params.code == '') {
+        new Message().tipLeft('#dict-type-edit-btn', '字典类型代码不能为空');
+        return;
+    }
+
+    $.post(URLS.UPDATE_DICT_TYPE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            bootstrapTableRefreshCurrentPage('#dict-type-table');
+            $('#dict-type-modal').modal('hide')
+            return;
+        }
+
+        new Message().tipLeft('#dict-type-edit-btn', data.respDesc);
+    })
+
+}
+
+function saveDictValue() {
+    var params = $('#dict-value-edit-form').serializeJson();
+
+    if (params.value == '') {
+        new Message().tipLeft('#dict-value-edit-btn', '字典值不能为空');
+        return;
+    }
+
+    $.post(URLS.SAVE_DICT_VALUE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            bootstrapTableSelectFirstPage('#dict-value-table');
+            $('#dict-value-modal').modal('hide')
+            return;
+        }
+
+        new Message().tipLeft('#dict-value-edit-btn', data.respDesc);
+    })
+}
+
+function delDictValue() {
+    var rows = $('#dict-value-table').bootstrapTable('getSelections');
+
+    var params = {
+        id : rows[0].id
+    };
+
+    $.post(URLS.DELETE_DICT_VALUE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            $('#dict-value-table').bootstrapTable('removeByUniqueId', rows[0].id);
+
+            bootstrapTableRefreshCurrentPage('#dict-value-table');
+            return;
+        }
+
+        new Message().show(data.respDesc);
+    });
+}
+
+function updateDictValue() {
+    var params = $('#dict-value-edit-form').serializeJson();
+
+    if (params.value == '') {
+        new Message().tipLeft('#dict-value-edit-btn', '字典值不能为空');
+        return;
+    }
+
+    var rows = $('#dict-value-table').bootstrapTable('getSelections');
+    var row = rows[0];
+
+    params.id = row.id;
+
+    $.post(URLS.UPDATE_DICT_VALUE, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            bootstrapTableRefreshCurrentPage('#dict-value-table');
+            $('#dict-value-modal').modal('hide')
+            return;
+        }
+
+        new Message().tipLeft('#dict-value-edit-btn', data.respDesc);
+    })
 }
 
 function initDictTypeTable() {
@@ -48,6 +150,7 @@ function initDictTypeTable() {
         showExport : true,
         pageList : [ 5, 10, 25, 50, 100, 'All' ],
         idField : 'id',
+        uniqueId : 'id',
         singleSelect : true,
         toolbar : '#dict-type-toolbar',
         sidePagination : 'server',
@@ -126,6 +229,7 @@ function initDictTable() {
         pageSize : 5,
         pageList : [ 5, 10, 25, 50, 100, 'All' ],
         idField : 'id',
+        uniqueId : 'id',
         singleSelect : true,
         toolbar : '#dict-value-toolbar',
         sidePagination : 'server',
@@ -209,6 +313,14 @@ $(function() {
         $('#dict-value-table').bootstrapTable('selectPage', 1);
     });
 
+    $('#btn-del-dict-type').click(function() {
+        new Message().confirm('确定删除该参数类型以及参数值配置?', delDictType);
+    });
+
+    $('#btn-del-dict-value').click(function() {
+        new Message().confirm('确定删除该参数值配置?', delDictValue);
+    });
+
     $('#dict-type-table').bootstrapTable('resetWidth');
     $('#dict-value-table').bootstrapTable('resetWidth');
 
@@ -227,6 +339,7 @@ var HANDLE = {
 $(function() {
 
     $('#dict-type-modal').on('show.bs.modal', function(event) {
+
         var btn = $(event.relatedTarget);
         var title = btn.data('modal-title');
         var handle = btn.data('handle');
@@ -241,22 +354,48 @@ $(function() {
             var rows = $('#dict-type-table').bootstrapTable('getSelections');
             var row = rows[0];
 
-            $("#dict-type-edit-form").autofill(row);
+            $("#dict-type-edit-form").autoFillForm(row);
 
             $('#dict-type-edit-btn').bind("click", updateDictType);
             return;
         }
 
-        $('#dict-type-edit-btn').bind("click", saveDictType);
+        if (handle == HANDLE.SAVE) {
+            $('#dict-type-edit-btn').bind("click", saveDictType);
+        }
 
     });
 
     $('#dict-value-modal').on('show.bs.modal', function(event) {
         var btn = $(event.relatedTarget);
         var title = btn.data('modal-title');
+        var handle = btn.data('handle');
 
         var modal = $(this);
         modal.find('.modal-title').text(title);
+
+        $("#dict-value-edit-form").clearForm();
+        $('#dict-value-edit-btn').unbind();
+
+        if (handle == HANDLE.UPDATE) {
+            var rows = $('#dict-value-table').bootstrapTable('getSelections');
+            var row = rows[0];
+
+            $("#dict-value-edit-form").autoFillForm(row);
+            $('#dict-value-edit-btn').bind("click", updateDictValue);
+            return;
+        }
+
+        if (handle == HANDLE.SAVE) {
+            var rows = $('#dict-type-table').bootstrapTable('getSelections');
+            var row = rows[0];
+
+            $("#dict-value-edit-form").autoFillForm({
+                'type' : row
+            });
+            $('#dict-value-edit-btn').bind("click", saveDictValue);
+        }
+
     });
 
 })

@@ -30,3 +30,7 @@ a input button {
 a:FOCUS, button:FOCUS {
     outline: none !important;
 }
+
+.main-panel {
+    margin-top: 10px;
+}

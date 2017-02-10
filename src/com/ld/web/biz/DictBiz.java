@@ -17,5 +17,11 @@ public interface DictBiz {
 
     void delete(Dict dict);
 
+    void update(Dict dict);
+
+    void save(Dict dict);
+
+    Dict getById(String id);
+
     Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name);
 }
