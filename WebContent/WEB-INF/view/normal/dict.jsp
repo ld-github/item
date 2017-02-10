@@ -17,7 +17,7 @@
             <div class="row-fluid">
                 <div class="col-xs-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="panel-title text-center">参数类型</h3></div>
+                        <div class="panel-heading"><h3 class="panel-title text-center">字典类型配置</h3></div>
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-body">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-xs-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h3 class="panel-title text-center">参数配置</h3></div>
+                        <div class="panel-heading"><h3 class="panel-title text-center">字典值配置</h3></div>
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-body">
