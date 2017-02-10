@@ -25,7 +25,7 @@ public class Dict extends BaseModel {
 
     private static final long serialVersionUID = 2422730999611951318L;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "typeId", referencedColumnName = "id")
     private DictType type;
 
