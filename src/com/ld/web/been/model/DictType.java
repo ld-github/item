@@ -46,7 +46,7 @@ public class DictType extends BaseModel {
     private String remark;
 
     @JsonIgnore
-    @OneToMany(cascade = { CascadeType.REMOVE, CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     @JoinColumn(name = "typeId")
     private List<Dict> dicts = new ArrayList<Dict>();
 
