@@ -1,5 +1,7 @@
 package com.ld.web.biz;
 
+import java.util.List;
+
 import com.ld.web.been.Page;
 import com.ld.web.been.model.Dict;
 
@@ -22,6 +24,8 @@ public interface DictBiz {
     void save(Dict dict);
 
     Dict getById(String id);
+
+    List<Dict> get(String typeCode);
 
     Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name);
 }

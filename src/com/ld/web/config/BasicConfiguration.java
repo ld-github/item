@@ -1,5 +1,13 @@
 package com.ld.web.config;
 
+import java.util.List;
+
+import com.ld.web.been.model.Dict;
+import com.ld.web.been.model.DictType;
+import com.ld.web.biz.DictBiz;
+import com.ld.web.component.ApplicationContextHolder;
+import com.ld.web.config.dto.SysConfig;
+
 /**
  * 
  *<p>Title: BasicConfiguration</p>
@@ -8,14 +16,28 @@ package com.ld.web.config;
  *
  *@author LD
  *
- *@date 2017-01-11
+ *@date 2017-02-13
  */
 public class BasicConfiguration {
 
     private static final BasicConfiguration INSTANCE = new BasicConfiguration();
 
-    private void loadConfig() {
+    private SysConfig sysConfig;
 
+    private DictBiz dictBiz;
+
+    private void loadConfig() {
+        dictBiz = (DictBiz) ApplicationContextHolder.getSpringBean("dictBizImpl");
+
+        List<Dict> dicts = dictBiz.get(DictType.CODE_UPLOAD_FILE_PATH);
+
+        String uploadFilePath = null == dicts || dicts.isEmpty() ? null : dicts.get(0).getValue();
+
+        sysConfig = new SysConfig(uploadFilePath);
+    }
+
+    public SysConfig getSysConfig() {
+        return sysConfig;
     }
 
     public static BasicConfiguration getInstance() {

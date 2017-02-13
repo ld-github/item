@@ -1,5 +1,7 @@
 package com.ld.web.dao;
 
+import java.util.List;
+
 import com.ld.web.been.Page;
 import com.ld.web.been.model.Dict;
 
@@ -16,5 +18,7 @@ import com.ld.web.been.model.Dict;
 public interface DictDao extends BaseDao<Dict> {
 
     Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name);
+
+    List<Dict> get(String typeCode);
 
 }

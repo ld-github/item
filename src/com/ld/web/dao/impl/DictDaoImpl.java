@@ -2,6 +2,7 @@ package com.ld.web.dao.impl;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -45,6 +46,16 @@ public class DictDaoImpl extends BaseDaoImpl<Dict> implements DictDao {
         orders.put("o.value", "asc");
 
         return getPage(where, params, orders, page);
+    }
+
+    @Override
+    public List<Dict> get(String typeCode) {
+        String where = "WHERE o.type.code=:code";
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("code", typeCode);
+
+        return getList(where, params, null);
     }
 
 }

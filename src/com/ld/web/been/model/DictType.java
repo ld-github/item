@@ -32,6 +32,8 @@ public class DictType extends BaseModel {
 
     private static final long serialVersionUID = -7466333696886683399L;
 
+    public static final String CODE_UPLOAD_FILE_PATH = "upload_file_path";
+
     @Column(length = 32, nullable = false, unique = true)
     private String code;
 

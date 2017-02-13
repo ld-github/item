@@ -4,9 +4,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ld.web.been.model.Task;
-import com.ld.web.task.PublishTaskManager;
-
 /**
  * 
  *<p>Title: PageController</p>
@@ -38,10 +35,6 @@ public class PageController extends BaseController {
 
     @RequestMapping(value = REQUEST_PAGE_URL_LOGIN)
     public String login() {
-        Task t = new Task();
-        t.setId(1 + "");
-
-        PublishTaskManager.getInstance().put(t);
         return "login";
     }
 

@@ -1,5 +1,7 @@
 package com.ld.web.biz.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -50,6 +52,11 @@ public class DictBizImpl implements DictBiz {
     @Override
     public void save(Dict dict) {
         dictDao.save(dict);
+    }
+
+    @Override
+    public List<Dict> get(String typeCode) {
+        return dictDao.get(typeCode);
     }
 
 }
