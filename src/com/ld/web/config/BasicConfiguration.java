@@ -22,7 +22,7 @@ public class BasicConfiguration {
 
     private static final BasicConfiguration INSTANCE = new BasicConfiguration();
 
-    private SysConfig sysConfig;
+    private SysConfig sysConfig; // 系统配置
 
     private DictBiz dictBiz;
 
