@@ -54,31 +54,25 @@
 var Message = function() {
 
     this.show = function(msg) {
-        layui.use('layer', function() {
-            layui.layer.msg(msg);
-        })
+        layer.msg(msg);
     }
 
     this.confirm = function(msg, callback, param) {
-        layui.use('layer', function() {
-            layui.layer.confirm(msg, function(lay) {
-                if (callback && typeof (callback) === 'function') {
-                    layui.layer.close(lay);
-                    callback(param);
-                }
-            })
+        layer.confirm(msg, function(lay) {
+            if (callback && typeof (callback) === 'function') {
+                layer.close(lay);
+                callback(param);
+            }
         })
     }
 
     this.tipLeft = function(id, msg, time) {
         time = time || 3000;
 
-        layui.use('layer', function() {
-            layui.layer.tips(msg, $(id), {
-                tips : [ 4, '#3595CC' ],
-                time : time,
-            });
-        })
+        layer.tips(msg, $(id), {
+            tips : [ 4, '#3595CC' ],
+            time : time,
+        });
     }
 }
 

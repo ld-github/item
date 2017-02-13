@@ -6,3 +6,12 @@
 <base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="plugins/layui/css/layui.css">
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
+
+<script type="text/javascript">
+var layer = null;
+
+layui.use('layer', function() {
+    layer = layui.layer;
+});
+
+</script>
