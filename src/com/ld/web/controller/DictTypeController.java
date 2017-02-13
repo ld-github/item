@@ -101,4 +101,5 @@ public class DictTypeController extends BaseController {
 
         return new ServerResp(true, "删除成功");
     }
+
 }

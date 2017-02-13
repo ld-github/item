@@ -26,7 +26,11 @@ public class FileManager {
      * @return
      */
     public static String getSuffixName(String filename) {
-        String suffixName = filename.substring(filename.lastIndexOf("."));
+        if (filename.indexOf(".") == -1) {
+            return "";
+        }
+
+        String suffixName = filename.substring(filename.indexOf("."));
 
         logger.info(String.format("Get suffix name: %s by filename: %s", suffixName, filename));
         return suffixName;
@@ -104,6 +108,7 @@ public class FileManager {
     public static File createTempFile(String prefixName, String suffixName, File directory) throws IOException {
         if (null != directory) {
             String path = directory.getAbsolutePath();
+
             logger.info(String.format("Create temp file prefixName: %s, suffixName: %s, directory path: %s", prefixName, suffixName, path));
             mkdirs(path);
         }
