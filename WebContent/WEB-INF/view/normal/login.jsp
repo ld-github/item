@@ -6,7 +6,6 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
-<link rel="stylesheet" type="text/css" href="plugins/layui/css/modules/layer/default/layer.css">
 <jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="css/login.css">
 <script type="text/javascript" src="js/login.js"></script>
@@ -30,10 +29,16 @@
             <button type="submit" data-loading-text="Logining" class="btn btn-primary btn-lg pull-right" id="to-login-btn">Login</button>
         </form>
     </div>
+
 </body>
+
 <script type="text/javascript">
-    "<c:if test="${null != respDesc}">"
-        new Message().tipLeft('#to-login-btn', '${ respDesc }');
-    "</c:if>";
+    $(function() {
+        var respDesc = "${respDesc}";
+        if (respDesc) {
+            new Message().tipLeft('#to-login-btn', '${ respDesc }');
+        }
+    })
 </script>
+
 </html>

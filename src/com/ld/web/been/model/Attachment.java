@@ -40,7 +40,7 @@ public class Attachment extends BaseModel {
 
     private String remark; // 备注
 
-    private Date createDatetime; // 上传时间
+    private Date createDatetime = new Date(); // 上传时间
 
     @Column(length = 255, nullable = false)
     public String getFilename() {
@@ -115,6 +115,16 @@ public class Attachment extends BaseModel {
 
     public void setCreateDatetime(Date createDatetime) {
         this.createDatetime = createDatetime;
+    }
+
+    public Attachment() {
+    }
+
+    public Attachment(String filename, String realname, String filepath, String dir) {
+        this.filename = filename;
+        this.realname = realname;
+        this.filepath = filepath;
+        this.dir = dir;
     }
 
 }

@@ -51,31 +51,6 @@
     };
 })(jQuery);
 
-var Message = function() {
-
-    this.show = function(msg) {
-        layer.msg(msg);
-    }
-
-    this.confirm = function(msg, callback, param) {
-        layer.confirm(msg, function(lay) {
-            if (callback && typeof (callback) === 'function') {
-                layer.close(lay);
-                callback(param);
-            }
-        })
-    }
-
-    this.tipLeft = function(id, msg, time) {
-        time = time || 3000;
-
-        layer.tips(msg, $(id), {
-            tips : [ 4, '#3595CC' ],
-            time : time,
-        });
-    }
-}
-
 function checkRespCodeSucc(data) {
     return null != data && '00' === data.respCode;
 }

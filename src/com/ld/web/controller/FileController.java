@@ -48,7 +48,7 @@ public class FileController extends BaseController {
         cal.setTime(new Date());
 
         String year = cal.get(Calendar.YEAR) + "";
-        String month = (cal.get(Calendar.MONTH) + 1) + "";
+        String month = cal.get(Calendar.MONTH) + 1 + "";
         String date = cal.get(Calendar.DATE) + "";
 
         String suffixFilePath = File.separator + year + File.separator + month + File.separator + date;
@@ -64,6 +64,10 @@ public class FileController extends BaseController {
 
             File serverFile = new File(uploadDir + File.separator + realFileName);
             FileCopyUtils.copy(file.getBytes(), serverFile);
+
+            if (null == attachment) {
+                attachment = new Attachment(name, realFileName, serverFile.getAbsolutePath(), dir.getAbsolutePath());
+            }
 
             return new ServerResp(true, "上传文件出现成功", attachment);
         } catch (Exception e) {
