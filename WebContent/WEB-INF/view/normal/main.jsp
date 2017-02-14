@@ -5,6 +5,7 @@
 <meta name="keywords" content="">
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/easyui.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="js/main.js"></script>
