@@ -8,6 +8,9 @@
 <title>Password Page</title>
 </head>
 <body>
+    <a href="http://127.0.0.1/item/main">走起item</a>
+    <a href="http://127.0.0.1/item1/main">走起item1</a>
+    <a href="http://127.0.0.1:8888/item1/main">走起item1-8888</a>
     <div class="main-panel">
         <div class="container-fluid">
             <div class="row">

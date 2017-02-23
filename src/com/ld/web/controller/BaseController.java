@@ -56,8 +56,8 @@ public class BaseController implements Serializable {
         getSession().setAttribute(SESSION_USER_KEY, user);
     }
 
-    public Object getSesstionUser() {
-        return getSessionObj(SESSION_USER_KEY);
+    public User getSesstionUser() {
+        return (User) getSessionObj(SESSION_USER_KEY);
     }
 
     public void removeSessionUser() {
@@ -123,6 +123,7 @@ public class BaseController implements Serializable {
      */
     public void writerPrint(HttpServletResponse resp, String buffer) {
         PrintWriter out = null;
+
         try {
             resp.setContentType("text/html; charset=utf-8");
             out = resp.getWriter();
@@ -132,4 +133,5 @@ public class BaseController implements Serializable {
             logger.error(String.format("Writer print char error: %s", e.getMessage()), e);
         }
     }
+
 }

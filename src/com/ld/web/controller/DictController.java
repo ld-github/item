@@ -42,14 +42,14 @@ public class DictController extends BaseController {
 
     @RequestMapping(value = "getPage")
     @ResponseBody
-    private Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name) {
+    public Page<Dict> getPage(Page<Dict> page, String typeId, String value, String name) {
 
         return dictBiz.getPage(page, typeId, value, name);
     }
 
     @RequestMapping(value = "save")
     @ResponseBody
-    private ServerResp save(Dict dict) {
+    public ServerResp save(Dict dict) {
 
         DictType dictType = dictTypeBiz.getById(dict.getType().getId());
 
@@ -70,7 +70,7 @@ public class DictController extends BaseController {
 
     @RequestMapping(value = "update")
     @ResponseBody
-    private ServerResp update(Dict dict) {
+    public ServerResp update(Dict dict) {
 
         if (StringUtil.isEmpty(dict.getValue())) {
             return new ServerResp(false, "字典值不能为空");
