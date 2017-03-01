@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ld.web.been.ServerResp;
 import com.ld.web.been.model.Attachment;
+import com.ld.web.biz.AttachmentBiz;
 import com.ld.web.config.BasicConfiguration;
 import com.ld.web.util.FileManager;
 
@@ -36,6 +39,9 @@ public class FileController extends BaseController {
     private static final long serialVersionUID = 590123766546599220L;
 
     private static Logger logger = Logger.getLogger(FileController.class);
+
+    @Resource
+    public AttachmentBiz attachmentBiz;
 
     public static final String REQUEST_INDEX_URL = "/file";
 
@@ -65,11 +71,15 @@ public class FileController extends BaseController {
             File serverFile = new File(uploadDir + File.separator + realFileName);
             FileCopyUtils.copy(file.getBytes(), serverFile);
 
-            if (null == attachment) {
-                attachment = new Attachment(name, realFileName, serverFile.getAbsolutePath(), dir.getAbsolutePath());
+             Attachment a = new Attachment(name, realFileName, serverFile.getAbsolutePath(), dir.getAbsolutePath());
+
+            if (null != attachment) {
+                a.modify(attachment);
             }
 
-            return new ServerResp(true, "上传文件出现成功", attachment);
+            attachmentBiz.save(a);
+
+            return new ServerResp(true, "上传文件出现成功", a);
         } catch (Exception e) {
             logger.error(String.format("Upload file error: %s", e.getMessage()), e);
 

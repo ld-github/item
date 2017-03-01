@@ -127,4 +127,10 @@ public class Attachment extends BaseModel {
         this.dir = dir;
     }
 
+    public void modify(Attachment attachment) {
+        this.title = attachment.getTitle();
+        this.alt = attachment.getAlt();
+        this.remark = attachment.getRemark();
+    }
+
 }
