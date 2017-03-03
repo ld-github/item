@@ -5,7 +5,6 @@
 %>
 <base href="<%=basePath%>">
 <link rel="stylesheet" type="text/css" href="plugins/layui/css/layui.css">
-<link rel="stylesheet" type="text/css" href="plugins/layui/css/modules/layer/default/layer.css">
 <script type="text/javascript" src="plugins/layui/layui.js"></script>
 
 <script type="text/javascript">
