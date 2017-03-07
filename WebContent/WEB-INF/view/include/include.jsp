@@ -12,10 +12,9 @@
 <meta name="renderer" content="webkit|ie-stand|ie-comp">
 <link rel="shortcut icon" href="favicon.ico" />
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
-<jsp:include page="/WEB-INF/view/include/bootstrap.jsp"></jsp:include>
 <script type="text/javascript" src="plugins/jquery.form.min.js"></script>
-<link rel="stylesheet" type="text/css" href="plugins/pace/themes/blue/pace-theme-flat-top.css">
-<script type="text/javascript" src="plugins/pace/pace.min.js"></script>
+<jsp:include page="/WEB-INF/view/include/bootstrap.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/pace.jsp"></jsp:include>
 <script type="text/javascript" src="js/util.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <!--[if lte IE 9]>

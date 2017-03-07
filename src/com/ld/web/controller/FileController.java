@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ld.web.been.ServerResp;
@@ -20,6 +19,7 @@ import com.ld.web.been.model.Attachment;
 import com.ld.web.biz.AttachmentBiz;
 import com.ld.web.config.BasicConfiguration;
 import com.ld.web.util.FileManager;
+import com.ld.web.util.JsonMapper;
 
 /**
  * 
@@ -46,8 +46,8 @@ public class FileController extends BaseController {
     public static final String REQUEST_INDEX_URL = "/file";
 
     @RequestMapping(value = "/upload")
-    @ResponseBody
-    public ServerResp upload(MultipartFile file, String name, Attachment attachment) {
+    public void upload(MultipartFile file, String name, Attachment attachment) {
+
         logger.info(String.format("Upload file begin, filename: %s", name));
 
         Calendar cal = Calendar.getInstance();
@@ -79,7 +79,7 @@ public class FileController extends BaseController {
 
             attachmentBiz.save(a);
 
-            return new ServerResp(true, "上传文件出现成功", a);
+            super.writerPrint(JsonMapper.getInstance().toJson(new ServerResp(true, "上传文件出现成功", a)));
         } catch (Exception e) {
             logger.error(String.format("Upload file error: %s", e.getMessage()), e);
 
@@ -89,7 +89,7 @@ public class FileController extends BaseController {
                 logger.error(String.format("Http response error: %s", e1.getMessage()), e1);
             }
 
-            return new ServerResp(false, "上传文件出现异常");
+            super.writerPrint(JsonMapper.getInstance().toJson(new ServerResp(false, "上传文件出现异常")));
         }
     }
 

@@ -34,4 +34,5 @@ public enum Gender {
     private Gender(int value) {
         this.value = value;
     }
+
 }

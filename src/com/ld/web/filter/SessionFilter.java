@@ -55,7 +55,8 @@ public class SessionFilter extends BaseController implements HandlerInterceptor 
             }
 
             String url = req.getContextPath() + PageController.REQUEST_PAGE_URL_LOGIN;
-            writerPrint(resp, "<SCRIPT>window.top.location.href = '" + url + "'</SCRIPT>");
+
+            super.writerPrint("<SCRIPT>window.top.location.href = '" + url + "'</SCRIPT>");
             return false;
         }
 

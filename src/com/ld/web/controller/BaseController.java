@@ -121,9 +121,10 @@ public class BaseController implements Serializable {
      * @param resp
      * @param buffer
      */
-    public void writerPrint(HttpServletResponse resp, String buffer) {
+    public void writerPrint(String buffer) {
         PrintWriter out = null;
 
+        HttpServletResponse resp = getResponse();
         try {
             resp.setContentType("text/html; charset=utf-8");
             out = resp.getWriter();

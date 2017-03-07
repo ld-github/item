@@ -5,14 +5,14 @@ var UPLOADER_HTML = '<div id="uploader"><div class="queueList"><div id="dndArea"
         + '</div></div></div>';
 
 var ERROR_TYPE = {
-        'Q_EXCEED_NUM_LIMIT' : '文件数量超出限制',
-        'Q_EXCEED_SIZE_LIMIT' : '添加的文件总大小超出限制',
-        'Q_TYPE_DENIED' : '文件类型不匹配',
-        'F_EXCEED_SIZE' : '单个文件大小超出限制',
-        'F_DUPLICATE' : '文件重复',
-    };
+    'Q_EXCEED_NUM_LIMIT' : '文件数量超出限制',
+    'Q_EXCEED_SIZE_LIMIT' : '添加的文件总大小超出限制',
+    'Q_TYPE_DENIED' : '文件类型不匹配',
+    'F_EXCEED_SIZE' : '单个文件大小超出限制',
+    'F_DUPLICATE' : '文件重复',
+};
 
-var UPLOAD_URL = contextPath + 'file/upload'
+var UPLOAD_URL = contextPath + '/file/upload'
 
 var Uploader = function() {
 
@@ -124,18 +124,16 @@ var Uploader = function() {
                         delete window['expressinstallcallback'];
                     };
 
-                    var swf = '../plugins/uploader/swf/expressInstall.swf';
+                    var swf = contextPath + '/plugins/uploader/swf/expressInstall.swf';
                     // insert flash object
                     var html = '<object type="application/' + 'x-shockwave-flash" data="' + swf + '" ';
 
                     if (WebUploader.browser.ie) {
                         html += 'classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" ';
                     }
-                    html += 'width="100%" height="100%" style="outline:0">' 
-                             + '<param name="movie" value="' + swf + '" />' 
-                             + '<param name="wmode" value="transparent" />'
-                             + '<param name="allowscriptaccess" value="always" />'
-                             + '</object>';
+                    html += 'width="100%" height="100%" style="outline:0">' + '<param name="movie" value="' + swf + '" />' 
+                            + '<param name="wmode" value="transparent" />'
+                            + '<param name="allowscriptaccess" value="always" />' + '</object>';
 
                     container.html(html);
                 })($wrap);
@@ -156,11 +154,11 @@ var Uploader = function() {
             },
             dnd : '#dndArea',
             paste : '#uploader',
-            swf : '../plugins/uploader/swf/uploader.swf',
+            swf : contextPath + '/plugins/uploader/swf/uploader.swf',
             chunked : false,
             chunkSize : 512 * 1024,
             server : UPLOAD_URL,
-            runtimeOrder: 'flash',
+            runtimeOrder : 'flash',
 
             // accept: {
             // title: 'Images',
@@ -392,7 +390,7 @@ var Uploader = function() {
             } else if (state === 'confirm') {
                 stats = uploader.getStats();
                 if (stats.uploadFailNum) {
-                    text = '成功上传' + stats.successNum + '个文件,' + stats.uploadFailNum + '个文件上传失败,<a class="retry" href="#">重新上传</a>失败文件或<a class="ignore" href="#">忽略</a>';
+                    text = '成功上传' + stats.successNum + '个文件,' + stats.uploadFailNum + '个文件上传失败,<a class="retry" href="javascript:;">重新上传</a>失败文件或<a class="ignore" href="javascript:;">忽略</a>';
                 }
             } else {
                 stats = uploader.getStats();
