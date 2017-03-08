@@ -1,5 +1,5 @@
 var UPLOADER_HTML = '<div id="uploader"><div class="queueList"><div id="dndArea" class="placeholder"><div id="filePicker"></div>'
-        + '<p>或将文件拖到这里，单次最多可选300张</p></div></div><div class="statusBar" style="display:none;">'
+        + '<p></p></div></div><div class="statusBar" style="display:none;">'
         + '<div class="progress"><span class="text">0%</span><span class="percentage"></span>'
         + '</div><div class="info"></div><div class="btns"><div id="filePicker2"></div><div class="uploadBtn">开始上传</div>'
         + '</div></div></div>';
@@ -12,20 +12,23 @@ var ERROR_TYPE = {
     'F_DUPLICATE' : '文件重复',
 };
 
-var UPLOAD_URL = contextPath + '/file/upload'
+var UPLOAD_URL = contextPath + '/file/upload';
+
+var UPLOAD_CONTAINER = '#uploader-box';
 
 var Uploader = function() {
 
-    this.reset = function(container, prompt) {
-        $(container).empty().html(UPLOADER_HTML);
+    this.reset = function(fileNumLimit) {
+        $(UPLOAD_CONTAINER).empty().html(UPLOADER_HTML);
 
-        if (prompt != undefined) {
-            $('#dndArea p').html(prompt);
-        }
+        $('#dndArea p').html('或将文件拖到这里, 单次最多可选' + fileNumLimit + '张');
     };
 
-    this.init = function(container, prompt) {
-        this.reset(container, prompt);
+    this.init = function(fileNumLimit) {
+
+        fileNumLimit = fileNumLimit || 300;
+
+        this.reset(fileNumLimit);
 
         var $wrap = $('#uploader'),
 
@@ -98,10 +101,7 @@ var Uploader = function() {
             var s = document.createElement('p').style, r = 'transition' in s || 'WebkitTransition' in s || 'MozTransition' in s || 'msTransition' in s || 'OTransition' in s;
             s = null;
             return r;
-        })(),
-
-        // WebUploader实例
-        uploader;
+        })();
 
         if (!WebUploader.Uploader.support('flash') && WebUploader.browser.ie) {
             // flash 安装了但是版本过低。
@@ -146,7 +146,9 @@ var Uploader = function() {
             return;
         }
 
-        // 实例化
+        // WebUploader实例
+        uploader;
+
         uploader = WebUploader.create({
             pick : {
                 id : '#filePicker',
@@ -158,7 +160,6 @@ var Uploader = function() {
             chunked : false,
             chunkSize : 512 * 1024,
             server : UPLOAD_URL,
-            runtimeOrder : 'flash',
 
             // accept: {
             // title: 'Images',
@@ -167,9 +168,9 @@ var Uploader = function() {
             // },
 
             disableGlobalDnd : true,
-            fileNumLimit : 300,
-            fileSizeLimit : 200 * 1024 * 1024, // 200 M
-            fileSingleSizeLimit : 50 * 1024 * 1024, // 50 M
+            fileNumLimit : fileNumLimit,
+            fileSizeLimit : 20000 * 1024 * 1024, // 2000 M
+            fileSingleSizeLimit : 200 * 1024 * 1024, // 200 M
         });
 
         // 拖拽时不接受 js, txt 文件。
@@ -548,6 +549,7 @@ var Uploader = function() {
         $upload.addClass('state-' + state);
 
         updateTotalProgress();
+
         return uploader;
     };
 };
