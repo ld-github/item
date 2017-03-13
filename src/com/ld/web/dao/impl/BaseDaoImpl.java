@@ -157,7 +157,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     @Override
     public Long getTotal(String where, Map<String, Object> params) {
         where = where == null ? "" : where;
-        String hql = "SELECT COUNT(o) FROM " + this.getClassName() + " o " + where;
+        String hql = "SELECT COUNT(1) FROM " + this.getClassName() + " o " + where;
 
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);

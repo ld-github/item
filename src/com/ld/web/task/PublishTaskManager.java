@@ -32,4 +32,5 @@ public class PublishTaskManager {
 
     private PublishTaskManager() {
     }
+
 }

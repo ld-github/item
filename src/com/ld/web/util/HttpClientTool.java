@@ -237,6 +237,7 @@ public class HttpClientTool {
         } catch (Exception e) {
             logger.error(String.format("Create ssl client error: %s", e.getMessage()), e);
         }
+
         return HttpClients.createDefault();
     }
 
