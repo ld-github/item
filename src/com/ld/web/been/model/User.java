@@ -11,6 +11,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ld.web.util.EncryptionUtil;
 
@@ -41,6 +42,7 @@ public class User extends BaseModel {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDatetime; // 创建时间
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
     @Type(type = "yes_no")
     private boolean available; // 是否可用
