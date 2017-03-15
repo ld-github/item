@@ -18,7 +18,7 @@
         <property name="location" value="classpath:spring/jdbc.properties"></property>
     </bean>
 
-    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 
         <!-- 数据库基本信息配置 -->
         <property name="driverClassName" value="${jdbc.driverClass}" />

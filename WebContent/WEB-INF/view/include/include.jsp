@@ -46,6 +46,10 @@
          * Ajax Error
          */
         $(document).ajaxError(function(event, response, settings) {
+            if (response.readyState != 4) {
+                return;
+            }
+
             if (response.status == 518) {
                 window.top.location.href = contextPath + '<%=PageController.REQUEST_PAGE_URL_LOGIN%>';
             }
