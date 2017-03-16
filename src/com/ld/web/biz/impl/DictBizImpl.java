@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ld.web.been.Page;
 import com.ld.web.been.model.Dict;
+import com.ld.web.been.model.DictType;
 import com.ld.web.biz.DictBiz;
+import com.ld.web.config.BasicConfiguration;
 import com.ld.web.dao.DictDao;
 
 /**
@@ -30,7 +32,9 @@ public class DictBizImpl implements DictBiz {
     private DictDao dictDao;
 
     @Override
-    public void delete(Dict dict) {
+    public void delete(Dict dict) throws Exception {
+        loadConfig(dict);
+
         dictDao.delete(dict);
     }
 
@@ -45,18 +49,31 @@ public class DictBizImpl implements DictBiz {
     }
 
     @Override
-    public void update(Dict dict) {
+    public void update(Dict dict) throws Exception {
+        loadConfig(dict);
+
         dictDao.update(dict);
     }
 
     @Override
-    public void save(Dict dict) {
+    public void save(Dict dict) throws Exception {
+        loadConfig(dict);
+
         dictDao.save(dict);
     }
 
     @Override
     public List<Dict> get(String typeCode) {
         return dictDao.get(typeCode);
+    }
+
+    private void loadConfig(Dict dict) throws Exception {
+
+        String code = null != dict.getType() ? dict.getType().getCode() : null;
+
+        if (DictType.SYSTEM_CONFIG.equals(code)) {
+            BasicConfiguration.getInstance().loadConfig();
+        }
     }
 
 }

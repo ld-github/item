@@ -39,6 +39,18 @@ public class User extends BaseModel {
     private String password; // 密码
 
     @Column
+    private String name;
+
+    @Column(length = 20)
+    private String mobile;
+
+    @Column(length = 50)
+    private String email;
+
+    @Column
+    private String remark;
+
+    @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDatetime; // 创建时间
 
@@ -79,17 +91,55 @@ public class User extends BaseModel {
         this.available = available;
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = EncryptionUtil.sha256(password);
+    public String getName() {
+        return name;
     }
 
-    public User() {
+    public String getMobile() {
+        return mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public User(String username, String password, String name, String mobile, String email, String remark) {
+        this.username = username;
+        this.password = EncryptionUtil.sha256(password);
+        this.name = name;
+        this.mobile = mobile;
+        this.email = email;
+        this.remark = remark;
+
+        this.init();
     }
 
     public void init() {
-        this.available = true;
         this.createDatetime = new Date();
+        this.available = true;
+    }
+
+    public User() {
     }
 
 }

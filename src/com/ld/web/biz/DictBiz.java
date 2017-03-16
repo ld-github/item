@@ -17,11 +17,11 @@ import com.ld.web.been.model.Dict;
  */
 public interface DictBiz {
 
-    void delete(Dict dict);
+    void delete(Dict dict) throws Exception;
 
-    void update(Dict dict);
+    void update(Dict dict) throws Exception;
 
-    void save(Dict dict);
+    void save(Dict dict) throws Exception;
 
     Dict getById(String id);
 

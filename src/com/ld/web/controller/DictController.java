@@ -63,9 +63,13 @@ public class DictController extends BaseController {
 
         dict.setType(dictType);
         dict.setCanUpdate(true);
-        dictBiz.save(dict);
+        try {
+            dictBiz.save(dict);
 
-        return new ServerResp(true, "保存成功");
+            return new ServerResp(true, "保存成功");
+        } catch (Exception e) {
+            return new ServerResp(false, "处理数据失败");
+        }
     }
 
     @RequestMapping(value = "update")
@@ -82,9 +86,13 @@ public class DictController extends BaseController {
         }
 
         _dict.update(dict);
-        dictBiz.update(_dict);
+        try {
+            dictBiz.update(_dict);
 
-        return new ServerResp(true, "保存成功");
+            return new ServerResp(true, "保存成功");
+        } catch (Exception e) {
+            return new ServerResp(false, "处理数据失败");
+        }
     }
 
     @RequestMapping(value = "delete")
@@ -97,8 +105,13 @@ public class DictController extends BaseController {
         }
 
         _dict.getType().getDicts().remove(_dict);
-        dictBiz.delete(_dict);
+        try {
+            dictBiz.delete(_dict);
 
-        return new ServerResp(true, "删除成功");
+            return new ServerResp(true, "删除成功");
+        } catch (Exception e) {
+            return new ServerResp(false, "处理数据失败");
+        }
     }
+
 }

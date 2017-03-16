@@ -12,11 +12,24 @@ import java.io.Serializable;
  *
  *@date 2017-02-13
  */
-public class SysConfig implements Serializable {
+public class SystemConfig implements Serializable {
 
     private static final long serialVersionUID = 4700091075048587183L;
 
+    public static final String DICT_NAME_IS_DEBUG = "is_debug";
+    public static final String DICT_NAME_UPLOAD_FILE_PATH = "upload_file_path";
+
+    public boolean debug; // 是否是debug模式
+
     public String uploadFilePath; // 上传文件路径
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
 
     public String getUploadFilePath() {
         return uploadFilePath;
@@ -26,7 +39,8 @@ public class SysConfig implements Serializable {
         this.uploadFilePath = uploadFilePath;
     }
 
-    public SysConfig(String uploadFilePath) {
+    public SystemConfig(boolean debug, String uploadFilePath) {
+        this.debug = debug;
         this.uploadFilePath = uploadFilePath;
     }
 

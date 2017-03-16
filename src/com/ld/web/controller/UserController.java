@@ -10,6 +10,7 @@ import com.google.code.kaptcha.Constants;
 import com.ld.web.been.ServerResp;
 import com.ld.web.been.model.User;
 import com.ld.web.biz.UserBiz;
+import com.ld.web.config.BasicConfiguration;
 import com.ld.web.util.EncryptionUtil;
 import com.ld.web.util.StringUtil;
 
@@ -55,7 +56,7 @@ public class UserController extends BaseController {
 
         String sessionCode = (String) getSessionObj(Constants.KAPTCHA_SESSION_KEY);
 
-        if (!verificationCode.equalsIgnoreCase(sessionCode)) {
+        if (!BasicConfiguration.getInstance().getSysConfig().isDebug() && !verificationCode.equalsIgnoreCase(sessionCode)) {
             putReqAttributes(new ServerResp(false, "验证码输入错误"));
             return PageController.REQUEST_PAGE_URL_LOGIN;
         }

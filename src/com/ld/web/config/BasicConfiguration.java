@@ -8,7 +8,8 @@ import com.ld.web.been.model.Dict;
 import com.ld.web.been.model.DictType;
 import com.ld.web.biz.DictBiz;
 import com.ld.web.component.ApplicationContextHolder;
-import com.ld.web.config.dto.SysConfig;
+import com.ld.web.config.dto.SystemConfig;
+import com.ld.web.util.JsonMapper;
 
 /**
  * 
@@ -26,26 +27,52 @@ public class BasicConfiguration {
 
     private static final BasicConfiguration INSTANCE = new BasicConfiguration();
 
-    private SysConfig sysConfig; // 系统配置
+    private SystemConfig sysConfig; // 系统配置
 
     private DictBiz dictBiz;
 
-    private void loadConfig() {
+    SystemConfig sysConfigBak = null;
+
+    public void loadConfig() throws Exception {
         try {
             dictBiz = (DictBiz) ApplicationContextHolder.getSpringBean("dictBizImpl");
 
-            List<Dict> dicts = dictBiz.get(DictType.CODE_UPLOAD_FILE_PATH);
+            List<Dict> dicts = dictBiz.get(DictType.SYSTEM_CONFIG);
 
-            String uploadFilePath = null == dicts || dicts.isEmpty() ? null : dicts.get(0).getValue();
+            boolean isDebug = false;
+            String uploadFilePath = null;
 
-            sysConfig = new SysConfig(uploadFilePath);
+            if (null != dicts && !dicts.isEmpty()) {
+                for (Dict d : dicts) {
+                    if (SystemConfig.DICT_NAME_IS_DEBUG.equals(d.getName())) {
+                        isDebug = Boolean.valueOf(d.getValue());
+                        continue;
+                    }
+
+                    if (SystemConfig.DICT_NAME_UPLOAD_FILE_PATH.equals(d.getName())) {
+                        uploadFilePath = d.getValue();
+                        continue;
+                    }
+                }
+            }
+
+            sysConfig = new SystemConfig(isDebug, uploadFilePath);
+
+            sysConfigBak = sysConfig;
+
+            logger.debug(String.format("System config: %s", JsonMapper.getInstance().toJson(sysConfig)));
+
         } catch (Exception e) {
             logger.error(String.format("Load config error: %s", e.getMessage()), e);
+
+            sysConfig = sysConfigBak;
+
+            throw new Exception(e);
         }
 
     }
 
-    public SysConfig getSysConfig() {
+    public SystemConfig getSysConfig() {
         return sysConfig;
     }
 
@@ -54,7 +81,10 @@ public class BasicConfiguration {
     }
 
     private BasicConfiguration() {
-        loadConfig();
+        try {
+            loadConfig();
+        } catch (Exception e) {
+        }
     }
 
 }
