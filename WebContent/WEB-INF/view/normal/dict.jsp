@@ -79,6 +79,7 @@
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
                                 </button>
                             </div>
+
                             <table id="dict-value-table"></table>
                         </div>
                     </div>

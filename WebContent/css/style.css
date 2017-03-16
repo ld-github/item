@@ -32,5 +32,9 @@ a:FOCUS, button:FOCUS {
 }
 
 .main-panel {
-    margin-top: 10px;
+    padding-top: 10px;
+}
+
+td {
+    word-break: keep-all !important;
 }

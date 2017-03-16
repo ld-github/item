@@ -26,7 +26,6 @@ public class PageController extends BaseController {
     public static final String REQUEST_PAGE_URL_MAIN = "/main";
     public static final String REQUEST_PAGE_URL_INDEX = "/index";
     public static final String REQUEST_PAGE_URL_PASSWORD = "/password";
-    public static final String REQUEST_PAGE_URL_DICT = "/dict";
 
     @RequestMapping(value = REQUEST_PAGE_URL_LANDING)
     public String landing() {
@@ -53,9 +52,14 @@ public class PageController extends BaseController {
         return "password";
     }
 
-    @RequestMapping(value = REQUEST_PAGE_URL_DICT)
+    @RequestMapping(value = DictController.REQUEST_INDEX_URL)
     public String dict() {
         return "dict";
+    }
+
+    @RequestMapping(value = CodeRepositoryController.REQUEST_INDEX_URL)
+    public String codeRepository() {
+        return "code-repository";
     }
 
 }

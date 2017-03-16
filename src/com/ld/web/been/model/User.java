@@ -50,11 +50,11 @@ public class User extends BaseModel {
     @Column
     private String remark;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDatetime; // 创建时间
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column(nullable = false, columnDefinition = "varchar(1) default 'N' ")
     @Type(type = "yes_no")
     private boolean available; // 是否可用

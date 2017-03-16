@@ -77,6 +77,7 @@ public class UserController extends BaseController {
 
         putSessionUser(user);
         return redirect(PageController.REQUEST_PAGE_URL_MAIN);
+
     }
 
     @RequestMapping(value = "/toLogout")

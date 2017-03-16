@@ -142,12 +142,12 @@ function initDictTypeTable() {
         pagination : true,
         showRefresh : true,
         showToggle : true,
+        showColumns : true,
         smartDisplay : true,
         height : 343,
         minimumCountColumns : 1,
         pageSize : 5,
         clickToSelect : true,
-        showExport : true,
         pageList : [ 5, 10, 25, 50, 100, 'All' ],
         idField : 'id',
         uniqueId : 'id',
@@ -221,6 +221,7 @@ function initDictTable() {
         pagination : true,
         showRefresh : true,
         showToggle : true,
+        showColumns : true,
         smartDisplay : true,
         singleSelect : true,
         clickToSelect : true,
@@ -248,11 +249,11 @@ function initDictTable() {
         columns : [ {
             checkbox : true,
         }, {
-            field : 'value',
-            title : '字典值',
-        }, {
             field : 'name',
             title : '字典值名称',
+        }, {
+            field : 'value',
+            title : '字典值',
         }, {
             field : 'canUpdate',
             title : '是否可修改',
@@ -294,6 +295,7 @@ $(function() {
     initDictTypeTable();
 
     initDictTable();
+
 })
 
 $(function() {

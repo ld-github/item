@@ -142,15 +142,18 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
+
         if (null != page) {
             q.setFirstResult((page.getCurrentPage() - 1) * page.getPageSize());
             q.setMaxResults(page.getPageSize());
         }
+
         List<T> records = q.list();
         Long total = this.getTotal(where, params);
         page = null == page ? new Page<T>() : page;
         page.setRecords(records);
         page.setTotal(total);
+
         return page;
     }
 

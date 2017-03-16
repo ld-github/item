@@ -10,13 +10,16 @@ var MENUS = [ {
     title : '操作员管理',
     submenus : [ {
         title : '用户维护',
-        url : contextPath + '/login'
+        url : contextPath + '/user'
+    } ]
+}, {
+    title : '配置管理',
+    submenus : [ {
+        title : '校园信息维护',
+        url : contextPath + '/school'
     }, {
-        title : '角色维护',
-        url : contextPath + '/login'
-    }, {
-        title : '权限维护',
-        url : contextPath + '/login'
+        title : '源码库维护',
+        url : contextPath + '/codeRepository'
     } ]
 }, {
     title : '系统管理',
@@ -24,15 +27,6 @@ var MENUS = [ {
         title : '字典维护',
         url : contextPath + '/dict'
     } ]
-}, {
-    title : '日志记录',
-    submenus : [ {
-        title : '异常信息',
-        url : contextPath + '/login'
-    } ]
-}, {
-    title : '帮助中心',
-    url : contextPath + '/help'
 } ];
 
 /**
@@ -47,12 +41,18 @@ function initMenu() {
         var itemed = index === 0 ? ' layui-nav-itemed' : '';
 
         var li = $('<LI>').addClass('layui-nav-item' + itemed);
-        $('<A>').attr('href', 'javascript:;').html(item.title).addClass('menu-item').data({ 'title' : item.title, 'url' : item.url }).appendTo(li);
+        $('<A>').attr('href', 'javascript:;').html(item.title).addClass('menu-item').data({
+            'title' : item.title,
+            'url' : item.url
+        }).appendTo(li);
 
         if (item.submenus) {
             var dl = $('<DL>').addClass('layui-nav-child');
             $.each(item.submenus, function(index, subItem) {
-                $('<dd>').append($('<A>').attr('href', 'javascript:;').html(subItem.title).addClass('menu-item').data({ 'title' : subItem.title, 'url' : subItem.url })).appendTo(dl);
+                $('<dd>').append($('<A>').attr('href', 'javascript:;').html(subItem.title).addClass('menu-item').data({
+                    'title' : subItem.title,
+                    'url' : subItem.url
+                })).appendTo(dl);
             });
 
             dl.appendTo(li);
@@ -90,7 +90,10 @@ function addTab(title, url, closable) {
     tab.tabs('add', {
         title : title,
         closable : closable,
-        content : $('<IFRAME>').attr({ frameborder : 0, src : url }).height($('#main-panel-body').height() - 60).addClass('page-iframe')
+        content : $('<IFRAME>').attr({
+            frameborder : 0,
+            src : url
+        }).height($('#main-panel-body').height() - 60).addClass('page-iframe')
     });
 
 }
