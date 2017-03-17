@@ -14,6 +14,7 @@
 <script type="text/javascript" src="plugins/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="plugins/jquery.form.min.js"></script>
 <jsp:include page="/WEB-INF/view/include/bootstrap.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/pace.jsp"></jsp:include>
 <script type="text/javascript" src="js/util.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -47,6 +48,11 @@
          */
         $(document).ajaxError(function(event, response, settings) {
             if (response.readyState != 4) {
+                return;
+            }
+
+            if (response.status == 500) {
+                new Message().show("系统错误, 请稍后再试");
                 return;
             }
 

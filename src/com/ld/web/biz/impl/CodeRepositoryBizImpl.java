@@ -32,4 +32,24 @@ public class CodeRepositoryBizImpl implements CodeRepositoryBiz {
         return codeRepositoryDao.getPage(page, name);
     }
 
+    @Override
+    public void save(CodeRepository codeRepository) {
+        codeRepositoryDao.save(codeRepository);
+    }
+
+    @Override
+    public void update(CodeRepository codeRepository) {
+        codeRepositoryDao.update(codeRepository);
+    }
+
+    @Override
+    public CodeRepository get(String id) {
+        return codeRepositoryDao.getUniqueResult(id);
+    }
+
+    @Override
+    public void delete(CodeRepository codeRepository) {
+        codeRepositoryDao.delete(codeRepository);
+    }
+
 }

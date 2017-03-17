@@ -6,7 +6,6 @@
 <meta name="description" content="">
 <jsp:include page="/WEB-INF/view/include/include.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/view/include/bootstrap-table.jsp"></jsp:include>
-<jsp:include page="/WEB-INF/view/include/layui.jsp"></jsp:include>
 <link rel="stylesheet" type="text/css" href="css/dict.css">
 <script type="text/javascript" src="js/dict.js"></script>
 <title>Dict Page</title>

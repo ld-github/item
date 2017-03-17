@@ -1,14 +1,12 @@
 package test;
 
-import com.ld.web.util.HttpClientTool;
 
 public class TestTx {
 
     public static void main(String[] args) {
-        try {
-            HttpClientTool.getInstance().post("http://127.0.0.1/item/manager/login", null, null);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String str = "\u7F57\u51B2";
+        String str1 = "\u7f57\u51b2";
+
+        System.out.println(str.equals(str1));
     }
 }

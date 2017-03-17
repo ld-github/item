@@ -17,4 +17,12 @@ public interface CodeRepositoryBiz {
 
     Page<CodeRepository> getPage(Page<CodeRepository> page, String name);
 
+    void save(CodeRepository codeRepository);
+
+    void update(CodeRepository codeRepository);
+
+    CodeRepository get(String id);
+
+    void delete(CodeRepository codeRepository);
+
 }

@@ -9,6 +9,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ld.web.util.CustomBeanUtils;
 
 /**
  * 
@@ -26,6 +27,9 @@ public class CodeRepository extends BaseModel {
 
     private static final long serialVersionUID = -7672786169715061452L;
 
+    @Column(length = 100)
+    private String name; // 库名称
+
     @Column
     private String remotePath; // 远端路径
 
@@ -33,13 +37,10 @@ public class CodeRepository extends BaseModel {
     private String localPath; // 本地路径
 
     @Column
-    private String remark; // 备注
-
-    @Column(length = 100)
-    private String name; // 库名称
+    private String codePath; // 代码路径
 
     @Column
-    private String codePath; // 代码路径
+    private String remark; // 备注
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column
@@ -96,6 +97,10 @@ public class CodeRepository extends BaseModel {
 
     public void init() {
         this.createDatetime = new Date();
+    }
+
+    public void update(CodeRepository codeRepository) {
+        CustomBeanUtils.copyProperties(codeRepository, this, null, true, "createDatetime");
     }
 
 }

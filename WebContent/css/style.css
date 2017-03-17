@@ -37,4 +37,5 @@ a:FOCUS, button:FOCUS {
 
 td {
     word-break: keep-all !important;
+    white-space: nowrap !important;
 }

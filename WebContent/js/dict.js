@@ -144,7 +144,7 @@ function initDictTypeTable() {
         showToggle : true,
         showColumns : true,
         smartDisplay : true,
-        height : 343,
+        height : 355,
         minimumCountColumns : 1,
         pageSize : 5,
         clickToSelect : true,
@@ -225,7 +225,7 @@ function initDictTable() {
         smartDisplay : true,
         singleSelect : true,
         clickToSelect : true,
-        height : 343,
+        height : 355,
         minimumCountColumns : 1,
         pageSize : 5,
         pageList : [ 5, 10, 25, 50, 100, 'All' ],
@@ -349,7 +349,7 @@ $(function() {
         var modal = $(this);
         modal.find('.modal-title').text(title);
 
-        $("#dict-type-edit-form").clearForm();
+        $("#dict-type-edit-form").clearForm(true);
         $('#dict-type-edit-btn').unbind();
 
         if (handle == HANDLE.UPDATE) {
@@ -376,7 +376,7 @@ $(function() {
         var modal = $(this);
         modal.find('.modal-title').text(title);
 
-        $("#dict-value-edit-form").clearForm();
+        $("#dict-value-edit-form").clearForm(true);
         $('#dict-value-edit-btn').unbind();
 
         if (handle == HANDLE.UPDATE) {
