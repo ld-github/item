@@ -42,41 +42,26 @@ public class DictTypeController extends BaseController {
         return dictTypeBiz.getPage(page, code, name);
     }
 
-    @RequestMapping(value = "save")
+    @RequestMapping(value = "saveOrUpdate")
     @ResponseBody
-    public ServerResp save(DictType dictType) {
+    public ServerResp saveOrUpdate(DictType dictType) {
 
         if (StringUtil.isEmpty(dictType.getCode())) {
             return new ServerResp(false, "字典类型代码不能为空");
         }
 
-        DictType _dictType = dictTypeBiz.get(dictType.getCode());
-
-        if (null != _dictType) {
+        if (dictTypeBiz.isExist(dictType.getCode(), dictType.getId())) {
             return new ServerResp(false, "该字典类型代码已经存在");
         }
 
-        dictType.setCanView(true);
-        dictTypeBiz.save(dictType);
+        if (StringUtil.isEmpty(dictType.getId())) {
+            dictType.setCanView(true);
+            dictTypeBiz.save(dictType);
 
-        return new ServerResp(true, "保存成功");
-    }
-
-    @RequestMapping(value = "update")
-    @ResponseBody
-    public ServerResp update(DictType dictType) {
-
-        if (StringUtil.isEmpty(dictType.getCode())) {
-            return new ServerResp(false, "字典类型代码不能为空");
+            return new ServerResp(true, "保存成功");
         }
 
-        DictType _dictType = dictTypeBiz.get(dictType.getCode());
-
-        if (null != _dictType && !_dictType.getId().equals(dictType.getId())) {
-            return new ServerResp(false, "该字典类型代码已经存在");
-        }
-
-        _dictType = dictTypeBiz.getById(dictType.getId());
+        DictType _dictType = dictTypeBiz.getById(dictType.getId());
 
         if (null == _dictType) {
             return new ServerResp(false, "该字典类型不存在，请刷新后再试");

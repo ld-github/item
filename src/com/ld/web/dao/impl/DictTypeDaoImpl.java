@@ -56,4 +56,19 @@ public class DictTypeDaoImpl extends BaseDaoImpl<DictType> implements DictTypeDa
         return getPage(where, params, orders, page);
     }
 
+    @Override
+    public boolean isExist(String code, String exceptId) {
+        String where = "WHERE o.code=:code ";
+
+        Map<String, Object> params = new HashMap<String, Object>();
+        params.put("code", code);
+
+        if (!StringUtil.isEmpty(exceptId)) {
+            where += "AND o.id !=:exceptId ";
+            params.put("exceptId", exceptId);
+        }
+
+        return getTotal(where, params) > 0;
+    }
+
 }

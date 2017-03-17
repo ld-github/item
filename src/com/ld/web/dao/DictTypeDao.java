@@ -31,4 +31,14 @@ public interface DictTypeDao extends BaseDao<DictType> {
      * @return
      */
     Page<DictType> getPage(Page<DictType> page, String code, String name);
+
+    /**
+     * Check code is exist
+     * 
+     * @param code
+     * @param exceptId
+     * @return
+     */
+    boolean isExist(String code, String exceptId);
+
 }

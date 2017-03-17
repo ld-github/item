@@ -57,4 +57,9 @@ public class DictTypeBizImpl implements DictTypeBiz {
         dictTypeDao.update(dictType);
     }
 
+    @Override
+    public boolean isExist(String code, String exceptId) {
+        return dictTypeDao.isExist(code, exceptId);
+    }
+
 }

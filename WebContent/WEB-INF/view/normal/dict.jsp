@@ -96,6 +96,9 @@
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="dict-type-edit-form">
+
+                        <input type="hidden" name="id">
+
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">

@@ -1,7 +1,6 @@
 var URLS = {
     GET_PAGE_DICT_TYPE : contextPath + "/dictType/getPage",
-    SAVE_DICT_TYPE : contextPath + "/dictType/save",
-    UPDATE_DICT_TYPE : contextPath + "/dictType/update",
+    SAVE_OR_UPDATE_DICT_TYPE : contextPath + "/dictType/saveOrUpdate",
     DELETE_DICT_TYPE : contextPath + "/dictType/delete",
     GET_PAGE_DICT_VALUE : contextPath + "/dict/getPage",
     SAVE_DICT_VALUE : contextPath + "/dict/save",
@@ -31,7 +30,8 @@ function delDictType() {
     });
 }
 
-function saveDictType() {
+function saveOrUpdateDictType() {
+
     var params = $('#dict-type-edit-form').serializeJson();
 
     if (params.code == '') {
@@ -39,35 +39,20 @@ function saveDictType() {
         return;
     }
 
-    $.post(URLS.SAVE_DICT_TYPE, params, function(data) {
+    $.post(URLS.SAVE_OR_UPDATE_DICT_TYPE, params, function(data) {
         if (checkRespCodeSucc(data)) {
-            bootstrapTableSelectFirstPage('#dict-type-table');
+            if (params.id == '') {
+                bootstrapTableSelectFirstPage('#dict-type-table');
+            } else {
+                bootstrapTableRefreshCurrentPage('#dict-type-table');
+            }
+
             $('#dict-type-modal').modal('hide')
             return;
         }
 
         new Message().tipLeft('#dict-type-edit-btn', data.respDesc);
     })
-}
-
-function updateDictType() {
-    var params = $('#dict-type-edit-form').serializeJson();
-
-    if (params.code == '') {
-        new Message().tipLeft('#dict-type-edit-btn', '字典类型代码不能为空');
-        return;
-    }
-
-    $.post(URLS.UPDATE_DICT_TYPE, params, function(data) {
-        if (checkRespCodeSucc(data)) {
-            bootstrapTableRefreshCurrentPage('#dict-type-table');
-            $('#dict-type-modal').modal('hide')
-            return;
-        }
-
-        new Message().tipLeft('#dict-type-edit-btn', data.respDesc);
-    })
-
 }
 
 function saveDictValue() {
@@ -323,6 +308,8 @@ $(function() {
         new Message().confirm('确定删除该参数值配置?', delDictValue);
     });
 
+    $('#dict-type-edit-btn').click(saveOrUpdateDictType);
+
     $('#dict-type-table').bootstrapTable('resetWidth');
     $('#dict-value-table').bootstrapTable('resetWidth');
 
@@ -350,7 +337,6 @@ $(function() {
         modal.find('.modal-title').text(title);
 
         $("#dict-type-edit-form").clearForm(true);
-        $('#dict-type-edit-btn').unbind();
 
         if (handle == HANDLE.UPDATE) {
             var rows = $('#dict-type-table').bootstrapTable('getSelections');
@@ -358,14 +344,8 @@ $(function() {
 
             $("#dict-type-edit-form").autoFillForm(row);
 
-            $('#dict-type-edit-btn').bind("click", updateDictType);
             return;
         }
-
-        if (handle == HANDLE.SAVE) {
-            $('#dict-type-edit-btn').bind("click", saveDictType);
-        }
-
     });
 
     $('#dict-value-modal').on('show.bs.modal', function(event) {

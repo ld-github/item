@@ -26,4 +26,7 @@ public interface DictTypeBiz {
     void delete(DictType dictType);
 
     Page<DictType> getPage(Page<DictType> page, String code, String name);
+
+    boolean isExist(String code, String exceptId);
+
 }
