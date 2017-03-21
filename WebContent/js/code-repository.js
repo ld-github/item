@@ -6,6 +6,7 @@ var URLS = {
 }
 
 function saveOrUpdate() {
+
     var params = $('#code-repository-edit-form').serializeJson();
 
     if (params.name == '') {
@@ -14,6 +15,10 @@ function saveOrUpdate() {
     }
     if (params.remotePath == '') {
         new Message().tipLeft('#code-repository-edit-btn', '远端地址不能为空');
+        return;
+    }
+    if (params.remotePath.indexOf('http') == -1 || params.remotePath.indexOf('git') == -1) {
+        new Message().tipLeft('#code-repository-edit-btn', '远端地址错误，目前支持ssh和http协议，以git和http以及https开头');
         return;
     }
     if (params.localPath == '') {
@@ -215,11 +220,15 @@ $(function() {
             var rows = $('#code-repository-table').bootstrapTable('getSelections');
             var row = rows[0];
 
+            var isHttp = row.remotePath.indexOf('http') == 0;
+            $('#username-password-panel').css('display', isHttp ? 'block' : 'none');
+
             $("#code-repository-edit-form").autoFillForm(row);
             return;
         }
     });
 
+    $('#username-password-panel').css('display', 'none');
     $('#code-repository-edit-btn').click(saveOrUpdate);
 
     $('#btn-del').click(function() {
@@ -237,6 +246,14 @@ $(function() {
         codeRepositoryQueryParams = $('#code-repository-query-form').serializeJson();
 
         $('#code-repository-table').bootstrapTable('selectPage', 1);
+    });
+
+    $('#remote-path').blur(function() {
+
+        var value = $(this).val();
+        var isHttp = value.indexOf('http') == 0;
+
+        $('#username-password-panel').css('display', isHttp ? 'block' : 'none');
     });
 
     $(window).resize(function() {

@@ -5,3 +5,7 @@
 .fixed-addon-width {
     width: 120px;
 }
+
+#username-password-panel {
+    display: none;
+}

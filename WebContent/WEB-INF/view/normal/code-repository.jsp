@@ -86,7 +86,7 @@
                             <div class="col-sm-12">
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">远端路径</span>
-                                    <input type="text" class="form-control" name="remotePath" placeholder="远端路径">
+                                    <input type="text" class="form-control" name="remotePath" placeholder="远端路径(目前支持ssh和http协议,以git和http以及https开头)" id="remote-path">
                                 </div>
                             </div>
                         </div>
@@ -106,19 +106,21 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <div class="input-group col-sm-12">
-                                    <span class="input-group-addon fixed-addon-width">用户名</span>
-                                    <input type="text" class="form-control" name="username" placeholder="用户名">
+                        <div id="username-password-panel">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group col-sm-12">
+                                        <span class="input-group-addon fixed-addon-width">用户名</span>
+                                        <input type="text" class="form-control" name="username" placeholder="用户名(私有源码库必须填写该字段)">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                <div class="input-group col-sm-12">
-                                    <span class="input-group-addon fixed-addon-width">密码</span>
-                                    <input type="password" class="form-control" name="password" placeholder="密码">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <div class="input-group col-sm-12">
+                                        <span class="input-group-addon fixed-addon-width">密码</span>
+                                        <input type="password" class="form-control" name="password" placeholder="密码(私有源码库必须填写该字段)">
+                                    </div>
                                 </div>
                             </div>
                         </div>

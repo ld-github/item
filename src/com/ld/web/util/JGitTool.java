@@ -80,7 +80,7 @@ public class JGitTool {
             final SshSessionFactory sf = new JschConfigSessionFactory() {
                 @Override
                 protected void configure(Host host, Session session) {
-                    session.setPassword(password);
+                   session.setConfig("StrictHostKeyChecking", "no");
                 }
             };
 
