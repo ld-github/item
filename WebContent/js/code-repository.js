@@ -3,6 +3,7 @@ var URLS = {
     SAVE_OR_UPATE_CODE_REPOSITORY : contextPath + "/codeRepository/saveOrUpdate",
     DELETE_CODE_REPOSITORY : contextPath + "/codeRepository/delete",
     CLONE_AGAIN_CODE_REPOSITORY : contextPath + "/codeRepository/cloneAgain",
+    GET_CODE_REPOSITORY_INFO : contextPath + "/codeRepository/getRepoInfo",
 }
 
 function saveOrUpdate() {
@@ -58,6 +59,24 @@ function del() {
 
         new Message().show(data.respDesc);
     });
+}
+
+function getRepoInfo() {
+    var rows = $('#code-repository-table').bootstrapTable('getSelections');
+
+    var params = {
+        id : rows[0].id
+    };
+
+    $.post(URLS.GET_CODE_REPOSITORY_INFO, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            console.log(data);
+            return;
+        }
+
+        new Message().show(data.respDesc);
+    });
+
 }
 
 function cloneAgain() {
@@ -236,9 +255,10 @@ $(function() {
     });
 
     $('#btn-clone-again').click(function() {
-
         new Message().confirm('重新Clone会导致删除本地源码，建议在不能成功拉取源码时执行该操作，确定重新Clone该源码库?', cloneAgain);
     });
+
+    $('#btn-pull').click(getRepoInfo);
 
     $('#code-repository-table').bootstrapTable('resetWidth');
 
@@ -247,6 +267,10 @@ $(function() {
 
         $('#code-repository-table').bootstrapTable('selectPage', 1);
     });
+
+})
+
+$(function() {
 
     $('#remote-path').blur(function() {
 
@@ -260,4 +284,4 @@ $(function() {
         $('#code-repository-table').bootstrapTable('resetWidth');
     });
 
-})
+});

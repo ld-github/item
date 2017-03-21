@@ -34,7 +34,7 @@ public class CloneRepositoryTask {
 
     private Executor taskListenerExecutor = Executors.newSingleThreadExecutor();
 
-    private Executor workExecutor = Executors.newFixedThreadPool(2);
+    private Executor workExecutor = Executors.newFixedThreadPool(5);
 
     public void put(CodeRepository c) throws InterruptedException {
         if (!isExist(c)) {
@@ -44,6 +44,10 @@ public class CloneRepositoryTask {
 
     public CodeRepository take() throws InterruptedException {
         return taskQueue.take();
+    }
+
+    public int getTaskSize() {
+        return taskQueue.size();
     }
 
     public boolean isExist(CodeRepository c) {
@@ -56,6 +60,10 @@ public class CloneRepositoryTask {
             }
         }
         return false;
+    }
+
+    public int getActiveCount() {
+        return ((ThreadPoolExecutor) workExecutor).getActiveCount();
     }
 
     public static CloneRepositoryTask getInstance() {

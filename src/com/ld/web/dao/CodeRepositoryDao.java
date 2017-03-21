@@ -17,4 +17,6 @@ public interface CodeRepositoryDao extends BaseDao<CodeRepository> {
 
     Page<CodeRepository> getPage(Page<CodeRepository> page, String name);
 
+    void updateCloneIngToError();
+
 }

@@ -15,7 +15,8 @@
         <div class="container-fluid">
             <div class="navbar-header">
                 <div class="navbar-brand"> 
-                    <img src="images/brand.png" />
+                    <!--  <img src="images/brand.png" />-->
+                    <span class="glyphicon glyphicon-user"></span>
                 </div>
                 <p class="navbar-text">${ sessionScope.user.username }</p>
             </div>

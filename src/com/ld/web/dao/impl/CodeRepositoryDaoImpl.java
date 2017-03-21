@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.ld.web.been.Page;
 import com.ld.web.been.model.CodeRepository;
 import com.ld.web.dao.CodeRepositoryDao;
+import com.ld.web.enumeration.CloneStatus;
 import com.ld.web.util.StringUtil;
 
 /**
@@ -40,6 +41,19 @@ public class CodeRepositoryDaoImpl extends BaseDaoImpl<CodeRepository> implement
         orders.put("o.createDatetime", "desc");
 
         return super.getPage(where, params, orders, page);
+    }
+
+    @Override
+    public void updateCloneIngToError() {
+
+        String suffixHql = "SET o.cloneStatus=:cloneStatus WHERE o.cloneStatus=:cloneIng";
+
+        Map<String, Object> params = new HashMap<String, Object>();
+
+        params.put("cloneStatus", CloneStatus.CLONE_ERR);
+        params.put("cloneIng", CloneStatus.CLONE_ING);
+
+        super.update(suffixHql, params);
     }
 
 }

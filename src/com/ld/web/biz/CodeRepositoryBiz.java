@@ -1,6 +1,7 @@
 package com.ld.web.biz;
 
 import com.ld.web.been.Page;
+import com.ld.web.been.dto.RepoInfo;
 import com.ld.web.been.model.CodeRepository;
 
 /**
@@ -24,5 +25,9 @@ public interface CodeRepositoryBiz {
     CodeRepository get(String id);
 
     void delete(CodeRepository codeRepository);
+
+    void updateCloneIngToError();
+
+    RepoInfo getRepoInfo(CodeRepository codeRepository) throws Exception;
 
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ld.web.been.Page;
 import com.ld.web.been.ServerResp;
+import com.ld.web.been.dto.RepoInfo;
 import com.ld.web.been.model.CodeRepository;
 import com.ld.web.biz.CodeRepositoryBiz;
 import com.ld.web.enumeration.CloneStatus;
@@ -41,6 +42,9 @@ public class CodeRepositoryController extends BaseController {
     @RequestMapping(value = "getPage")
     @ResponseBody
     public Page<CodeRepository> getPage(Page<CodeRepository> page, String name) {
+
+        codeRepositoryBiz.updateCloneIngToError();
+
         return codeRepositoryBiz.getPage(page, name);
     }
 
@@ -73,6 +77,7 @@ public class CodeRepositoryController extends BaseController {
                 CloneRepositoryTask.getInstance().put(codeRepository);
             } catch (InterruptedException e) {
             }
+
             return new ServerResp(true, "保存成功");
         }
 
@@ -130,6 +135,27 @@ public class CodeRepositoryController extends BaseController {
         }
 
         return new ServerResp(true, "添加任务成功，后台任务处理中");
+    }
+
+    @RequestMapping(value = "getRepoInfo")
+    @ResponseBody
+    public ServerResp getRepoInfo(String id) {
+
+        CodeRepository c = codeRepositoryBiz.get(id);
+
+        if (null == c) {
+            return new ServerResp(false, "该源码库不存在，请刷新后再试");
+        }
+
+        RepoInfo repoInfo = null;
+
+        try {
+            repoInfo = codeRepositoryBiz.getRepoInfo(c);
+        } catch (Exception e) {
+            return new ServerResp(false, "获取分支信息异常");
+        }
+
+        return new ServerResp(true, "获取信息成功", repoInfo);
     }
 
 }

@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ld.web.been.Page;
+import com.ld.web.been.dto.RepoInfo;
 import com.ld.web.been.model.CodeRepository;
 import com.ld.web.biz.CodeRepositoryBiz;
 import com.ld.web.dao.CodeRepositoryDao;
+import com.ld.web.task.CloneRepositoryTask;
+import com.ld.web.util.JGitTool;
 
 /**
  * 
@@ -50,6 +53,27 @@ public class CodeRepositoryBizImpl implements CodeRepositoryBiz {
     @Override
     public void delete(CodeRepository codeRepository) {
         codeRepositoryDao.delete(codeRepository);
+    }
+
+    @Override
+    public void updateCloneIngToError() {
+
+        if (CloneRepositoryTask.getInstance().getActiveCount() == 0
+                && CloneRepositoryTask.getInstance().getTaskSize() == 0) {
+            codeRepositoryDao.updateCloneIngToError();
+        }
+    }
+
+    @Override
+    public RepoInfo getRepoInfo(CodeRepository c) throws Exception {
+
+        JGitTool j = new JGitTool(c.getLocalPath(), c.getRemotePath(), null, null);
+
+        RepoInfo info = new RepoInfo(j.getLocalCurrentBranch(), j.getLocalBranchList(), j.getRemoteBranchList());
+
+        j.closeRepo();
+
+        return info;
     }
 
 }

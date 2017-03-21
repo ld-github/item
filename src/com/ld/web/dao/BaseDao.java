@@ -90,11 +90,11 @@ public interface BaseDao<T> {
 
     /**
      * 
-     * @param where
+     * @param suffixHql
      * @param params
      * @return
      */
-    int update(String where, Map<String, Object> params);
+    int update(String suffixHql, Map<String, Object> params);
 
     /**
      * Delete T by primaryKey

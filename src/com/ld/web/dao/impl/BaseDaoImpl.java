@@ -109,8 +109,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public int update(String where, Map<String, Object> params) {
-        String hql = "UPDATE " + this.getClassName() + " o " + where;
+    public int update(String suffixHql, Map<String, Object> params) {
+        String hql = "UPDATE " + this.getClassName() + " o " + suffixHql;
         Query q = this.getCurrentSession().createQuery(hql);
         setParams(q, params);
         return q.executeUpdate();
