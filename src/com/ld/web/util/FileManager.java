@@ -3,17 +3,18 @@ package com.ld.web.util;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 /**
  * 
  *<p>Title: FileManager</p>
- *<p>Copyright: Copyright (c) 2015</p>
- *<p>Description: 文件工具</p>
+ *<p>Copyright: Copyright (c) 2017</p>
+ *<p>Description: </p>
  *
  *@author LD
  *
- *@date 2015-12-08
+ *@date 2017-03-20
  */
 public class FileManager {
 
@@ -117,4 +118,21 @@ public class FileManager {
         logger.info(String.format("Create file absolute path: %s ", tempFile.getAbsolutePath()));
         return tempFile;
     }
+
+    public static boolean delDir(String localPath) {
+        File dir = new File(localPath);
+
+        if (!dir.exists()) {
+            return true;
+        }
+
+        try {
+            FileUtils.deleteDirectory(dir);
+            return true;
+        } catch (IOException e) {
+            logger.error(String.format("Delete dir error: %s", e.getMessage()), e);
+            return false;
+        }
+    }
+
 }

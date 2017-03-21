@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.CreateBranchCommand;
+import org.eclipse.jgit.api.TransportConfigCallback;
 import org.eclipse.jgit.api.CreateBranchCommand.SetupUpstreamMode;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ListBranchCommand.ListMode;
@@ -15,7 +17,14 @@ import org.eclipse.jgit.lib.BranchTrackingStatus;
 import org.eclipse.jgit.lib.Ref;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.transport.JschConfigSessionFactory;
+import org.eclipse.jgit.transport.SshSessionFactory;
+import org.eclipse.jgit.transport.SshTransport;
+import org.eclipse.jgit.transport.Transport;
+import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.eclipse.jgit.transport.OpenSshConfig.Host;
 
+import com.jcraft.jsch.Session;
 import com.ld.web.been.dto.GitBranch;
 import com.ld.web.been.dto.GitLog;
 
@@ -31,15 +40,25 @@ import com.ld.web.been.dto.GitLog;
  */
 public class JGitTool {
 
+    private static Logger logger = Logger.getLogger(JGitTool.class);
+
     private String localPath; // 本地库地址
 
     private String remotePath; // 远端地址
+
+    private String username; // 用户名
+
+    private String password; // 密码
 
     private Repository repo; // 本地库
 
     private Git git;
 
     private final String REFS_HEADS = "refs/heads/";
+
+    public void cloneRepo() throws Exception {
+        cloneRepo(null);
+    }
 
     public void cloneRepo(String branchName) throws Exception {
 
@@ -50,6 +69,29 @@ public class JGitTool {
         if (!StringUtil.isEmpty(branchName)) {
             cmd.setBranch(branchName);
             isCloneAllBranchs = false;
+        }
+
+        if (remotePath.startsWith("http") && !StringUtil.isEmptyAll(username, password)) {
+            cmd.setCredentialsProvider(new UsernamePasswordCredentialsProvider(username, password));
+        }
+
+        if (remotePath.startsWith("git")) {
+
+            final SshSessionFactory sf = new JschConfigSessionFactory() {
+                @Override
+                protected void configure(Host host, Session session) {
+                    session.setPassword(password);
+                }
+            };
+
+            cmd.setTransportConfigCallback(new TransportConfigCallback() {
+                @Override
+                public void configure(Transport transport) {
+                    SshTransport sshTransport = (SshTransport) transport;
+                    sshTransport.setSshSessionFactory(sf);
+                }
+            });
+
         }
 
         cmd.setCloneAllBranches(isCloneAllBranchs).setBare(false).call();
@@ -77,7 +119,6 @@ public class JGitTool {
                 b.setTrackRemoteName(bts.getRemoteTrackingBranch());
             }
         }
-
         return items;
     }
 
@@ -116,6 +157,7 @@ public class JGitTool {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -174,9 +216,30 @@ public class JGitTool {
         return items;
     }
 
-    public JGitTool(String localPath, String remotePath) throws Exception {
+    public void closeRepo() {
+        if (null == this.git) {
+            return;
+        }
+
+        try {
+            this.git.getRepository().close();
+        } catch (Exception e) {
+            logger.error(String.format("Close repo error: %s", e.getMessage()), e);
+        }
+
+        try {
+            this.git.close();
+        } catch (Exception e) {
+            logger.error(String.format("Close git error: %s", e.getMessage()), e);
+        }
+
+    }
+
+    public JGitTool(String localPath, String remotePath, String username, String password) throws Exception {
         this.localPath = localPath;
         this.remotePath = remotePath;
+        this.username = username;
+        this.password = password;
 
         this.repo = new FileRepository(localPath + File.separator + ".git");
         this.git = new Git(repo);

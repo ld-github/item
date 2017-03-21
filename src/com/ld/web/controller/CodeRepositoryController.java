@@ -11,8 +11,21 @@ import com.ld.web.been.Page;
 import com.ld.web.been.ServerResp;
 import com.ld.web.been.model.CodeRepository;
 import com.ld.web.biz.CodeRepositoryBiz;
+import com.ld.web.enumeration.CloneStatus;
+import com.ld.web.task.CloneRepositoryTask;
+import com.ld.web.util.FileManager;
 import com.ld.web.util.StringUtil;
 
+/**
+ * 
+ *<p>Title: CodeRepositoryController</p>
+ *<p>Copyright: Copyright (c) 2017</p>
+ *<p>Description: </p>
+ *
+ *@author LD
+ *
+ *@date 2017-03-20
+ */
 @Controller
 @Scope("prototype")
 @RequestMapping(CodeRepositoryController.REQUEST_INDEX_URL)
@@ -56,6 +69,10 @@ public class CodeRepositoryController extends BaseController {
             codeRepository.init();
             codeRepositoryBiz.save(codeRepository);
 
+            try {
+                CloneRepositoryTask.getInstance().put(codeRepository);
+            } catch (InterruptedException e) {
+            }
             return new ServerResp(true, "保存成功");
         }
 
@@ -84,6 +101,35 @@ public class CodeRepositoryController extends BaseController {
         codeRepositoryBiz.delete(codeRepository);
 
         return new ServerResp(true, "删除成功");
+    }
+
+    @RequestMapping(value = "cloneAgain")
+    @ResponseBody
+    public ServerResp cloneAgain(String id) {
+
+        CodeRepository c = codeRepositoryBiz.get(id);
+        if (null == c) {
+            return new ServerResp(false, "该源码库不存在，请刷新后再试");
+        }
+
+        if (CloneStatus.CLONE_ING.value() == c.getCloneStatus().value()) {
+            return new ServerResp(false, "该源码库正在后台执行Clone任务中");
+        }
+
+        if (!FileManager.delDir(c.getLocalPath())) {
+            return new ServerResp(false, "删除本地库失败，请稍后再试");
+        }
+
+        c.setCloneStatus(CloneStatus.NOT_INIT);
+        codeRepositoryBiz.update(c);
+
+        try {
+            CloneRepositoryTask.getInstance().put(c);
+        } catch (InterruptedException e) {
+            return new ServerResp(false, "添加任务失败");
+        }
+
+        return new ServerResp(true, "添加任务成功，后台任务处理中");
     }
 
 }

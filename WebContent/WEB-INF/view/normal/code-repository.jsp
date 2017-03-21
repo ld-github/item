@@ -28,16 +28,30 @@
                                     </form>
                                 </div>
                             </div>
-                            <div id="toolbar" class="btn-group">
-                                <button id="btn-add" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-modal" data-modal-title="添加-源码库" data-handle="save">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
-                                </button>
-                                <button id="btn-edit" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-modal" data-modal-title="修改-源码库" data-handle="update">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-                                </button>
-                                <button id="btn-del" type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
-                                </button>
+                            <div id="toolbar">
+                                <div class="btn-group">
+                                    <button id="btn-add" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-modal" data-modal-title="添加-源码库" data-handle="save">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>添加
+                                    </button>
+                                    <button id="btn-edit" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-modal" data-modal-title="修改-源码库" data-handle="update">
+                                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                    </button>
+                                    <button id="btn-del" type="button" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button id="btn-pull" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-branch-modal" data-modal-title="拉取-分支代码" data-handle="pull">
+                                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>&nbsp;pull
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button id="btn-clone-again" type="button" class="btn btn-danger" data-toggle="modal">
+                                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>&nbsp;重新clone
+                                    </button>
+                                </div>
                             </div>
 
                             <table id="code-repository-table"></table>
@@ -53,7 +67,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">添加/修改-字典类型</h4>
+                    <h4 class="modal-title">添加/修改-源码库</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" id="code-repository-edit-form">
@@ -89,6 +103,22 @@
                                 <div class="input-group col-sm-12">
                                     <span class="input-group-addon fixed-addon-width">代码路径</span>
                                     <input type="text" class="form-control" name="codePath" placeholder="代码路径">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="input-group col-sm-12">
+                                    <span class="input-group-addon fixed-addon-width">用户名</span>
+                                    <input type="text" class="form-control" name="username" placeholder="用户名">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="input-group col-sm-12">
+                                    <span class="input-group-addon fixed-addon-width">密码</span>
+                                    <input type="password" class="form-control" name="password" placeholder="密码">
                                 </div>
                             </div>
                         </div>

@@ -4,11 +4,14 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ld.web.enumeration.CloneStatus;
 import com.ld.web.util.CustomBeanUtils;
 
 /**
@@ -19,7 +22,7 @@ import com.ld.web.util.CustomBeanUtils;
  *
  *@author LD
  *
- *@date 2017-03-16
+ *@date 2017-03-18
  */
 @Entity
 @Table(name = "t_code_repository")
@@ -40,7 +43,17 @@ public class CodeRepository extends BaseModel {
     private String codePath; // 代码路径
 
     @Column
+    private String username; // 用户名
+
+    @Column
+    private String password; // 密码
+
+    @Column
     private String remark; // 备注
+
+    @Column(nullable = false, columnDefinition = "INT default 0")
+    @Enumerated(EnumType.ORDINAL)
+    private CloneStatus cloneStatus;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @Column
@@ -95,12 +108,47 @@ public class CodeRepository extends BaseModel {
         this.createDatetime = createDatetime;
     }
 
+    public CloneStatus getCloneStatus() {
+        return cloneStatus;
+    }
+
+    public void setCloneStatus(CloneStatus cloneStatus) {
+        this.cloneStatus = cloneStatus;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public void init() {
         this.createDatetime = new Date();
+        this.cloneStatus = CloneStatus.NOT_INIT;
     }
 
     public void update(CodeRepository codeRepository) {
-        CustomBeanUtils.copyProperties(codeRepository, this, null, true, "createDatetime");
+        CustomBeanUtils.copyProperties(codeRepository, this, null, true, "createDatetime", "cloneStatus");
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (obj instanceof CodeRepository) {
+            return this.getId().equals(((CodeRepository) obj).getId());
+        }
+
+        return false;
     }
 
 }

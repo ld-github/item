@@ -2,6 +2,7 @@ var URLS = {
     GET_PAGE_CODE_REPOSITORY : contextPath + "/codeRepository/getPage",
     SAVE_OR_UPATE_CODE_REPOSITORY : contextPath + "/codeRepository/saveOrUpdate",
     DELETE_CODE_REPOSITORY : contextPath + "/codeRepository/delete",
+    CLONE_AGAIN_CODE_REPOSITORY : contextPath + "/codeRepository/cloneAgain",
 }
 
 function saveOrUpdate() {
@@ -36,7 +37,6 @@ function saveOrUpdate() {
 }
 
 function del() {
-
     var rows = $('#code-repository-table').bootstrapTable('getSelections');
 
     var params = {
@@ -53,8 +53,32 @@ function del() {
 
         new Message().show(data.respDesc);
     });
-
 }
+
+function cloneAgain() {
+
+    var rows = $('#code-repository-table').bootstrapTable('getSelections');
+    var row = rows[0];
+
+    var params = {
+        id : rows[0].id
+    };
+
+    $.post(URLS.CLONE_AGAIN_CODE_REPOSITORY, params, function(data) {
+        if (checkRespCodeSucc(data)) {
+            new Message().show(data.respDesc);
+            return;
+        }
+        new Message().show(data.respDesc);
+    });
+}
+
+var CLONE_STATUS = {
+    NOT_INIT : 'NOT_INIT',
+    CLONE_ING : 'CLONE_ING',
+    CLONE_SUCC : 'CLONE_SUCC',
+    CLONE_ERR : 'CLONE_ERR'
+};
 
 var codeRepositoryQueryParams = {};
 
@@ -71,7 +95,7 @@ function initCodeRepositoryTable() {
         showColumns : true,
         showExport : true,
         smartDisplay : true,
-        height : 355,
+        height : 360,
         minimumCountColumns : 1,
         pageSize : 5,
         clickToSelect : true,
@@ -105,6 +129,24 @@ function initCodeRepositoryTable() {
             field : 'codePath',
             title : '代码路径',
         }, {
+            field : 'cloneStatus',
+            title : '状态',
+            align : 'center',
+            formatter : function(value, row, index) {
+                if (CLONE_STATUS.NOT_INIT == value) {
+                    return "<span style='color: red;'>未初始化</span>"
+                }
+                if (CLONE_STATUS.CLONE_ING == value) {
+                    return "<span style='color: #FF9966;'>clone中</span>"
+                }
+                if (CLONE_STATUS.CLONE_SUCC == value) {
+                    return "<span style='color: green;'>clone成功</span>"
+                }
+                if (CLONE_STATUS.CLONE_ERR == value) {
+                    return "<span style='color: red;'>clone失败</span>"
+                }
+            }
+        }, {
             field : 'remark',
             title : '备注',
         }, {
@@ -115,20 +157,33 @@ function initCodeRepositoryTable() {
         onCheck : function(row) {
             $('#toolbar #btn-edit').removeAttr('disabled');
             $('#toolbar #btn-del').removeAttr('disabled');
+
+            if (CLONE_STATUS.CLONE_ING != row.cloneStatus) {
+                $('#toolbar #btn-clone-again').removeAttr('disabled');
+            } else {
+                $('#toolbar #btn-clone-again').attr('disabled', 'disabled');
+            }
+
+            if (CLONE_STATUS.CLONE_SUCC == row.cloneStatus) {
+                $('#toolbar #btn-pull').removeAttr('disabled');
+            } else {
+                $('#toolbar #btn-pull').attr('disabled', 'disabled');
+            }
         },
         onUncheck : function(row) {
-            $('#toolbar #btn-edit').attr('disabled', 'disabled');
-            $('#toolbar #btn-del').attr('disabled', 'disabled');
+            $('#toolbar [id^=btn-]').attr('disabled', 'disabled');
+            $('#toolbar #btn-add').removeAttr('disabled');
         },
         onPageChange : function(number, size) {
-            $('#toolbar #btn-edit').attr('disabled', 'disabled');
-            $('#toolbar #btn-del').attr('disabled', 'disabled');
+            $('#toolbar [id^=btn-]').attr('disabled', 'disabled');
+            $('#toolbar #btn-add').removeAttr('disabled');
         },
         onRefresh : function() {
-            $('#toolbar #btn-edit').attr('disabled', 'disabled');
-            $('#toolbar #btn-del').attr('disabled', 'disabled');
+            $('#toolbar [id^=btn-]').attr('disabled', 'disabled');
+            $('#toolbar #btn-add').removeAttr('disabled');
         }
     });
+
 }
 
 $(function() {
@@ -171,10 +226,16 @@ $(function() {
         new Message().confirm('确定删除该条数据?', del);
     });
 
+    $('#btn-clone-again').click(function() {
+
+        new Message().confirm('重新Clone会导致删除本地源码，建议在不能成功拉取源码时执行该操作，确定重新Clone该源码库?', cloneAgain);
+    });
+
     $('#code-repository-table').bootstrapTable('resetWidth');
 
     $('#code-repository-query-btn').click(function() {
         codeRepositoryQueryParams = $('#code-repository-query-form').serializeJson();
+
         $('#code-repository-table').bootstrapTable('selectPage', 1);
     });
 
