@@ -43,7 +43,7 @@
 
                                 <div class="btn-group">
                                     <button id="btn-pull" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-branch-modal" data-modal-title="拉取-分支代码" data-handle="pull">
-                                        <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>&nbsp;pull
+                                        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;pull
                                     </button>
                                 </div>
 
@@ -136,6 +136,27 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="code-repository-edit-btn">保存</button>
+                </div>
+            </div>
+      </div>
+    </div>
+
+        <div class="modal fade" id="code-repository-pull-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">拉取-源码库</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="code-repository-pull-form">
+
+                        <input type="hidden" name="id">
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="code-repository-pull-btn">Pull</button>
                 </div>
             </div>
       </div>
