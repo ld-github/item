@@ -77,7 +77,7 @@ public class CloneRepositoryTask {
             public void run() {
                 while (true) {
                     try {
-                        int activeCount = ((ThreadPoolExecutor) workExecutor).getActiveCount();
+                        int activeCount = getActiveCount();
                         int corePoolSize = ((ThreadPoolExecutor) workExecutor).getCorePoolSize();
 
                         if (activeCount == corePoolSize) {
@@ -93,6 +93,7 @@ public class CloneRepositoryTask {
                 }
             }
         });
+
     }
 
     private CloneRepositoryTask() {

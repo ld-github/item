@@ -42,7 +42,7 @@
                                 </div>
 
                                 <div class="btn-group">
-                                    <button id="btn-pull" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-branch-modal" data-modal-title="拉取-分支代码" data-handle="pull">
+                                    <button id="btn-pull" type="button" class="btn btn-default" data-toggle="modal" data-target="#code-repository-pull-modal" data-modal-title="拉取-分支代码" data-handle="pull">
                                         <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&nbsp;pull
                                     </button>
                                 </div>
