@@ -80,14 +80,14 @@ public class DictController extends BaseController {
             return new ServerResp(false, "字典值不能为空");
         }
 
-        Dict _dict = dictBiz.getById(dict.getId());
-        if (null == _dict) {
+        Dict d = dictBiz.getById(dict.getId());
+        if (null == d) {
             return new ServerResp(false, "该字典值不存在，请刷新后再试");
         }
 
-        _dict.update(dict);
+        d.update(dict);
         try {
-            dictBiz.update(_dict);
+            dictBiz.update(d);
 
             return new ServerResp(true, "保存成功");
         } catch (Exception e) {
@@ -100,14 +100,14 @@ public class DictController extends BaseController {
     @ResponseBody
     public ServerResp delete(Dict dict) {
 
-        Dict _dict = dictBiz.getById(dict.getId());
-        if (null == _dict) {
+        Dict d = dictBiz.getById(dict.getId());
+        if (null == d) {
             return new ServerResp(false, "该字典值不存在，请刷新后再试");
         }
 
-        _dict.getType().getDicts().remove(_dict);
+        d.getType().getDicts().remove(d);
         try {
-            dictBiz.delete(_dict);
+            dictBiz.delete(d);
 
             return new ServerResp(true, "删除成功");
         } catch (Exception e) {

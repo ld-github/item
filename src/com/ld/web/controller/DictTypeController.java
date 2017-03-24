@@ -61,14 +61,14 @@ public class DictTypeController extends BaseController {
             return new ServerResp(true, "保存成功");
         }
 
-        DictType _dictType = dictTypeBiz.getById(dictType.getId());
+        DictType dt = dictTypeBiz.getById(dictType.getId());
 
-        if (null == _dictType) {
+        if (null == dt) {
             return new ServerResp(false, "该字典类型不存在，请刷新后再试");
         }
 
-        _dictType.update(dictType);
-        dictTypeBiz.update(_dictType);
+        dt.update(dictType);
+        dictTypeBiz.update(dt);
 
         return new ServerResp(true, "保存成功");
     }
@@ -77,12 +77,12 @@ public class DictTypeController extends BaseController {
     @ResponseBody
     public ServerResp delete(DictType dictType) {
 
-        DictType _dictType = dictTypeBiz.getById(dictType.getId());
-        if (null == _dictType) {
+        DictType dt = dictTypeBiz.getById(dictType.getId());
+        if (null == dt) {
             return new ServerResp(false, "该字典类型不存在，请刷新后再试");
         }
 
-        dictTypeBiz.delete(_dictType);
+        dictTypeBiz.delete(dt);
 
         return new ServerResp(true, "删除成功");
     }

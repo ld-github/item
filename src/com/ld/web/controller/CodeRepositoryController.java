@@ -81,14 +81,14 @@ public class CodeRepositoryController extends BaseController {
             return new ServerResp(true, "保存成功");
         }
 
-        CodeRepository _codeRepository = codeRepositoryBiz.get(codeRepository.getId());
+        CodeRepository cr = codeRepositoryBiz.get(codeRepository.getId());
 
-        if (null == _codeRepository) {
+        if (null == cr) {
             return new ServerResp(false, "该源码库不存在，请刷新后再试");
         }
 
-        _codeRepository.update(codeRepository);
-        codeRepositoryBiz.update(_codeRepository);
+        cr.update(codeRepository);
+        codeRepositoryBiz.update(cr);
 
         return new ServerResp(true, "保存成功");
     }
